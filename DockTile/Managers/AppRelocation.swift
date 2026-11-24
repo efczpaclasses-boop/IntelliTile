@@ -56,6 +56,11 @@ enum AppRelocation {
         /// generation may still work, but the app is one quarantine away from translocation and
         /// should be moved.
         case elsewhere
+        /// IntelliTile: translocated, but the ORIGINAL bundle already sits in /Applications or
+        /// ~/Applications. Happens when a quarantined app is put there without Finder (Terminal
+        /// `mv`, a script), which does not lift translocation. Offering a move would be wrong (it is
+        /// already installed), so the user gets an explanation instead; nothing is changed on disk.
+        case translocatedInApplications
 
         /// Stable, lowercase token for analytics/breadcrumbs.
         var analyticsValue: String {
@@ -63,6 +68,7 @@ enum AppRelocation {
             case .applications: return "applications"
             case .translocated: return "translocated"
             case .elsewhere: return "elsewhere"
+            case .translocatedInApplications: return "translocated_in_applications"
             }
         }
     }
@@ -70,26 +76,37 @@ enum AppRelocation {
     /// Classify a bundle path. `isTranslocated` is the runtime SecTranslocate result;
     /// `applicationsDirectories` are the absolute paths treated as "installed" (/Applications and
     /// ~/Applications). Pure — no filesystem access — so it is fully unit-testable.
+    /// IntelliTile: `originalPath` is the un-translocated bundle path (SecTranslocate), when known.
     static func classify(
         bundlePath: String,
         isTranslocated: Bool,
+        originalPath: String? = nil,
         applicationsDirectories: [String]
     ) -> Location {
-        if isTranslocated { return .translocated }
-
-        let normalized = normalize(bundlePath)
-        for dir in applicationsDirectories {
-            let prefix = normalize(dir) + "/"
-            if normalized.hasPrefix(prefix) { return .applications }
+        if isTranslocated {
+            if let originalPath, isInsideApplications(originalPath, applicationsDirectories) {
+                return .translocatedInApplications
+            }
+            return .translocated
         }
-        return .elsewhere
+        return isInsideApplications(bundlePath, applicationsDirectories) ? .applications : .elsewhere
+    }
+
+    /// True when `path` is inside one of `directories` (component boundary; upstream's matching).
+    static func isInsideApplications(_ path: String, _ directories: [String]) -> Bool {
+        let normalized = normalize(path)
+        for dir in directories {
+            let prefix = normalize(dir) + "/"
+            if normalized.hasPrefix(prefix) { return true }
+        }
+        return false
     }
 
     /// Helper-bundle generation copies the running app as a template. That is only guaranteed to
     /// fail from a translocated mount (the source path is not a real, copyable bundle). Used as the
     /// hard pre-flight guard that turns the silent copy failure into an actionable error.
     static func blocksBundleGeneration(_ location: Location) -> Bool {
-        location == .translocated
+        location == .translocated || location == .translocatedInApplications
     }
 
     /// Whether the user should be nudged to move the app to /Applications. Anything but a real
@@ -159,9 +176,12 @@ final class AppRelocationManager: ObservableObject {
 
     /// The current app location, resolved live.
     var currentLocation: AppRelocation.Location {
-        AppRelocation.classify(
+        let translocated = isTranslocated
+        return AppRelocation.classify(
             bundlePath: Bundle.main.bundleURL.path,
-            isTranslocated: isTranslocated,
+            isTranslocated: translocated,
+            // Upstream's SecTranslocateCreateOriginalPathForURL lookup (Security.framework).
+            originalPath: translocated ? resolveOriginalURL()?.path : nil,
             applicationsDirectories: Self.applicationsDirectories()
         )
     }
@@ -196,6 +216,13 @@ final class AppRelocationManager: ObservableObject {
     // MARK: - Prompt
 
     private func presentRelocationPrompt(blocking: Bool, location: AppRelocation.Location) {
+        // IntelliTile: already installed in an Applications folder but translocated → explain, don't
+        // offer a move (it is already there) and don't touch the download mark.
+        if location == .translocatedInApplications {
+            presentTranslocatedInApplicationsNotice(blocking: blocking)
+            return
+        }
+
         let alert = NSAlert()
         alert.messageText = AppStrings.Alert.relocateTitle
         alert.informativeText = blocking
@@ -225,6 +252,37 @@ final class AppRelocationManager: ObservableObject {
         if response == .alertFirstButtonReturn {
             moveToApplicationsAndRelaunch()
         } else if suppressCheckbox?.state == .on {
+            UserDefaults.standard.set(true, forKey: UserDefaultsKeys.relocationPromptSuppressed)
+            DiagnosticsLog.shared.log("relocation", "User suppressed relocation nudge")
+        }
+    }
+
+    /// IntelliTile: plain-English explanation for an installed but translocated app, with what to do.
+    /// Changes nothing on disk. The launch notice can be suppressed like the upstream nudge.
+    private func presentTranslocatedInApplicationsNotice(blocking: Bool) {
+        let original = resolveOriginalURL()?.path ?? Bundle.main.bundleURL.lastPathComponent
+        DiagnosticsLog.shared.log("relocation", "Installed at \(original) but translocated — explaining (blocking \(blocking))")
+        AnalyticsService.shared.log(.relocationPrompted,
+                                    ["location": AppRelocation.Location.translocatedInApplications.analyticsValue,
+                                     "blocking": String(blocking)])
+        let alert = NSAlert()
+        alert.messageText = AppStrings.Alert.translocatedInstalledTitle
+        alert.informativeText = String(format: AppStrings.Alert.translocatedInstalledMessage, original)
+        alert.alertStyle = .warning
+        alert.addButton(withTitle: AppStrings.ItemMenu.showInFinder)
+        alert.addButton(withTitle: AppStrings.Button.done)
+        var suppressCheckbox: NSButton?
+        if !blocking {
+            let checkbox = NSButton(checkboxWithTitle: AppStrings.Alert.relocateCheckbox, target: nil, action: nil)
+            checkbox.state = .off
+            alert.accessoryView = checkbox
+            suppressCheckbox = checkbox
+        }
+        let response = alert.runModal()
+        if response == .alertFirstButtonReturn {
+            revealInFinder(resolveOriginalURL())
+        }
+        if suppressCheckbox?.state == .on {
             UserDefaults.standard.set(true, forKey: UserDefaultsKeys.relocationPromptSuppressed)
             DiagnosticsLog.shared.log("relocation", "User suppressed relocation nudge")
         }

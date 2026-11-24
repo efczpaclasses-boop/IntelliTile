@@ -192,3 +192,55 @@ struct AppRelocationInstallPlanTests {
         #expect(plan == .copy(trashDestinationFirst: false, removeSourceAfter: true, detachSourceImage: false))
     }
 }
+
+// MARK: - IntelliTile: installed but translocated (Faraz's Mac, 24 Nov 2026)
+
+/// A quarantined app put into an Applications folder with Terminal `mv` is still translocated.
+/// It is already installed, so it must get the explanation, never the generic move prompt.
+@Suite("AppRelocation: translocated but installed")
+struct AppRelocationTranslocatedInstalledTests {
+
+    private let appDirs = ["/Applications", "/Users/test/Applications"]
+    private let shadow = "/private/var/folders/ab/xyz/T/AppTranslocation/1234-ABCD/d/IntelliTile.app"
+
+    @Test("Original in ~/Applications or /Applications → .translocatedInApplications", arguments: [
+        "/Users/test/Applications/IntelliTile.app",
+        "/Applications/IntelliTile.app",
+        "/Users/test/Applications/Utilities/IntelliTile.app"
+    ])
+    func installedOriginal(_ original: String) {
+        let location = AppRelocation.classify(bundlePath: shadow, isTranslocated: true,
+                                              originalPath: original, applicationsDirectories: appDirs)
+        #expect(location == .translocatedInApplications)
+    }
+
+    @Test("Original in Downloads, on a disk image, unknown, or a look-alike folder → upstream .translocated", arguments: [
+        "/Users/test/Downloads/IntelliTile.app",
+        "/Volumes/IntelliTile/IntelliTile.app",
+        "/ApplicationsOld/IntelliTile.app",
+        "/Users/test/ApplicationsBackup/IntelliTile.app"
+    ])
+    func uninstalledOriginal(_ original: String) {
+        let location = AppRelocation.classify(bundlePath: shadow, isTranslocated: true,
+                                              originalPath: original, applicationsDirectories: appDirs)
+        #expect(location == .translocated)
+        #expect(AppRelocation.classify(bundlePath: shadow, isTranslocated: true,
+                                       applicationsDirectories: appDirs) == .translocated)
+    }
+
+    @Test("Not translocated: the original path is ignored and upstream rules apply")
+    func notTranslocated() {
+        #expect(AppRelocation.classify(bundlePath: "/Users/test/Applications/IntelliTile.app", isTranslocated: false,
+                                       originalPath: "/Users/test/Downloads/IntelliTile.app",
+                                       applicationsDirectories: appDirs) == .applications)
+        #expect(AppRelocation.classify(bundlePath: "/Users/test/Downloads/IntelliTile.app", isTranslocated: false,
+                                       applicationsDirectories: appDirs) == .elsewhere)
+    }
+
+    @Test("Still blocks helper generation (read-only copy) and still needs the user's attention")
+    func decisions() {
+        #expect(AppRelocation.blocksBundleGeneration(.translocatedInApplications) == true)
+        #expect(AppRelocation.requiresRelocation(.translocatedInApplications) == true)
+        #expect(AppRelocation.Location.translocatedInApplications.analyticsValue == "translocated_in_applications")
+    }
+}

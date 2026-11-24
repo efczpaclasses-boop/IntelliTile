@@ -164,6 +164,19 @@ enum AppStrings {
             comment: "Message shown when a tile action is blocked because the app is translocated"
         )
 
+        /// IntelliTile: installed in /Applications or ~/Applications but run from an App Translocation copy.
+        static let translocatedInstalledTitle = NSLocalizedString(
+            "alert.translocatedInstalled.title",
+            value: "IntelliTile is running from a protected copy",
+            comment: "Title when the app is already in an Applications folder but macOS runs a translocated copy"
+        )
+
+        static let translocatedInstalledMessage = NSLocalizedString(
+            "alert.translocatedInstalled.message",
+            value: "IntelliTile is installed at %@, but macOS is running a temporary, read-only copy of it because the download is still marked as coming from the internet. New tiles can't be created or updated from that copy.\n\nTo fix it, quit IntelliTile and reinstall it with update.sh in Terminal, which installs it without that mark. Or, in Finder, drag IntelliTile out of its Applications folder and back in, then open it again.",
+            comment: "Body of the translocation notice; %@ is the installed app's path"
+        )
+
         static let relocateCheckbox = NSLocalizedString(
             "alert.relocate.checkbox",
             value: "Don't ask again",

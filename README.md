@@ -70,13 +70,18 @@ Think of it as customisable Dock folders - with native vibrancy effects, SF Symb
 1. Download `IntelliTile-<version>-x86_64.zip` and its `.zip.sha256` from this fork's
    [Releases](https://github.com/efczpaclasses-boop/IntelliTile/releases) page.
 2. Check it: `cd ~/Downloads && shasum -a 256 -c IntelliTile-<version>-x86_64.zip.sha256`
-3. Unzip it and move `IntelliTile.app` to `~/Applications` (no admin rights needed).
-4. The app is ad-hoc signed, not notarized, so macOS blocks the first open. Open it once, then use
-   System Settings > Privacy & Security > Open Anyway.
+3. Unzip it and move `IntelliTile.app` to `/Applications` or `~/Applications` **with Finder** (drag it).
+   Moving it with Terminal (`mv`) keeps macOS's "downloaded from the internet" mode, and macOS may
+   then run a temporary, read-only copy of the app ("App Translocation"), from which tiles can't be
+   created; IntelliTile then explains this instead of offering to move it again.
+4. The app is ad-hoc signed, not notarized, so macOS may block the first open. If it does, open it once,
+   then use System Settings > Privacy & Security > Open Anyway.
 
-Later updates (no Xcode, no admin rights): from a clone of this branch, run `./update.sh`. It downloads
-the newest release, checks the SHA-256, signature and architecture, and replaces only
-`~/Applications/IntelliTile.app`. Quit IntelliTile first.
+Easiest alternative, and the way to update later (no Xcode, no admin rights): from a clone of this
+branch, run `./update.sh`. It downloads the newest release with `curl` (so the app is not marked as
+downloaded and is not translocated), checks the SHA-256, signature and architecture, and replaces the
+copy in `/Applications` or `~/Applications`, wherever it already is (a new install goes to
+`~/Applications`). Quit IntelliTile first.
 
 ### From Source (optional, needs Xcode)
 

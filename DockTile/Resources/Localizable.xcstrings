@@ -17550,6 +17550,114 @@
           }
         }
       }
+    },
+    "alert.translocatedInstalled.title": {
+      "comment": "Title when the app is already in an Applications folder but macOS runs a translocated copy",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile läuft aus einer geschützten Kopie"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is running from a protected copy"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is running from a protected copy"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is running from a protected copy"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile s’exécute depuis une copie protégée"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTileは保護されたコピーから実行されています"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile запущена из защищённой копии"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile 正在从受保护的副本运行"
+          }
+        }
+      }
+    },
+    "alert.translocatedInstalled.message": {
+      "comment": "Body of the translocation notice; %@ is the installed app's path",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile ist unter %@ installiert, aber macOS führt eine temporäre, schreibgeschützte Kopie aus, weil der Download noch als aus dem Internet stammend markiert ist. Aus dieser Kopie können keine Kacheln erstellt oder aktualisiert werden.\n\nBeende IntelliTile und installiere es mit update.sh im Terminal neu; so wird es ohne diese Markierung installiert. Oder ziehe IntelliTile im Finder aus seinem Programme-Ordner heraus und wieder hinein und öffne es dann erneut."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is installed at %@, but macOS is running a temporary, read-only copy of it because the download is still marked as coming from the internet. New tiles can't be created or updated from that copy.\n\nTo fix it, quit IntelliTile and reinstall it with update.sh in Terminal, which installs it without that mark. Or, in Finder, drag IntelliTile out of its Applications folder and back in, then open it again."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is installed at %@, but macOS is running a temporary, read-only copy of it because the download is still marked as coming from the internet. New tiles can't be created or updated from that copy.\n\nTo fix it, quit IntelliTile and reinstall it with update.sh in Terminal, which installs it without that mark. Or, in Finder, drag IntelliTile out of its Applications folder and back in, then open it again."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is installed at %@, but macOS is running a temporary, read-only copy of it because the download is still marked as coming from the internet. New tiles can't be created or updated from that copy.\n\nTo fix it, quit IntelliTile and reinstall it with update.sh in Terminal, which installs it without that mark. Or, in Finder, drag IntelliTile out of its Applications folder and back in, then open it again."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile est installé dans %@, mais macOS exécute une copie temporaire en lecture seule, car le téléchargement est toujours marqué comme provenant d’Internet. Impossible de créer ou de mettre à jour des tuiles depuis cette copie.\n\nPour corriger cela, quittez IntelliTile et réinstallez-le avec update.sh dans le Terminal, qui l’installe sans cette marque. Ou, dans le Finder, faites glisser IntelliTile hors de son dossier Applications puis replacez-le, et rouvrez-le."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTileは %@ にインストールされていますが、ダウンロードがまだインターネットからのものとしてマークされているため、macOSは一時的な読み取り専用のコピーを実行しています。このコピーからはタイルを作成・更新できません。\n\n解決するには、IntelliTileを終了し、ターミナルで update.sh を使って再インストールしてください（このマークなしでインストールされます）。または、FinderでIntelliTileをアプリケーションフォルダの外にドラッグしてから戻し、もう一度開いてください。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile установлена в %@, но macOS запускает её временную копию только для чтения, потому что загрузка всё ещё помечена как полученная из интернета. Из этой копии нельзя создавать или обновлять плитки.\n\nЧтобы исправить это, закройте IntelliTile и переустановите её с помощью update.sh в Терминале — так она установится без этой пометки. Или в Finder перетащите IntelliTile из папки «Программы» и обратно, затем снова откройте её."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile 已安装在 %@，但由于下载内容仍被标记为来自互联网，macOS 正在运行它的临时只读副本。无法从该副本创建或更新拼贴。\n\n要解决此问题，请退出 IntelliTile，然后在“终端”中用 update.sh 重新安装（这样安装不会带有该标记）。或者在“访达”中将 IntelliTile 拖出其“应用程序”文件夹再拖回，然后重新打开。"
+          }
+        }
+      }
     }
   },
   "version": "1.0"
