@@ -49,6 +49,12 @@ Why these are skipped:
 - **Why these three:** they are the only test suites that render SwiftUI views (`ImageRenderer` / `NSHostingView.cacheDisplay`). That crash report did not name the test in flight, so the list was chosen from the code. Run 45342814528 confirms it: with only these three skipped, there was no crash and every other test passed.
 - **Unverified on real hardware:** these three suites have not run on a real Intel GPU, and they will not: Faraz's Mac has no Xcode, so the optional real-GPU test step was dropped (Lead, 24 Nov 2026). What they cover (icon preview geometry, Apps face preview, Apps background rendering) is only checked by eye in MAC_TEST_PLAN.md's feature steps.
 
+### Release v2.8.1-intel.1 (24 Nov 2026)
+- Branch tip 7121ce4 (port-only app code = f34e32d, plus the release workflow and update.sh): intel-macos run 45349716311 green (same three suites skipped).
+- Release run 45351636763 (tag push, macos-15-intel + ubuntu): build, ditto zip, unpacked copy `codesign --verify --deep --strict` OK, `Signature=adhoc`, x86_64 only, minos 15.0; published; assets downloaded back and SHA matched.
+- `IntelliTile-2.8.1-intel.1-x86_64.zip` (5,308,284 bytes), SHA-256 `4ea553d1340fb2c590c310be4f20587d66ae731660bc195e8ec4abfa83b84564`. Re-downloaded from the Linux box with unauthenticated curl: `sha256sum -c` OK.
+- update.sh on the Intel runner (macOS 15.7, not Faraz's Mac): first run installed v2.8.1-intel.1 (SHA OK), second run "Already installed"; the curl-installed app had **no** `com.apple.quarantine` attribute; `spctl --assess` said `rejected` (not notarized), yet `open` launched it (running after 20 s).
+
 ### Ideas #2 and #4 (paused)
 - 2b0131d Idea #2, run 45345167714: green. ba78d9b Idea #4, run 45346937881: green.
 - Both reverted on the branch when the plan changed to CI-built releases; kept on branch `idea2-4-parked`.
