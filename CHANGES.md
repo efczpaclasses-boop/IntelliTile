@@ -202,3 +202,9 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
   - New text says the Dock is force-quit and reopens straight away, existing items stay, and an icon dragged a moment ago may be lost.
   - The force-quit itself (`killall -KILL Dock`) and the one-time consent are unchanged.
 - Why: a privileged Dock utility should not register a login helper until asked, and the consent text should match what happens (IDEAS.md #4; ANALYSIS.md §7). Effect: no feature lost; Start at Login (#25) is OFF until turned on.
+
+## Idea #5 (approved 24 Nov 2026): generic folder icon for Desktop, Documents and Downloads
+- Files: `DockTile/Utilities/AppIconLoader.swift` (new `isProtectedFolder` and one branch in `icon(for:)`), plus the new `DockTileTests/Unit/Utilities/ProtectedFolderIconTests.swift`.
+- What: if a tile item is exactly `~/Desktop`, `~/Documents` or `~/Downloads`, the popover, the tile face and the cache draw `NSWorkspace.icon(for: .folder)` instead of reading that folder's real icon. Every other folder keeps its real icon; subfolders such as `~/Downloads/Work` are not covered, as IDEAS.md describes.
+- Why: reading the real icon is what triggers the macOS folder-access prompt (k97/dock-tile#36, option 1). Opening the folder still works as before (#20).
+- Effect: those three folders show a plain folder picture. That is not tested on Sequoia yet; the Mac test plan covers it.

@@ -8,6 +8,7 @@
 //
 
 import AppKit
+import UniformTypeIdentifiers
 
 @MainActor
 enum AppIconLoader {
@@ -20,6 +21,11 @@ enum AppIconLoader {
     static func icon(for item: AppItem) -> NSImage? {
         // For folders, get icon from folder path
         if item.isFolder, let folderPath = item.folderPath {
+            // IntelliTile idea #5: reading the real icon of Desktop / Documents / Downloads is what
+            // makes macOS ask for folder access (k97/dock-tile#36), so those get the generic folder.
+            if isProtectedFolder(folderPath) {
+                return NSWorkspace.shared.icon(for: .folder)
+            }
             return NSWorkspace.shared.icon(forFile: folderPath)
         }
 
@@ -44,6 +50,17 @@ enum AppIconLoader {
         }
 
         return nil
+    }
+
+    /// IntelliTile idea #5: the user's own Desktop, Documents and Downloads folders (exact paths,
+    /// after expanding `~` and dropping a trailing slash). Their icons are drawn as the generic
+    /// folder so no folder-access prompt is triggered just to show an icon.
+    nonisolated static func isProtectedFolder(_ path: String, home: String = NSHomeDirectory()) -> Bool {
+        let standard = ((path as NSString).expandingTildeInPath as NSString).standardizingPath
+        let base = (home as NSString).standardizingPath
+        return ["Desktop", "Documents", "Downloads"].contains {
+            (base as NSString).appendingPathComponent($0) == standard
+        }
     }
 
     // MARK: - Private Helpers
