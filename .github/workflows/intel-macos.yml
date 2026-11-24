@@ -122,6 +122,20 @@ jobs:
             2>&1 | tee test.log
           { echo "## Unit tests"; echo '```'; grep -E "Executed|Test run with|tests? (passed|failed)|\*\* TEST" test.log | tail -n 10; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
+      - name: Test failure details (from the result bundle)
+        if: failure()
+        run: |
+          [ -d TestResults.xcresult ] || exit 0
+          xcrun xcresulttool get test-results summary --path TestResults.xcresult --compact > test-summary.json || exit 0
+          python3 - <<'PY' | tee test-failures.txt
+          import json
+          s = json.load(open("test-summary.json"))
+          print("result:", s.get("result"), "passed:", s.get("passedTests"), "failed:", s.get("failedTests"), "skipped:", s.get("skippedTests"))
+          for f in s.get("testFailures", []):
+              print("FAIL", f.get("testIdentifierString") or f.get("testName"), "::", (f.get("failureText") or "").replace("\n", " | ")[:600])
+          PY
+          { echo "## Test failures"; echo '```'; head -n 120 test-failures.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Launch smoke (non-blocking)
         continue-on-error: true
         run: |
@@ -162,6 +176,7 @@ jobs:
             launch-diagnostics.log
             build-release.log
             test.log
+            test-failures.txt
             TestResults.xcresult.zip
           if-no-files-found: warn
           retention-days: 30
