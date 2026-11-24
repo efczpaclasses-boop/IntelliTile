@@ -30,6 +30,12 @@ case "$origin" in
 esac
 current="$(git symbolic-ref --short HEAD 2>/dev/null || echo detached)"
 [ "$current" = "$BRANCH" ] || die "This clone is on '$current', not '$BRANCH'. Run: git switch $BRANCH   then re-run ./update.sh"
+# Xcode may rewrite Package.resolved (its originHash) during a build; that is not a user edit.
+RESOLVED="DockTile.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved"
+if [ "$(git diff --name-only)" = "$RESOLVED" ] && git diff --cached --quiet; then
+    info "Resetting $RESOLVED (rewritten by Xcode during the last build)"
+    git checkout -- "$RESOLVED"
+fi
 if ! git diff --quiet || ! git diff --cached --quiet; then
     die "There are local edits in this folder; update.sh will not overwrite them. Send 'git status' output to Port Lead."
 fi
