@@ -8,49 +8,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile erstellt deine Kacheln im Dock mit dem neuen Popover-Design neu und startet das Dock kurz neu. Deine anderen Objekte im Dock bleiben unverändert."
+            "value": "IntelliTile erstellt deine Kacheln im Dock mit dem neuen Popover-Design neu und startet das Dock kurz neu. Deine anderen Objekte im Dock bleiben unverändert."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected."
+            "value": "IntelliTile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected."
+            "value": "IntelliTile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected."
+            "value": "IntelliTile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile va reconstruire vos tuiles du Dock avec le nouvel aspect de la fenêtre surgissante et redémarrer brièvement le Dock. Vos autres éléments du Dock ne seront pas modifiés."
+            "value": "IntelliTile va reconstruire vos tuiles du Dock avec le nouvel aspect de la fenêtre surgissante et redémarrer brièvement le Dock. Vos autres éléments du Dock ne seront pas modifiés."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileは、Dockにあるタイルを新しいポップオーバーの外観で再構築し、Dockを一時的に再起動します。Dock内のほかの項目には影響しません。"
+            "value": "IntelliTileは、Dockにあるタイルを新しいポップオーバーの外観で再構築し、Dockを一時的に再起動します。Dock内のほかの項目には影響しません。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile пересоздаст закрепленные плитки с новым видом всплывающей панели и ненадолго перезапустит Dock. Другие объекты в Dock не изменятся."
+            "value": "IntelliTile пересоздаст закрепленные плитки с новым видом всплывающей панели и ненадолго перезапустит Dock. Другие объекты в Dock не изменятся."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile将使用新的弹出面板外观重建程序坞中的磁贴，并短暂重新启动程序坞。程序坞中的其他项目不受影响。"
+            "value": "IntelliTile将使用新的弹出面板外观重建程序坞中的磁贴，并短暂重新启动程序坞。程序坞中的其他项目不受影响。"
           }
         }
       }
@@ -116,55 +116,55 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Deine Kacheln wurden nicht geändert. Dock Tile konnte seine Einstellungsdatei nicht öffnen und wird beendet. Prüfe, ob du %@ öffnen kannst, und öffne Dock Tile dann erneut."
+            "value": "Deine Kacheln wurden nicht geändert. IntelliTile konnte seine Einstellungsdatei nicht öffnen und wird beendet. Prüfe, ob du %@ öffnen kannst, und öffne IntelliTile dann erneut."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your tiles haven't been changed. Dock Tile couldn't open its settings file and will quit. Check that you can open %@, then open Dock Tile again."
+            "value": "Your tiles haven't been changed. IntelliTile couldn't open its settings file and will quit. Check that you can open %@, then open IntelliTile again."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your tiles haven't been changed. Dock Tile couldn't open its settings file and will quit. Check that you can open %@, then open Dock Tile again."
+            "value": "Your tiles haven't been changed. IntelliTile couldn't open its settings file and will quit. Check that you can open %@, then open IntelliTile again."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Your tiles haven't been changed. Dock Tile couldn't open its settings file and will quit. Check that you can open %@, then open Dock Tile again."
+            "value": "Your tiles haven't been changed. IntelliTile couldn't open its settings file and will quit. Check that you can open %@, then open IntelliTile again."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Vos tuiles n’ont pas été modifiées. Dock Tile n’a pas pu ouvrir son fichier de réglages et va se fermer. Vérifiez que vous pouvez ouvrir %@, puis rouvrez Dock Tile."
+            "value": "Vos tuiles n’ont pas été modifiées. IntelliTile n’a pas pu ouvrir son fichier de réglages et va se fermer. Vérifiez que vous pouvez ouvrir %@, puis rouvrez IntelliTile."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "タイルは変更されていません。Dock Tileは設定ファイルを開けなかったため、終了します。%@を開けることを確認してから、もう一度Dock Tileを開いてください。"
+            "value": "タイルは変更されていません。IntelliTileは設定ファイルを開けなかったため、終了します。%@を開けることを確認してから、もう一度IntelliTileを開いてください。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ваши плитки не изменены. Dock Tile не удалось открыть файл настроек, поэтому программа завершит работу. Убедитесь, что вы можете открыть %@, затем снова откройте Dock Tile."
+            "value": "Ваши плитки не изменены. IntelliTile не удалось открыть файл настроек, поэтому программа завершит работу. Убедитесь, что вы можете открыть %@, затем снова откройте IntelliTile."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "你的磁贴未被更改。Dock Tile无法打开其设置文件，将会退出。请确认你可以打开%@，然后再次打开Dock Tile。"
+            "value": "你的磁贴未被更改。IntelliTile无法打开其设置文件，将会退出。请确认你可以打开%@，然后再次打开IntelliTile。"
           }
         }
       }
     },
     "alert.configUnreadable.quit": {
-      "comment": "Only button of the can't-read-tiles launch alert; quits Dock Tile",
+      "comment": "Only button of the can't-read-tiles launch alert; quits IntelliTile",
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -224,49 +224,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile kann deine Kacheln nicht lesen"
+            "value": "IntelliTile kann deine Kacheln nicht lesen"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile Can't Read Your Tiles"
+            "value": "IntelliTile Can't Read Your Tiles"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile Can't Read Your Tiles"
+            "value": "IntelliTile Can't Read Your Tiles"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile Can't Read Your Tiles"
+            "value": "IntelliTile Can't Read Your Tiles"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile ne peut pas lire vos tuiles"
+            "value": "IntelliTile ne peut pas lire vos tuiles"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileがタイルを読み込めません"
+            "value": "IntelliTileがタイルを読み込めません"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile не может прочитать ваши плитки"
+            "value": "IntelliTile не может прочитать ваши плитки"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile无法读取你的磁贴"
+            "value": "IntelliTile无法读取你的磁贴"
           }
         }
       }
@@ -332,49 +332,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Diese Kacheln sind nur in der Menüleiste: %@. Sie bleiben in Dock Tile, werden aber nirgends angezeigt, bis du dies wieder aktivierst oder sie zum Dock hinzufügst."
+            "value": "Diese Kacheln sind nur in der Menüleiste: %@. Sie bleiben in IntelliTile, werden aber nirgends angezeigt, bis du dies wieder aktivierst oder sie zum Dock hinzufügst."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "These tiles are only in the menu bar: %@. They stay in Dock Tile but won’t show anywhere until you turn this back on or add them to the Dock."
+            "value": "These tiles are only in the menu bar: %@. They stay in IntelliTile but won’t show anywhere until you turn this back on or add them to the Dock."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "These tiles are only in the menu bar: %@. They stay in Dock Tile but won’t show anywhere until you turn this back on or add them to the Dock."
+            "value": "These tiles are only in the menu bar: %@. They stay in IntelliTile but won’t show anywhere until you turn this back on or add them to the Dock."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "These tiles are only in the menu bar: %@. They stay in Dock Tile but won’t show anywhere until you turn this back on or add them to the Dock."
+            "value": "These tiles are only in the menu bar: %@. They stay in IntelliTile but won’t show anywhere until you turn this back on or add them to the Dock."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ces tuiles se trouvent uniquement dans la barre des menus : %@. Elles restent dans Dock Tile, mais n’apparaîtront nulle part tant que vous ne réactivez pas cette option ou ne les ajoutez pas au Dock."
+            "value": "Ces tuiles se trouvent uniquement dans la barre des menus : %@. Elles restent dans IntelliTile, mais n’apparaîtront nulle part tant que vous ne réactivez pas cette option ou ne les ajoutez pas au Dock."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "次のタイルはメニューバーにのみあります：%@。Dock Tileには残りますが、この設定を再びオンにするかDockに追加するまで、どこにも表示されません。"
+            "value": "次のタイルはメニューバーにのみあります：%@。IntelliTileには残りますが、この設定を再びオンにするかDockに追加するまで、どこにも表示されません。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Эти плитки есть только в строке меню: %@. Они останутся в Dock Tile, но не будут нигде отображаться, пока вы снова не включите этот параметр или не добавите их в Dock."
+            "value": "Эти плитки есть только в строке меню: %@. Они останутся в IntelliTile, но не будут нигде отображаться, пока вы снова не включите этот параметр или не добавите их в Dock."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "以下磁贴仅在菜单栏中：%@。它们仍保留在Dock Tile中，但在你重新打开此选项或将其添加到程序坞之前，不会在任何地方显示。"
+            "value": "以下磁贴仅在菜单栏中：%@。它们仍保留在IntelliTile中，但在你重新打开此选项或将其添加到程序坞之前，不会在任何地方显示。"
           }
         }
       }
@@ -386,49 +386,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "„%@“ ist nur in der Menüleiste. Die Kachel bleibt in Dock Tile, wird aber nirgends angezeigt, bis du dies wieder aktivierst oder sie zum Dock hinzufügst."
+            "value": "„%@“ ist nur in der Menüleiste. Die Kachel bleibt in IntelliTile, wird aber nirgends angezeigt, bis du dies wieder aktivierst oder sie zum Dock hinzufügst."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ is only in the menu bar. It stays in Dock Tile but won’t show anywhere until you turn this back on or add it to the Dock."
+            "value": "%@ is only in the menu bar. It stays in IntelliTile but won’t show anywhere until you turn this back on or add it to the Dock."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ is only in the menu bar. It stays in Dock Tile but won’t show anywhere until you turn this back on or add it to the Dock."
+            "value": "%@ is only in the menu bar. It stays in IntelliTile but won’t show anywhere until you turn this back on or add it to the Dock."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "%@ is only in the menu bar. It stays in Dock Tile but won’t show anywhere until you turn this back on or add it to the Dock."
+            "value": "%@ is only in the menu bar. It stays in IntelliTile but won’t show anywhere until you turn this back on or add it to the Dock."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "« %@ » se trouve uniquement dans la barre des menus. La tuile reste dans Dock Tile, mais n’apparaîtra nulle part tant que vous ne réactivez pas cette option ou ne l’ajoutez pas au Dock."
+            "value": "« %@ » se trouve uniquement dans la barre des menus. La tuile reste dans IntelliTile, mais n’apparaîtra nulle part tant que vous ne réactivez pas cette option ou ne l’ajoutez pas au Dock."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "“%@”はメニューバーにのみあります。Dock Tileには残りますが、この設定を再びオンにするかDockに追加するまで、どこにも表示されません。"
+            "value": "“%@”はメニューバーにのみあります。IntelliTileには残りますが、この設定を再びオンにするかDockに追加するまで、どこにも表示されません。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "«%@» есть только в строке меню. Плитка останется в Dock Tile, но не будет нигде отображаться, пока вы снова не включите этот параметр или не добавите ее в Dock."
+            "value": "«%@» есть только в строке меню. Плитка останется в IntelliTile, но не будет нигде отображаться, пока вы снова не включите этот параметр или не добавите ее в Dock."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "“%@”仅在菜单栏中。它仍保留在Dock Tile中，但在你重新打开此选项或将其添加到程序坞之前，不会在任何地方显示。"
+            "value": "“%@”仅在菜单栏中。它仍保留在IntelliTile中，但在你重新打开此选项或将其添加到程序坞之前，不会在任何地方显示。"
           }
         }
       }
@@ -488,7 +488,7 @@
       }
     },
     "alert.menuBarOff.title": {
-      "comment": "Alert title when turning off Dock Tile's menu bar icon while some tiles are only in the menu bar. \"Menu bar\" is Apple's macOS menu bar — use Apple's own term.",
+      "comment": "Alert title when turning off IntelliTile's menu bar icon while some tiles are only in the menu bar. \"Menu bar\" is Apple's macOS menu bar — use Apple's own term.",
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -818,49 +818,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile kann diese Kachel nicht erstellen oder aktualisieren, weil die App von einem temporären, schreibgeschützten Ort aus ausgeführt wird. Das passiert, wenn sie aus dem Ordner „Downloads“ geöffnet wird. Verschiebe Dock Tile in deinen Ordner „Programme“ und versuche es erneut."
+            "value": "IntelliTile kann diese Kachel nicht erstellen oder aktualisieren, weil die App von einem temporären, schreibgeschützten Ort aus ausgeführt wird. Das passiert, wenn sie aus dem Ordner „Downloads“ geöffnet wird. Verschiebe IntelliTile in deinen Ordner „Programme“ und versuche es erneut."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move Dock Tile to your Applications folder and try again."
+            "value": "IntelliTile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move IntelliTile to your Applications folder and try again."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move Dock Tile to your Applications folder and try again."
+            "value": "IntelliTile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move IntelliTile to your Applications folder and try again."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move Dock Tile to your Applications folder and try again."
+            "value": "IntelliTile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move IntelliTile to your Applications folder and try again."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile ne peut pas créer ni mettre à jour cette tuile, car il s’exécute depuis un emplacement temporaire en lecture seule. Cela se produit lorsque l’app est ouverte depuis le dossier Téléchargements. Déplacez Dock Tile dans votre dossier Applications, puis réessayez."
+            "value": "IntelliTile ne peut pas créer ni mettre à jour cette tuile, car il s’exécute depuis un emplacement temporaire en lecture seule. Cela se produit lorsque l’app est ouverte depuis le dossier Téléchargements. Déplacez IntelliTile dans votre dossier Applications, puis réessayez."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileは一時的な読み出し専用の場所から実行されているため、このタイルを作成または更新できません。これは、アプリを“ダウンロード”フォルダから起動したときに起こります。Dock Tileを“アプリケーション”フォルダに移動してから、もう一度お試しください。"
+            "value": "IntelliTileは一時的な読み出し専用の場所から実行されているため、このタイルを作成または更新できません。これは、アプリを“ダウンロード”フォルダから起動したときに起こります。IntelliTileを“アプリケーション”フォルダに移動してから、もう一度お試しください。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile не может создать или обновить эту плитку, так как программа запущена из временного расположения, доступного только для чтения. Так бывает, если открыть ее из папки «Загрузки». Переместите Dock Tile в папку «Программы» и повторите попытку."
+            "value": "IntelliTile не может создать или обновить эту плитку, так как программа запущена из временного расположения, доступного только для чтения. Так бывает, если открыть ее из папки «Загрузки». Переместите IntelliTile в папку «Программы» и повторите попытку."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile无法创建或更新此磁贴，因为它正从一个临时的只读位置运行。从“下载”文件夹打开App时会出现这种情况。请将Dock Tile移到“应用程序”文件夹，然后重试。"
+            "value": "IntelliTile无法创建或更新此磁贴，因为它正从一个临时的只读位置运行。从“下载”文件夹打开App时会出现这种情况。请将IntelliTile移到“应用程序”文件夹，然后重试。"
           }
         }
       }
@@ -926,49 +926,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile wird außerhalb deines Ordners „Programme“ ausgeführt. macOS führt die App dann möglicherweise von einem temporären, schreibgeschützten Ort aus, wodurch keine neuen Kacheln erstellt werden können. Verschiebe sie in den Ordner „Programme“, damit alles funktioniert."
+            "value": "IntelliTile wird außerhalb deines Ordners „Programme“ ausgeführt. macOS führt die App dann möglicherweise von einem temporären, schreibgeschützten Ort aus, wodurch keine neuen Kacheln erstellt werden können. Verschiebe sie in den Ordner „Programme“, damit alles funktioniert."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works."
+            "value": "IntelliTile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works."
+            "value": "IntelliTile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works."
+            "value": "IntelliTile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile s’exécute en dehors de votre dossier Applications. macOS peut l’exécuter depuis un emplacement temporaire en lecture seule, ce qui peut empêcher la création de nouvelles tuiles. Déplacez-le dans Applications pour que tout fonctionne correctement."
+            "value": "IntelliTile s’exécute en dehors de votre dossier Applications. macOS peut l’exécuter depuis un emplacement temporaire en lecture seule, ce qui peut empêcher la création de nouvelles tuiles. Déplacez-le dans Applications pour que tout fonctionne correctement."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileは“アプリケーション”フォルダ以外の場所から実行されています。macOSが一時的な読み出し専用の場所からアプリを実行することがあり、その場合は新しいタイルを作成できなくなる可能性があります。すべてが正しく動作するように、“アプリケーション”フォルダに移動してください。"
+            "value": "IntelliTileは“アプリケーション”フォルダ以外の場所から実行されています。macOSが一時的な読み出し専用の場所からアプリを実行することがあり、その場合は新しいタイルを作成できなくなる可能性があります。すべてが正しく動作するように、“アプリケーション”フォルダに移動してください。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Программа Dock Tile запущена не из папки «Программы». macOS может запускать ее из временного расположения, доступного только для чтения, и тогда новые плитки не удастся создать. Переместите ее в папку «Программы», чтобы все работало."
+            "value": "Программа IntelliTile запущена не из папки «Программы». macOS может запускать ее из временного расположения, доступного только для чтения, и тогда новые плитки не удастся создать. Переместите ее в папку «Программы», чтобы все работало."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile正在“应用程序”文件夹之外运行。macOS可能会从临时的只读位置运行它，导致无法创建新磁贴。请将它移到“应用程序”文件夹，以确保一切正常。"
+            "value": "IntelliTile正在“应用程序”文件夹之外运行。macOS可能会从临时的只读位置运行它，导致无法创建新磁贴。请将它移到“应用程序”文件夹，以确保一切正常。"
           }
         }
       }
@@ -980,49 +980,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile in den Ordner „Programme“ verschieben?"
+            "value": "IntelliTile in den Ordner „Programme“ verschieben?"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Move Dock Tile to Applications?"
+            "value": "Move IntelliTile to Applications?"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Move Dock Tile to Applications?"
+            "value": "Move IntelliTile to Applications?"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Move Dock Tile to Applications?"
+            "value": "Move IntelliTile to Applications?"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Déplacer Dock Tile dans Applications ?"
+            "value": "Déplacer IntelliTile dans Applications ?"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileを“アプリケーション”フォルダに移動しますか?"
+            "value": "IntelliTileを“アプリケーション”フォルダに移動しますか?"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Переместить Dock Tile в папку «Программы»?"
+            "value": "Переместить IntelliTile в папку «Программы»?"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "要将Dock Tile移到“应用程序”文件夹吗？"
+            "value": "要将IntelliTile移到“应用程序”文件夹吗？"
           }
         }
       }
@@ -1088,49 +1088,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile startet das Dock neu, um Änderungen anzuwenden. Das passiert jedes Mal, wenn du Kacheln hinzufügst, aktualisierst oder entfernst. Deine aktuellen Objekte im Dock bleiben unverändert."
+            "value": "IntelliTile startet das Dock neu, um Änderungen anzuwenden. Das passiert jedes Mal, wenn du Kacheln hinzufügst, aktualisierst oder entfernst. Deine aktuellen Objekte im Dock bleiben unverändert."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
+            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
+            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
+            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile redémarre le Dock pour appliquer les modifications. Cela se produit chaque fois que vous ajoutez, mettez à jour ou supprimez des tuiles. Vos éléments du Dock actuels ne seront pas modifiés."
+            "value": "IntelliTile redémarre le Dock pour appliquer les modifications. Cela se produit chaque fois que vous ajoutez, mettez à jour ou supprimez des tuiles. Vos éléments du Dock actuels ne seront pas modifiés."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileは変更を適用するためにDockを再起動します。これはタイルを追加、更新、または削除するたびに行われます。現在のDockの項目には影響しません。"
+            "value": "IntelliTileは変更を適用するためにDockを再起動します。これはタイルを追加、更新、または削除するたびに行われます。現在のDockの項目には影響しません。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Чтобы применить изменения, Dock Tile перезапускает Dock. Это происходит каждый раз, когда вы добавляете, обновляете или удаляете плитки. Текущие объекты в Dock не изменятся."
+            "value": "Чтобы применить изменения, IntelliTile перезапускает Dock. Это происходит каждый раз, когда вы добавляете, обновляете или удаляете плитки. Текущие объекты в Dock не изменятся."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile会重新启动程序坞以应用更改。每次添加、更新或移除磁贴时都会如此。程序坞中现有的项目不受影响。"
+            "value": "IntelliTile会重新启动程序坞以应用更改。每次添加、更新或移除磁贴时都会如此。程序坞中现有的项目不受影响。"
           }
         }
       }
@@ -1250,49 +1250,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         }
       }
@@ -2864,7 +2864,7 @@
       }
     },
     "button.turnOff": {
-      "comment": "Confirm button of the alert that turns off Dock Tile's menu bar icon",
+      "comment": "Confirm button of the alert that turns off IntelliTile's menu bar icon",
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -3626,49 +3626,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile wird von einem temporären, schreibgeschützten Ort aus ausgeführt und kann keine Kacheln erstellen. Verschiebe die App in deinen Ordner „Programme“ und versuche es erneut."
+            "value": "IntelliTile wird von einem temporären, schreibgeschützten Ort aus ausgeführt und kann keine Kacheln erstellen. Verschiebe die App in deinen Ordner „Programme“ und versuche es erneut."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again."
+            "value": "IntelliTile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again."
+            "value": "IntelliTile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again."
+            "value": "IntelliTile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile s’exécute depuis un emplacement temporaire en lecture seule et ne peut pas créer de tuiles. Déplacez-le dans votre dossier Applications, puis réessayez."
+            "value": "IntelliTile s’exécute depuis un emplacement temporaire en lecture seule et ne peut pas créer de tuiles. Déplacez-le dans votre dossier Applications, puis réessayez."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileは一時的な読み出し専用の場所から実行されているため、タイルを作成できません。“アプリケーション”フォルダに移動してから、もう一度お試しください。"
+            "value": "IntelliTileは一時的な読み出し専用の場所から実行されているため、タイルを作成できません。“アプリケーション”フォルダに移動してから、もう一度お試しください。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Программа Dock Tile запущена из временного расположения, доступного только для чтения, и не может создавать плитки. Переместите ее в папку «Программы» и повторите попытку."
+            "value": "Программа IntelliTile запущена из временного расположения, доступного только для чтения, и не может создавать плитки. Переместите ее в папку «Программы» и повторите попытку."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile正从临时的只读位置运行，无法创建磁贴。请将它移到“应用程序”文件夹，然后重试。"
+            "value": "IntelliTile正从临时的只读位置运行，无法创建磁贴。请将它移到“应用程序”文件夹，然后重试。"
           }
         }
       }
@@ -3728,7 +3728,7 @@
       }
     },
     "error.dockChangeNotKept": {
-      "comment": "Error when Dock Tile wrote a change to the Dock (add, update or hide a tile) but the Dock did not keep it, even after one retry",
+      "comment": "Error when IntelliTile wrote a change to the Dock (add, update or hide a tile) but the Dock did not keep it, even after one retry",
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -4004,49 +4004,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Haupt-App „Dock Tile.app“ nicht gefunden"
+            "value": "Haupt-App „IntelliTile.app“ nicht gefunden"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Main Dock Tile.app not found"
+            "value": "Main IntelliTile.app not found"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Main Dock Tile.app not found"
+            "value": "Main IntelliTile.app not found"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Main Dock Tile.app not found"
+            "value": "Main IntelliTile.app not found"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "App principale Dock Tile.app introuvable"
+            "value": "App principale IntelliTile.app introuvable"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "メインのDock Tile.appが見つかりません"
+            "value": "メインのIntelliTile.appが見つかりません"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Основное приложение Dock Tile.app не найдено"
+            "value": "Основное приложение IntelliTile.app не найдено"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "找不到主程序Dock Tile.app"
+            "value": "找不到主程序IntelliTile.app"
           }
         }
       }
@@ -7082,49 +7082,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Hilf mit, Dock Tile zu verbessern, indem du anonyme Nutzungsdaten und Absturzberichte sendest. Es werden keine persönlichen Daten erfasst."
+            "value": "Hilf mit, IntelliTile zu verbessern, indem du anonyme Nutzungsdaten und Absturzberichte sendest. Es werden keine persönlichen Daten erfasst."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Help improve Dock Tile by sending anonymous usage and crash reports. No personal data is collected."
+            "value": "Help improve IntelliTile by sending anonymous usage and crash reports. No personal data is collected."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Help improve Dock Tile by sending anonymous usage and crash reports. No personal data is collected."
+            "value": "Help improve IntelliTile by sending anonymous usage and crash reports. No personal data is collected."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Help improve Dock Tile by sending anonymous usage and crash reports. No personal data is collected."
+            "value": "Help improve IntelliTile by sending anonymous usage and crash reports. No personal data is collected."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aidez à améliorer Dock Tile en envoyant des données d’utilisation et des rapports de plantage anonymes. Aucune donnée personnelle n’est collectée."
+            "value": "Aidez à améliorer IntelliTile en envoyant des données d’utilisation et des rapports de plantage anonymes. Aucune donnée personnelle n’est collectée."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "匿名の使用状況データとクラッシュレポートを送信して、Dock Tileの改善にご協力ください。個人データは収集されません。"
+            "value": "匿名の使用状況データとクラッシュレポートを送信して、IntelliTileの改善にご協力ください。個人データは収集されません。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Помогите улучшить Dock Tile, отправляя анонимные данные об использовании и отчеты о сбоях. Личные данные не собираются."
+            "value": "Помогите улучшить IntelliTile, отправляя анонимные данные об использовании и отчеты о сбоях. Личные данные не собираются."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "发送匿名使用情况和崩溃报告，帮助改进Dock Tile。不会收集任何个人数据。"
+            "value": "发送匿名使用情况和崩溃报告，帮助改进IntelliTile。不会收集任何个人数据。"
           }
         }
       }
@@ -7292,7 +7292,7 @@
       }
     },
     "label.showInMenuBar": {
-      "comment": "Tile Detail: toggle that lists this tile in Dock Tile's menu bar icon menu. \"Menu bar\" is Apple's macOS menu bar at the top of the screen — use Apple's own term.",
+      "comment": "Tile Detail: toggle that lists this tile in IntelliTile's menu bar icon menu. \"Menu bar\" is Apple's macOS menu bar at the top of the screen — use Apple's own term.",
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -7460,49 +7460,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Du verwendest Version %@. Dock Tile sucht automatisch nach Updates."
+            "value": "Du verwendest Version %@. IntelliTile sucht automatisch nach Updates."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "You’re using version %@. Dock Tile checks for updates automatically."
+            "value": "You’re using version %@. IntelliTile checks for updates automatically."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "You’re using version %@. Dock Tile checks for updates automatically."
+            "value": "You’re using version %@. IntelliTile checks for updates automatically."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "You’re using version %@. Dock Tile checks for updates automatically."
+            "value": "You’re using version %@. IntelliTile checks for updates automatically."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Vous utilisez la version %@. Dock Tile recherche automatiquement les mises à jour."
+            "value": "Vous utilisez la version %@. IntelliTile recherche automatiquement les mises à jour."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "バージョン%@を使用しています。Dock Tileはアップデートを自動的に確認します。"
+            "value": "バージョン%@を使用しています。IntelliTileはアップデートを自動的に確認します。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Вы используете версию %@. Dock Tile проверяет наличие обновлений автоматически."
+            "value": "Вы используете версию %@. IntelliTile проверяет наличие обновлений автоматически."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "你正在使用版本%@。Dock Tile会自动检查更新。"
+            "value": "你正在使用版本%@。IntelliTile会自动检查更新。"
           }
         }
       }
@@ -8588,7 +8588,7 @@
       }
     },
     "menu.configureTileItem": {
-      "comment": "Tile submenu item in the menu bar and Dock menus: opens that tile in Dock Tile's window",
+      "comment": "Tile submenu item in the menu bar and Dock menus: opens that tile in IntelliTile's window",
       "extractionState": "manual",
       "localizations": {
         "de": {
@@ -8912,55 +8912,55 @@
       }
     },
     "menu.openDockTile": {
-      "comment": "Menu bar and Dock menu item that opens Dock Tile's main window",
+      "comment": "Menu bar and Dock menu item that opens IntelliTile's main window",
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile öffnen …"
+            "value": "IntelliTile öffnen …"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Dock Tile…"
+            "value": "Open IntelliTile…"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Dock Tile…"
+            "value": "Open IntelliTile…"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Open Dock Tile…"
+            "value": "Open IntelliTile…"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ouvrir Dock Tile…"
+            "value": "Ouvrir IntelliTile…"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileを開く…"
+            "value": "IntelliTileを開く…"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Открыть Dock Tile…"
+            "value": "Открыть IntelliTile…"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "打开Dock Tile…"
+            "value": "打开IntelliTile…"
           }
         }
       }
@@ -9074,55 +9074,55 @@
       }
     },
     "menu.quitDockTile": {
-      "comment": "Menu bar icon's menu: quits Dock Tile (tiles already in the Dock keep working)",
+      "comment": "Menu bar icon's menu: quits IntelliTile (tiles already in the Dock keep working)",
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile beenden"
+            "value": "IntelliTile beenden"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quit Dock Tile"
+            "value": "Quit IntelliTile"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quit Dock Tile"
+            "value": "Quit IntelliTile"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Quit Dock Tile"
+            "value": "Quit IntelliTile"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Quitter Dock Tile"
+            "value": "Quitter IntelliTile"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileを終了"
+            "value": "IntelliTileを終了"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Завершить Dock Tile"
+            "value": "Завершить IntelliTile"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "退出Dock Tile"
+            "value": "退出IntelliTile"
           }
         }
       }
@@ -9998,49 +9998,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile benötigt Zugriff auf Bedienungshilfen, um das Dock an seinem Platz zu halten. Aktiviere Dock Tile in den Systemeinstellungen."
+            "value": "IntelliTile benötigt Zugriff auf Bedienungshilfen, um das Dock an seinem Platz zu halten. Aktiviere IntelliTile in den Systemeinstellungen."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile needs Accessibility access to keep the Dock in place. Turn on Dock Tile in System Settings."
+            "value": "IntelliTile needs Accessibility access to keep the Dock in place. Turn on IntelliTile in System Settings."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile needs Accessibility access to keep the Dock in place. Turn on Dock Tile in System Settings."
+            "value": "IntelliTile needs Accessibility access to keep the Dock in place. Turn on IntelliTile in System Settings."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile needs Accessibility access to keep the Dock in place. Turn on Dock Tile in System Settings."
+            "value": "IntelliTile needs Accessibility access to keep the Dock in place. Turn on IntelliTile in System Settings."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile a besoin de l’accès Accessibilité pour garder le Dock en place. Activez Dock Tile dans Réglages Système."
+            "value": "IntelliTile a besoin de l’accès Accessibilité pour garder le Dock en place. Activez IntelliTile dans Réglages Système."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dockを固定するには、Dock Tileにアクセシビリティへのアクセスを許可する必要があります。システム設定でDock Tileをオンにしてください。"
+            "value": "Dockを固定するには、IntelliTileにアクセシビリティへのアクセスを許可する必要があります。システム設定でIntelliTileをオンにしてください。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile нужен доступ к функциям универсального доступа, чтобы удерживать Dock на месте. Включите Dock Tile в Системных настройках."
+            "value": "IntelliTile нужен доступ к функциям универсального доступа, чтобы удерживать Dock на месте. Включите IntelliTile в Системных настройках."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile需要无障碍访问权限才能固定程序坞的位置。请在“系统设置”中打开Dock Tile。"
+            "value": "IntelliTile需要无障碍访问权限才能固定程序坞的位置。请在“系统设置”中打开IntelliTile。"
           }
         }
       }
@@ -10646,49 +10646,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Die Dock-Sperre hält das Dock auf dem Bildschirm, den du auswählst. Dazu benötigt Dock Tile Zugriff auf Bedienungshilfen, damit macOS das Dock nicht auf deine anderen Bildschirme verschiebt."
+            "value": "Die Dock-Sperre hält das Dock auf dem Bildschirm, den du auswählst. Dazu benötigt IntelliTile Zugriff auf Bedienungshilfen, damit macOS das Dock nicht auf deine anderen Bildschirme verschiebt."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Lock keeps the Dock on the display you choose. To do that, Dock Tile needs Accessibility access so it can stop macOS from moving the Dock to your other screens."
+            "value": "Dock Lock keeps the Dock on the display you choose. To do that, IntelliTile needs Accessibility access so it can stop macOS from moving the Dock to your other screens."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Lock keeps the Dock on the display you choose. To do that, Dock Tile needs Accessibility access so it can stop macOS from moving the Dock to your other screens."
+            "value": "Dock Lock keeps the Dock on the display you choose. To do that, IntelliTile needs Accessibility access so it can stop macOS from moving the Dock to your other screens."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Lock keeps the Dock on the display you choose. To do that, Dock Tile needs Accessibility access so it can stop macOS from moving the Dock to your other screens."
+            "value": "Dock Lock keeps the Dock on the display you choose. To do that, IntelliTile needs Accessibility access so it can stop macOS from moving the Dock to your other screens."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Le verrouillage du Dock garde le Dock sur l’écran de votre choix. Pour cela, Dock Tile a besoin de l’accès Accessibilité afin d’empêcher macOS de déplacer le Dock vers vos autres écrans."
+            "value": "Le verrouillage du Dock garde le Dock sur l’écran de votre choix. Pour cela, IntelliTile a besoin de l’accès Accessibilité afin d’empêcher macOS de déplacer le Dock vers vos autres écrans."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dockロックは、Dockを選択したディスプレイに留めます。macOSがDockをほかの画面に移動しないようにするため、Dock Tileにはアクセシビリティへのアクセスが必要です。"
+            "value": "Dockロックは、Dockを選択したディスプレイに留めます。macOSがDockをほかの画面に移動しないようにするため、IntelliTileにはアクセシビリティへのアクセスが必要です。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Закрепление Dock удерживает Dock на выбранном дисплее. Для этого Dock Tile нужен доступ к функциям универсального доступа, чтобы не давать macOS перемещать Dock на другие экраны."
+            "value": "Закрепление Dock удерживает Dock на выбранном дисплее. Для этого IntelliTile нужен доступ к функциям универсального доступа, чтобы не давать macOS перемещать Dock на другие экраны."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "“程序坞锁定”会让程序坞停留在你选择的显示器上。为此，Dock Tile需要无障碍访问权限，以阻止macOS将程序坞移到其他屏幕。"
+            "value": "“程序坞锁定”会让程序坞停留在你选择的显示器上。为此，IntelliTile需要无障碍访问权限，以阻止macOS将程序坞移到其他屏幕。"
           }
         }
       }
@@ -10808,49 +10808,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Als Nächstes bittet dich macOS, Dock Tile in den Systemeinstellungen zu aktivieren. Du kannst das jederzeit wieder deaktivieren."
+            "value": "Als Nächstes bittet dich macOS, IntelliTile in den Systemeinstellungen zu aktivieren. Du kannst das jederzeit wieder deaktivieren."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Next, macOS will ask you to turn on Dock Tile in System Settings. You can turn this off any time."
+            "value": "Next, macOS will ask you to turn on IntelliTile in System Settings. You can turn this off any time."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Next, macOS will ask you to turn on Dock Tile in System Settings. You can turn this off any time."
+            "value": "Next, macOS will ask you to turn on IntelliTile in System Settings. You can turn this off any time."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Next, macOS will ask you to turn on Dock Tile in System Settings. You can turn this off any time."
+            "value": "Next, macOS will ask you to turn on IntelliTile in System Settings. You can turn this off any time."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "macOS vous demandera ensuite d’activer Dock Tile dans Réglages Système. Vous pourrez le désactiver à tout moment."
+            "value": "macOS vous demandera ensuite d’activer IntelliTile dans Réglages Système. Vous pourrez le désactiver à tout moment."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "次に、システム設定でDock Tileをオンにするよう、macOSから求められます。この設定はいつでもオフにできます。"
+            "value": "次に、システム設定でIntelliTileをオンにするよう、macOSから求められます。この設定はいつでもオフにできます。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Затем macOS попросит включить Dock Tile в Системных настройках. Это можно отключить в любой момент."
+            "value": "Затем macOS попросит включить IntelliTile в Системных настройках. Это можно отключить в любой момент."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "接下来，macOS会请你在“系统设置”中打开Dock Tile。你可以随时关闭此功能。"
+            "value": "接下来，macOS会请你在“系统设置”中打开IntelliTile。你可以随时关闭此功能。"
           }
         }
       }
@@ -11240,49 +11240,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Erlaube Dock Tile unter „Anmeldeobjekte“, um die Aktivierung abzuschließen."
+            "value": "Erlaube IntelliTile unter „Anmeldeobjekte“, um die Aktivierung abzuschließen."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Approve Dock Tile in Login Items to finish enabling this."
+            "value": "Approve IntelliTile in Login Items to finish enabling this."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Approve Dock Tile in Login Items to finish enabling this."
+            "value": "Approve IntelliTile in Login Items to finish enabling this."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Approve Dock Tile in Login Items to finish enabling this."
+            "value": "Approve IntelliTile in Login Items to finish enabling this."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Autorisez Dock Tile dans les réglages Ouverture pour terminer l’activation."
+            "value": "Autorisez IntelliTile dans les réglages Ouverture pour terminer l’activation."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "この設定を有効にするには、ログイン項目でDock Tileを承認してください。"
+            "value": "この設定を有効にするには、ログイン項目でIntelliTileを承認してください。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Чтобы завершить включение, разрешите Dock Tile в настройках «Объекты входа»."
+            "value": "Чтобы завершить включение, разрешите IntelliTile в настройках «Объекты входа»."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "在“登录项”中批准Dock Tile以完成启用。"
+            "value": "在“登录项”中批准IntelliTile以完成启用。"
           }
         }
       }
@@ -11342,55 +11342,55 @@
       }
     },
     "settings.menuBar.toggle": {
-      "comment": "General: toggle that adds Dock Tile's icon to the menu bar, listing the tiles and their apps",
+      "comment": "General: toggle that adds IntelliTile's icon to the menu bar, listing the tiles and their apps",
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile in der Menüleiste anzeigen"
+            "value": "IntelliTile in der Menüleiste anzeigen"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Show Dock Tile in the menu bar"
+            "value": "Show IntelliTile in the menu bar"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Show Dock Tile in the menu bar"
+            "value": "Show IntelliTile in the menu bar"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Show Dock Tile in the menu bar"
+            "value": "Show IntelliTile in the menu bar"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Afficher Dock Tile dans la barre des menus"
+            "value": "Afficher IntelliTile dans la barre des menus"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "メニューバーにDock Tileを表示"
+            "value": "メニューバーにIntelliTileを表示"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Показывать Dock Tile в строке меню"
+            "value": "Показывать IntelliTile в строке меню"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "在菜单栏中显示Dock Tile"
+            "value": "在菜单栏中显示IntelliTile"
           }
         }
       }
@@ -11402,49 +11402,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Listet die Kacheln deiner Wahl und ihre Apps auf. Aktiviere „In Menüleiste anzeigen“ in einer Kachel, um sie hinzuzufügen. Solange dies aktiv ist, läuft Dock Tile im Hintergrund weiter."
+            "value": "Listet die Kacheln deiner Wahl und ihre Apps auf. Aktiviere „In Menüleiste anzeigen“ in einer Kachel, um sie hinzuzufügen. Solange dies aktiv ist, läuft IntelliTile im Hintergrund weiter."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. Dock Tile keeps running in the background while this is on."
+            "value": "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. IntelliTile keeps running in the background while this is on."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. Dock Tile keeps running in the background while this is on."
+            "value": "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. IntelliTile keeps running in the background while this is on."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. Dock Tile keeps running in the background while this is on."
+            "value": "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. IntelliTile keeps running in the background while this is on."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Liste les tuiles de votre choix et leurs apps. Activez « Afficher dans la barre des menus » dans une tuile pour l’y ajouter. Dock Tile reste ouvert en arrière-plan tant que cette option est activée."
+            "value": "Liste les tuiles de votre choix et leurs apps. Activez « Afficher dans la barre des menus » dans une tuile pour l’y ajouter. IntelliTile reste ouvert en arrière-plan tant que cette option est activée."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "選んだタイルとそのアプリを一覧表示します。追加するには、タイルで“メニューバーに表示”をオンにします。オンのあいだ、Dock Tileはバックグラウンドで実行され続けます。"
+            "value": "選んだタイルとそのアプリを一覧表示します。追加するには、タイルで“メニューバーに表示”をオンにします。オンのあいだ、IntelliTileはバックグラウンドで実行され続けます。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Показывает выбранные вами плитки и их приложения. Чтобы добавить плитку, включите в ней «Показывать в строке меню». Пока параметр включен, Dock Tile продолжает работать в фоновом режиме."
+            "value": "Показывает выбранные вами плитки и их приложения. Чтобы добавить плитку, включите в ней «Показывать в строке меню». Пока параметр включен, IntelliTile продолжает работать в фоновом режиме."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "列出你选择的磁贴及其应用。在磁贴中打开“在菜单栏显示”即可添加。开启后，Dock Tile会在后台持续运行。"
+            "value": "列出你选择的磁贴及其应用。在磁贴中打开“在菜单栏显示”即可添加。开启后，IntelliTile会在后台持续运行。"
           }
         }
       }
@@ -11888,49 +11888,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         }
       }
@@ -15074,49 +15074,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile"
+            "value": "IntelliTile"
           }
         }
       }
@@ -15499,326 +15499,164 @@
         }
       }
     },
-    "about.alsoFrom": {
-      "comment": "About: studio section header",
+    "about.port.creditsHeader": {
+      "comment": "About: credits section header (IntelliTile Intel Mac port)",
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Mehr von Happy Machines"
+            "value": "Danksagung"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Also from Happy Machines"
+            "value": "Credits"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Also from Happy Machines"
+            "value": "Credits"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Also from Happy Machines"
+            "value": "Credits"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Également par Happy Machines"
+            "value": "Crédits"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Happy Machinesのほかの製品"
+            "value": "クレジット"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Также от Happy Machines"
+            "value": "Благодарности"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Happy Machines的其他作品"
+            "value": "致谢"
           }
         }
       }
     },
-    "about.studioTitle": {
-      "comment": "About: studio row title",
+    "about.port.title": {
+      "comment": "About: credits row title (IntelliTile Intel Mac port)",
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Entwickelt von Happy Machines Company"
+            "value": "Inoffizielle Portierung für Intel-Macs"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Made by Happy Machines Company"
+            "value": "Unofficial Intel Mac port"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Made by Happy Machines Company"
+            "value": "Unofficial Intel Mac port"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Made by Happy Machines Company"
+            "value": "Unofficial Intel Mac port"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Conçu par Happy Machines Company"
+            "value": "Portage non officiel pour Mac Intel"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Happy Machines Company製"
+            "value": "非公式のIntel Mac移植版"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Создано Happy Machines Company"
+            "value": "Неофициальная версия для Mac с Intel"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "由Happy Machines Company打造"
+            "value": "非官方 Intel Mac 移植版"
           }
         }
       }
     },
-    "about.studioSubtitle": {
-      "comment": "About: studio row subtitle",
+    "about.port.credit": {
+      "comment": "About: credits row body; %@ is the original project's GitHub address, shown as plain text",
       "extractionState": "manual",
       "localizations": {
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Ein kleines Produktstudio, das clevere Mac-Apps entwickelt, die jeweils eine Sache richtig gut lösen."
+            "value": "Basiert auf dem Open-Source-Projekt %@ von k97 unter der MIT-Lizenz. Nicht mit dessen Autoren verbunden oder von ihnen unterstützt."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "A tiny product studio building nifty Mac apps that each fix one thing well."
+            "value": "Based on the open-source project %@ by k97, under the MIT licence. Not affiliated with or endorsed by its authors."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "A tiny product studio building nifty Mac apps that each fix one thing well."
+            "value": "Based on the open-source project %@ by k97, under the MIT licence. Not affiliated with or endorsed by its authors."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "A tiny product studio building nifty Mac apps that each fix one thing well."
+            "value": "Based on the open-source project %@ by k97, under the MIT licence. Not affiliated with or endorsed by its authors."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Un petit studio qui conçoit des apps Mac astucieuses, chacune faite pour régler un seul problème, et bien."
+            "value": "Basé sur le projet open source %@ de k97, sous licence MIT. Non affilié à ses auteurs ni approuvé par eux."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "1つのことをしっかり解決する、気の利いたMacアプリを作る小さなプロダクトスタジオです。"
+            "value": "k97によるオープンソースプロジェクト%@（MITライセンス）を基にしています。原作者とは無関係で、承認も受けていません。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Маленькая студия, создающая полезные программы для Mac. Каждая хорошо решает одну задачу."
+            "value": "Основано на проекте с открытым исходным кодом %@ от k97 по лицензии MIT. Не связано с его авторами и не одобрено ими."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "一家小型产品工作室，专做精巧的Mac App，每款只把一件事做好。"
-          }
-        }
-      }
-    },
-    "about.spadesTitle": {
-      "comment": "About: sibling product row title",
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Spades Audio"
-          }
-        },
-        "en-AU": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spades Audio"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spades Audio"
-          }
-        },
-        "en-US": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Spades Audio"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Spades Audio"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Spades Audio"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Spades Audio"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Spades Audio"
-          }
-        }
-      }
-    },
-    "about.spadesSubtitle": {
-      "comment": "About: sibling product subtitle",
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Lautstärke, EQ und Ausgabe pro App für deinen Mac – direkt aus der Menüleiste."
-          }
-        },
-        "en-AU": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Per-app volume, EQ and output control for your Mac, from the menu bar."
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Per-app volume, EQ and output control for your Mac, from the menu bar."
-          }
-        },
-        "en-US": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Per-app volume, EQ and output control for your Mac, from the menu bar."
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Volume, égaliseur et sortie par app pour votre Mac, depuis la barre des menus."
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "メニューバーから、Macのアプリごとの音量、EQ、出力を制御できます。"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Громкость, эквалайзер и выбор выхода звука для каждого приложения на Mac — прямо из строки меню."
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "在菜单栏中为你的Mac提供按App调节的音量、均衡器和输出控制。"
-          }
-        }
-      }
-    },
-    "about.learnMore": {
-      "comment": "About: opens spadesaudio.com",
-      "extractionState": "manual",
-      "localizations": {
-        "de": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Weitere Infos …"
-          }
-        },
-        "en-AU": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learn More…"
-          }
-        },
-        "en-GB": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learn More…"
-          }
-        },
-        "en-US": {
-          "stringUnit": {
-            "state": "translated",
-            "value": "Learn More…"
-          }
-        },
-        "fr": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "En savoir plus…"
-          }
-        },
-        "ja": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "詳しく見る…"
-          }
-        },
-        "ru": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "Подробнее…"
-          }
-        },
-        "zh-Hans": {
-          "stringUnit": {
-            "state": "needs_review",
-            "value": "进一步了解…"
+            "value": "基于 k97 的开源项目 %@（MIT 许可证）。与其作者无关，也未获其认可。"
           }
         }
       }
@@ -15830,49 +15668,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Über Dock Tile"
+            "value": "Über IntelliTile"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "About Dock Tile"
+            "value": "About IntelliTile"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "About Dock Tile"
+            "value": "About IntelliTile"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "About Dock Tile"
+            "value": "About IntelliTile"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "À propos de Dock Tile"
+            "value": "À propos de IntelliTile"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileについて"
+            "value": "IntelliTileについて"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "О программе Dock Tile"
+            "value": "О программе IntelliTile"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "关于Dock Tile"
+            "value": "关于IntelliTile"
           }
         }
       }
@@ -16262,49 +16100,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Noch keine Vorschläge – Dock Tile lernt aus den Apps, die du öffnest. Du kannst das unter „Allgemein“ deaktivieren."
+            "value": "Noch keine Vorschläge – IntelliTile lernt aus den Apps, die du öffnest. Du kannst das unter „Allgemein“ deaktivieren."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "No suggestions yet — Dock Tile learns from the apps you open. You can turn this off in General."
+            "value": "No suggestions yet — IntelliTile learns from the apps you open. You can turn this off in General."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "No suggestions yet — Dock Tile learns from the apps you open. You can turn this off in General."
+            "value": "No suggestions yet — IntelliTile learns from the apps you open. You can turn this off in General."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "No suggestions yet — Dock Tile learns from the apps you open. You can turn this off in General."
+            "value": "No suggestions yet — IntelliTile learns from the apps you open. You can turn this off in General."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Aucune suggestion pour l’instant — Dock Tile apprend des apps que vous ouvrez. Vous pouvez désactiver cette option dans Général."
+            "value": "Aucune suggestion pour l’instant — IntelliTile apprend des apps que vous ouvrez. Vous pouvez désactiver cette option dans Général."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "まだ提案はありません。Dock Tileは開いたアプリから学習します。この機能は“一般”でオフにできます。"
+            "value": "まだ提案はありません。IntelliTileは開いたアプリから学習します。この機能は“一般”でオフにできます。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Пока нет предложений — Dock Tile учится на приложениях, которые вы открываете. Это можно отключить в разделе «Основные»."
+            "value": "Пока нет предложений — IntelliTile учится на приложениях, которые вы открываете. Это можно отключить в разделе «Основные»."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "暂无建议——Dock Tile会从你打开的App中学习。你可以在“通用”中关闭此功能。"
+            "value": "暂无建议——IntelliTile会从你打开的App中学习。你可以在“通用”中关闭此功能。"
           }
         }
       }
@@ -17072,49 +16910,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile spricht jetzt deine Sprache"
+            "value": "IntelliTile spricht jetzt deine Sprache"
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile now speaks your language"
+            "value": "IntelliTile now speaks your language"
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile now speaks your language"
+            "value": "IntelliTile now speaks your language"
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "Dock Tile now speaks your language"
+            "value": "IntelliTile now speaks your language"
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile parle désormais votre langue"
+            "value": "IntelliTile parle désormais votre langue"
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tileが日本語に対応しました"
+            "value": "IntelliTileが日本語に対応しました"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile теперь говорит по-русски"
+            "value": "IntelliTile теперь говорит по-русски"
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Dock Tile现已支持你的语言"
+            "value": "IntelliTile现已支持你的语言"
           }
         }
       }

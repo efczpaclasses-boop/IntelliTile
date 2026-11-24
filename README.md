@@ -1,13 +1,38 @@
-# Dock Tile
+# IntelliTile
 
 A native macOS utility that lets you create custom Dock tiles to organise and launch your favourite apps with a single click.
 
 ![macOS 15.0+](https://img.shields.io/badge/macOS-15.0+-blue.svg)
 ![Swift 6](https://img.shields.io/badge/Swift-6-orange.svg)
+![Intel x86_64](https://img.shields.io/badge/Intel-x86__64-lightgrey.svg)
+
+## Intel Mac port (unofficial)
+
+IntelliTile is an **unofficial** port of the open-source project
+[k97/dock-tile](https://github.com/k97/dock-tile) (MIT licence) to **Intel (x86_64) Macs running
+macOS Sequoia 15**. The original project supports Apple silicon only; all credit for the app goes to
+its author, k97, and contributors. This fork is not affiliated with or endorsed by them, and it
+ships under its own name, icon and bundle identifiers as the original's
+[TRADEMARKS.md](TRADEMARKS.md) requires.
+
+What is different from the original:
+
+- Built from source for x86_64 on your own Mac (`./install.sh`); no official DMG is used.
+- New name (IntelliTile), new icon and new bundle IDs (`io.github.efczpaclasses-boop.IntelliTile`),
+  so it cannot collide with the official app.
+- The official Sparkle auto-updater is removed; update with `./update.sh`.
+- Firebase analytics and crash reporting are switched off by default and no Firebase project is
+  bundled, so nothing is sent.
+- The Rust icon compiler is optional on Sequoia (it is only used on macOS 26).
+- macOS 26 (Tahoe) icon styles / Liquid Glass are not available on Sequoia.
+
+Every change is listed in [CHANGES.md](CHANGES.md); test results are in [TESTLOG.md](TESTLOG.md).
+The `website/` and `docs/` folders are the original project's own material, kept unchanged for
+easier merging; they describe the original app, not this port, and are not published by this fork.
 
 ## Overview
 
-Dock Tile brings the power of custom app launchers to your macOS Dock. Create multiple tiles, each with its own curated list of apps, custom icon, and colour scheme. Click a tile to reveal a beautiful popover with your apps ready to launch.
+IntelliTile brings the power of custom app launchers to your macOS Dock. Create multiple tiles, each with its own curated list of apps, custom icon, and colour scheme. Click a tile to reveal a beautiful popover with your apps ready to launch.
 
 Think of it as customisable Dock folders - with native vibrancy effects, SF Symbols, emoji icons, and the polish you'd expect from a first-party macOS app.
 
@@ -25,45 +50,28 @@ Think of it as customisable Dock folders - with native vibrancy effects, SF Symb
 - **Dock Lock** - Keep the Dock on one display on multi-monitor setups
 - **Start at Login** - Tiles are ready the moment you log in
 
-## Screenshots
-
-*Coming soon*
-
 ## Requirements
 
-- macOS 15.0 (Sequoia) or later
-- A Mac with Apple silicon (Intel Macs aren't supported)
-
-Questions? See the [FAQ](https://docktile.app/faq).
+- An Intel (x86_64) Mac on macOS Sequoia 15.6 or later (15.0 is the app's floor; 15.6 is what Xcode 26 needs to build it)
+- Full Xcode 26.2 or 26.3 (Universal) from Apple, not Xcode 26.4+ (needs Tahoe) or Xcode 27 (Apple silicon only)
+- No Rust toolchain needed on Sequoia
 
 ## Installation
 
-### From Source
+### From Source (Intel Mac)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/k97/dock-tile.git
-   cd dock-tile
-   ```
-
-2. Build the bundled icon compiler once (needs a [Rust toolchain](https://rustup.rs)):
-   ```bash
-   ./Scripts/build-compiler.sh
-   ```
-
-3. Open in Xcode and build, or use the command line:
-   ```bash
-   xcodebuild -project DockTile.xcodeproj -scheme DockTile -configuration Release build
-   ```
-
-4. Copy the built app to Applications:
-   ```bash
-   cp -R ~/Library/Developer/Xcode/DerivedData/DockTile-*/Build/Products/Release/"Dock Tile.app" /Applications/
-   ```
+```bash
+mkdir -p ~/IntelPorts/dock-tile
+git clone --branch intel-x86_64 https://github.com/efczpaclasses-boop/IntelliTile.git ~/IntelPorts/dock-tile/src
+cd ~/IntelPorts/dock-tile/src
+./install.sh            # builds x86_64 Release and installs ~/Applications/IntelliTile.app
+./update.sh             # later: fast-forward pull of intel-x86_64, then rebuild
+./install.sh --uninstall
+```
 
 ## Getting Started
 
-1. **Launch Dock Tile** - Open the app from your Applications folder
+1. **Launch IntelliTile** - Open the app from your Applications folder
 2. **Create a Tile** - Click the "+" button in the sidebar, then pick a Smart Add suggestion or "Create New Tile"
 3. **Add Apps** - Click "Add" in the In This Tile section to add apps and folders
 4. **Customise** - Click the tile's icon (or the Customise Tile toggle in the toolbar) to choose its style, icon and colour
@@ -72,7 +80,7 @@ Questions? See the [FAQ](https://docktile.app/faq).
 
 ## How It Works
 
-Dock Tile creates lightweight helper applications for each tile you configure. These helpers appear as independent apps in the Dock and show a native popover when clicked.
+IntelliTile creates lightweight helper applications for each tile you configure. These helpers appear as independent apps in the Dock and show a native popover when clicked.
 
 ## Tile Settings
 
@@ -103,7 +111,7 @@ Click "Update" on the tile to rebuild it. The button is highlighted while the Do
 
 ## Translations
 
-Dock Tile ships in English, 简体中文, 日本語, Deutsch, Русский and Français. The non-English
+IntelliTile ships in English, 简体中文, 日本語, Deutsch, Русский and Français. The non-English
 translations are machine-first and reviewed by native speakers. Spotted a mistake? Fixing it takes
 five minutes in the browser — see [docs/l10n/README.md](docs/l10n/README.md).
 
@@ -135,11 +143,11 @@ xcodebuild test -project DockTile.xcodeproj -scheme DockTile \
 
 Or in Xcode: Press **Cmd+U** to run all tests.
 
-Tests are automatically run on every push via GitHub Actions CI.
+On this fork, tests run on GitHub's Intel macOS runner (`.github/workflows/intel-macos.yml`).
 
 ## License
 
-Dock Tile's source code is released under the [MIT License](LICENSE). The Dock Tile name, logo
+IntelliTile is based on the original project's source code, released under the [MIT License](LICENSE) (Copyright 2026 k97). The original project's trademark notice, which this fork follows: The Dock Tile name, logo
 and app icon are not licensed for use by other software — see [TRADEMARKS.md](TRADEMARKS.md). The
 vendored icon compiler under `Vendor/actool/` declares MIT in its `Cargo.toml` (upstream ships no
 LICENSE file; see `Vendor/actool/DOCKTILE-README.md`).

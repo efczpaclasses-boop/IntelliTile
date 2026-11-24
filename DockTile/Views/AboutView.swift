@@ -2,41 +2,35 @@
 //  AboutView.swift
 //  DockTile
 //
-//  The About pane (v2): lives in the sidebar under "Dock Tile" — the only home of Software Update.
+//  The About pane (v2): lives in the sidebar under the app name — the only home of Software Update.
 //  Swift 6 - Strict Concurrency
 //
 
 import SwiftUI
 
-/// Links the pane opens. `feedback` comes from Info.plist `DTFeedbackEmail` (mailto:) when set,
-/// otherwise the website — never a hard-coded address.
+/// Links the pane opens. IntelliTile (Intel Mac port): every link points to the fork; the original
+/// project is credited as plain text only (TRADEMARKS.md). `feedback` comes from Info.plist
+/// `DTFeedbackEmail` (mailto:) when set, otherwise the fork's GitHub Issues page.
 enum AboutLinks {
-    /// Every human-facing link the app opens is tagged, so the sites can tell app traffic from
-    /// search or social. Machine-read URLs (the Sparkle appcast) are never tagged.
-    private static let campaign = "utm_source=docktile-mac"
-
-    static let website = URL(string: "https://docktile.app/?\(campaign)")!
-    static let studio  = URL(string: "https://happymachines.company/?\(campaign)")!
-    static let spades  = URL(string: "https://spadesaudio.com/?\(campaign)")!
-    static let repository = URL(string: "https://github.com/k97/dock-tile")!
-    /// The language's review sheet on GitHub — its pencil icon is the whole reviewer toolchain.
-    /// Not UTM-tagged: GitHub is not one of our sites.
+    static let website = URL(string: "https://github.com/efczpaclasses-boop/IntelliTile")!
+    static let repository = website
+    static let issues = URL(string: "https://github.com/efczpaclasses-boop/IntelliTile/issues")!
+    /// The language's review sheet in the fork (same docs/l10n layout as the original).
     static func translationSheet(localization: String) -> URL {
-        URL(string: "https://github.com/k97/dock-tile/blob/main/docs/l10n/\(localization).md") ?? repository
+        URL(string: "https://github.com/efczpaclasses-boop/IntelliTile/blob/intel-x86_64/docs/l10n/\(localization).md") ?? repository
     }
-    /// What the rows show — the bare hosts, without the tracking query.
-    static let websiteDisplay = "docktile.app"
-    static let studioDisplay  = "happymachines.company"
+    /// What the rows show — the bare address.
+    static let websiteDisplay = "github.com/efczpaclasses-boop/IntelliTile"
+    /// The original project, credited as plain text (not a link).
+    static let originalProjectDisplay = "github.com/k97/dock-tile"
     static var feedback: URL {
         guard let email = Bundle.main.object(forInfoDictionaryKey: "DTFeedbackEmail") as? String,
-              !email.isEmpty else { return website }
-        // Build through URLComponents rather than interpolating: the address comes from Info.plist,
-        // and an unencoded subject or a stray character would silently yield a nil URL.
+              !email.isEmpty else { return issues }
         var components = URLComponents()
         components.scheme = "mailto"
         components.path = email
-        components.queryItems = [URLQueryItem(name: "subject", value: "Dock Tile feedback")]
-        return components.url ?? website
+        components.queryItems = [URLQueryItem(name: "subject", value: "IntelliTile feedback")]
+        return components.url ?? issues
     }
 }
 
@@ -119,18 +113,14 @@ struct AboutPaneView: View {
                         }
                     }
                     Section {
-                        studioRow(icon: { HappyMachinesMark() },
-                                  title: AppStrings.About.studioTitle,
-                                  subtitle: AppStrings.About.studioSubtitle) {
-                            Link(AboutLinks.studioDisplay, destination: AboutLinks.studio)
-                        }
-                        studioRow(icon: { SpadesMark() },
-                                  title: AppStrings.About.spadesTitle,
-                                  subtitle: AppStrings.About.spadesSubtitle) {
-                            Button(AppStrings.About.learnMore) { NSWorkspace.shared.open(AboutLinks.spades) }
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(AppStrings.About.portTitle)
+                            Text(AppStrings.About.portCredit(AboutLinks.originalProjectDisplay))
+                                .font(.caption).foregroundStyle(.secondary)
+                                .textSelection(.enabled)
                         }
                     } header: {
-                        Text(AppStrings.About.alsoFrom)
+                        Text(AppStrings.About.creditsHeader)
                     } footer: {
                         Text(copyright)
                             .font(.caption).foregroundStyle(.tertiary)
@@ -165,92 +155,15 @@ struct AboutPaneView: View {
         .accessibilityElement(children: .ignore)
         .accessibilityLabel(AppStrings.appName)
     }
-
-    private func studioRow<Trailing: View, Icon: View>(@ViewBuilder icon: () -> Icon,
-                                                       title: String, subtitle: String,
-                                                       @ViewBuilder trailing: () -> Trailing) -> some View {
-        LabeledContent {
-            trailing()
-        } label: {
-            HStack(spacing: 12) {
-                icon().frame(width: 28, height: 28)
-                VStack(alignment: .leading, spacing: 2) {
-                    Text(title)
-                    Text(subtitle).font(.caption).foregroundStyle(.secondary)
-                }
-            }
-        }
-    }
 }
 
 // MARK: - Vendor marks
 
-/// The real Happy Machines and Spades marks, bundled as loose resources (this project has no asset
-/// catalog — see `DockTileGlyph.png` for the same pattern).
-///
-/// Each falls back to an SF Symbol if its file is missing or fails to decode: a bundled image that
-/// doesn't load renders as **nothing at all**, and an empty gap beside a product name reads as a
-/// layout bug rather than a missing asset.
+/// IntelliTile (Intel Mac port): the Happy Machines and Spades marks are removed (TRADEMARKS.md);
+/// only the two system-rendered icons for the About hero remain.
 enum VendorMark {
-
-    /// Decoded once each, not per body evaluation — a SwiftUI view's `body` runs on every render,
-    /// and these were re-reading and re-decoding their files each time.
-    ///
-    /// Happy Machines: a single monochrome stroke, so it ships as ONE vector and is drawn as a
-    /// template tinted to the current foreground — no light/dark pair to keep in sync.
-    static let happyMachines: NSImage? = {
-        guard let url = Bundle.main.url(forResource: "HappyMachinesLogo", withExtension: "svg"),
-              let image = NSImage(contentsOf: url) else { return nil }
-        image.isTemplate = true
-        return image
-    }()
-
-    /// Spades ships a full-colour app icon, so it can't be tinted — it takes the light or dark
-    /// rendition the way the Dock would. Both are held; the pane switches between them on theme.
-    private static let spadesLight = load("SpadesIconLight")
-    private static let spadesDark = load("SpadesIconDark")
-
-    static func spades(dark: Bool) -> NSImage? { dark ? spadesDark : spadesLight }
-
-    private static func load(_ name: String) -> NSImage? {
-        Bundle.main.url(forResource: name, withExtension: "png").flatMap(NSImage.init(contentsOf:))
-    }
-
-    /// Finder and Dock Tile's own icon in the About hero — resolved once for the same reason.
-    /// Both via `NSWorkspace.icon(forFile:)`, so each is exactly what the Dock renders (including
-    /// Tahoe's icon-style treatment) rather than a bundled bitmap.
+    /// Finder and the app's own icon in the About hero, resolved once. Both via
+    /// `NSWorkspace.icon(forFile:)`, so each is exactly what the Dock renders.
     static let finderIcon: NSImage = NSWorkspace.shared.icon(forFile: "/System/Library/CoreServices/Finder.app")
     static let appIcon: NSImage = NSWorkspace.shared.icon(forFile: Bundle.main.bundlePath)
-}
-
-/// Happy Machines' mark, tinted to the foreground; the smiling-face symbol if the asset is absent.
-private struct HappyMachinesMark: View {
-    var body: some View {
-        if let mark = VendorMark.happyMachines {
-            Image(nsImage: mark)
-                .resizable()
-                .renderingMode(.template)
-                .aspectRatio(contentMode: .fit)
-                .foregroundStyle(.primary)
-                .padding(1)
-        } else {
-            SettingsBadgeIcon(systemName: "face.smiling", tint: .orange, size: 28)
-        }
-    }
-}
-
-/// Spades' app icon at its natural corner radius; the spade symbol if the asset is absent.
-private struct SpadesMark: View {
-    @Environment(\.colorScheme) private var colorScheme
-
-    var body: some View {
-        if let mark = VendorMark.spades(dark: colorScheme == .dark) {
-            Image(nsImage: mark)
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-                .clipShape(RoundedRectangle(cornerRadius: 6, style: .continuous))
-        } else {
-            SettingsBadgeIcon(systemName: "suit.spade.fill", tint: .black, size: 28)
-        }
-    }
 }

@@ -102,7 +102,7 @@ private struct SymbolButton: View {
                 .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .help(symbolName == SFSymbolCatalog.brandSymbolName ? "DockTile" : symbolName)
+        .help(symbolName == SFSymbolCatalog.brandSymbolName ? "IntelliTile" : symbolName)
     }
 
     /// Renders the bundled DockTile logo for the brand symbol, otherwise the SF Symbol.
@@ -257,7 +257,7 @@ final class SFSymbolCatalog: @unchecked Sendable {
         let brandCategory = Category(
             key: SFSymbolCatalog.brandCategoryKey,
             icon: "sun.horizon.fill",
-            displayName: "DockTile"
+            displayName: "IntelliTile"
         )
         self.displayCategories = [brandCategory] + categories.filter { !excludedKeys.contains($0.key) }
     }
@@ -271,7 +271,7 @@ final class SFSymbolCatalog: @unchecked Sendable {
 
     func searchKeywords(for symbol: String) -> [String] {
         if symbol == SFSymbolCatalog.brandSymbolName {
-            return ["docktile", "dock", "tile", "logo", "brand", "sun", "sunrise", "sunset", "horizon"]
+            return ["intellitile", "dock", "tile", "logo", "brand", "sun", "sunrise", "sunset", "horizon"]
         }
         return symbolSearchKeywords[symbol] ?? []
     }

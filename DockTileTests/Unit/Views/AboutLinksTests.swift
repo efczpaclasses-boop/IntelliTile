@@ -16,30 +16,18 @@ import Testing
 @Suite("About pane links")
 struct AboutLinksTests {
 
-    /// The key must actually ship: an absent or empty `DTFeedbackEmail` degrades feedback to the
-    /// website with no visible signal.
-    @Test("Info.plist carries the feedback address")
-    func feedbackAddressIsBundled() throws {
-        let email = try #require(
-            Bundle.main.object(forInfoDictionaryKey: "DTFeedbackEmail") as? String
-        )
-        #expect(email == "hello@happymachines.company")
-    }
-
-    /// Exact URL, not just "is a mailto": the subject is percent-encoded by URLComponents, and a
-    /// malformed address would have collapsed to `website` instead.
-    @Test("Send Feedback opens a prefilled mailto")
-    func feedbackBuildsMailto() {
-        #expect(
-            AboutLinks.feedback.absoluteString
-                == "mailto:hello@happymachines.company?subject=Dock%20Tile%20feedback"
-        )
+    /// IntelliTile (Intel Mac port): no feedback e-mail ships, so Send Feedback opens the fork's
+    /// GitHub Issues page, never the original project's address.
+    @Test("Send Feedback opens the fork's Issues page")
+    func feedbackOpensForkIssues() {
+        #expect(Bundle.main.object(forInfoDictionaryKey: "DTFeedbackEmail") == nil)
+        #expect(AboutLinks.feedback.absoluteString == "https://github.com/efczpaclasses-boop/IntelliTile/issues")
         #expect(AboutLinks.feedback != AboutLinks.website)
     }
 
     @Test("The review-sheet link opens the language's sheet on GitHub")
     func translationSheetLink() {
         #expect(AboutLinks.translationSheet(localization: "zh-Hans").absoluteString
-                == "https://github.com/k97/dock-tile/blob/main/docs/l10n/zh-Hans.md")
+                == "https://github.com/efczpaclasses-boop/IntelliTile/blob/intel-x86_64/docs/l10n/zh-Hans.md")
     }
 }

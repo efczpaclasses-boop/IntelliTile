@@ -19,7 +19,7 @@ enum AppStrings {
     /// The display name of the app
     static let appName = NSLocalizedString(
         "app.name",
-        value: "Dock Tile",
+        value: "IntelliTile",
         comment: "App display name"
     )
 
@@ -35,12 +35,11 @@ enum AppStrings {
         static let feedbackRowBody = NSLocalizedString("about.feedbackRowBody", value: "Feedback goes straight to the developer.", comment: "About: Send Feedback row description.")
         static let diagnosticsTitle = NSLocalizedString("about.diagnosticsTitle", value: "Diagnostics", comment: "About: Copy Diagnostics row label.")
         static let diagnosticsBody = NSLocalizedString("about.diagnosticsBody", value: "A log of what the app and its tiles did. Attach it to an email when something looks wrong — it contains nothing personal.", comment: "About: Copy Diagnostics row description.")
-        static let alsoFrom = NSLocalizedString("about.alsoFrom", value: "Also from Happy Machines", comment: "About: studio section header")
-        static let studioTitle = NSLocalizedString("about.studioTitle", value: "Made by Happy Machines Company", comment: "About: studio row title")
-        static let studioSubtitle = NSLocalizedString("about.studioSubtitle", value: "A tiny product studio building nifty Mac apps that each fix one thing well.", comment: "About: studio row subtitle")
-        static let spadesTitle = NSLocalizedString("about.spadesTitle", value: "Spades Audio", comment: "About: sibling product row title")
-        static let spadesSubtitle = NSLocalizedString("about.spadesSubtitle", value: "Per-app volume, EQ and output control for your Mac, from the menu bar.", comment: "About: sibling product subtitle")
-        static let learnMore = NSLocalizedString("about.learnMore", value: "Learn More…", comment: "About: opens spadesaudio.com")
+        // IntelliTile (Intel Mac port): the original studio and sibling-product rows are removed
+        // (TRADEMARKS.md: no Happy Machines / Spades marks). The original project is credited instead.
+        static let creditsHeader = NSLocalizedString("about.port.creditsHeader", value: "Credits", comment: "About: credits section header (IntelliTile Intel Mac port)")
+        static let portTitle = NSLocalizedString("about.port.title", value: "Unofficial Intel Mac port", comment: "About: credits row title (IntelliTile Intel Mac port)")
+        static func portCredit(_ original: String) -> String { String(format: NSLocalizedString("about.port.credit", value: "Based on the open-source project %@ by k97, under the MIT licence. Not affiliated with or endorsed by its authors.", comment: "About: credits row body; %@ is the original project's GitHub address, shown as plain text"), original) }
     }
 
     // MARK: - Alert Messages
@@ -48,20 +47,20 @@ enum AppStrings {
     enum Alert {
         static let configUnreadableTitle = NSLocalizedString(
             "alert.configUnreadable.title",
-            value: "Dock Tile Can't Read Your Tiles",
+            value: "IntelliTile Can't Read Your Tiles",
             comment: "Launch alert title: the tile settings file exists but could not be opened; the app quits after it"
         )
         static func configUnreadableMessage(_ path: String) -> String {
             String(format: NSLocalizedString(
                 "alert.configUnreadable.message",
-                value: "Your tiles haven't been changed. Dock Tile couldn't open its settings file and will quit. Check that you can open %@, then open Dock Tile again.",
+                value: "Your tiles haven't been changed. IntelliTile couldn't open its settings file and will quit. Check that you can open %@, then open IntelliTile again.",
                 comment: "Launch alert message when the tile settings file can't be read; %@ = the file's full path. The app quits when the alert closes."
             ), path)
         }
         static let configUnreadableQuit = NSLocalizedString(
             "alert.configUnreadable.quit",
             value: "Quit",
-            comment: "Only button of the can't-read-tiles launch alert; quits Dock Tile"
+            comment: "Only button of the can't-read-tiles launch alert; quits IntelliTile"
         )
         static let deleteTileMessage = NSLocalizedString(
             "alert.deleteTile.message",
@@ -81,7 +80,7 @@ enum AppStrings {
 
         static let restartDockMessage = NSLocalizedString(
             "alert.restartDock.message",
-            value: "Dock Tile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected.",
+            value: "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected.",
             comment: "Alert message explaining Dock restart"
         )
 
@@ -99,7 +98,7 @@ enum AppStrings {
 
         static let applyPopoverMessage = NSLocalizedString(
             "alert.applyPopover.message",
-            value: "Dock Tile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected.",
+            value: "IntelliTile will rebuild your pinned tiles with the new popover look and briefly restart the Dock. Your other Dock items won't be affected.",
             comment: "Confirmation message warning the Dock will restart when applying popover settings"
         )
 
@@ -135,19 +134,19 @@ enum AppStrings {
 
         static let relocateTitle = NSLocalizedString(
             "alert.relocate.title",
-            value: "Move Dock Tile to Applications?",
+            value: "Move IntelliTile to Applications?",
             comment: "Title of the prompt asking the user to move the app into the Applications folder"
         )
 
         static let relocateMessage = NSLocalizedString(
             "alert.relocate.message",
-            value: "Dock Tile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works.",
+            value: "IntelliTile is running from outside your Applications folder. macOS may run it from a temporary, read-only location, which can stop new tiles from being created. Move it to Applications to make sure everything works.",
             comment: "Message of the launch-time nudge to move the app to Applications"
         )
 
         static let relocateBlockingMessage = NSLocalizedString(
             "alert.relocate.blockingMessage",
-            value: "Dock Tile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move Dock Tile to your Applications folder and try again.",
+            value: "IntelliTile can't create or update this tile because it's running from a temporary, read-only location. This happens when the app is launched from Downloads. Move IntelliTile to your Applications folder and try again.",
             comment: "Message shown when a tile action is blocked because the app is translocated"
         )
 
@@ -160,19 +159,19 @@ enum AppStrings {
         static let menuBarOffTitle = NSLocalizedString(
             "alert.menuBarOff.title",
             value: "Turn Off the Menu Bar Icon?",
-            comment: "Alert title when turning off Dock Tile's menu bar icon while some tiles are only in the menu bar. \"Menu bar\" is Apple's macOS menu bar — use Apple's own term."
+            comment: "Alert title when turning off IntelliTile's menu bar icon while some tiles are only in the menu bar. \"Menu bar\" is Apple's macOS menu bar — use Apple's own term."
         )
         static func menuBarOffMessageOne(_ name: String) -> String {
             String(format: NSLocalizedString(
                 "alert.menuBarOff.messageOne",
-                value: "%@ is only in the menu bar. It stays in Dock Tile but won’t show anywhere until you turn this back on or add it to the Dock.",
+                value: "%@ is only in the menu bar. It stays in IntelliTile but won’t show anywhere until you turn this back on or add it to the Dock.",
                 comment: "Turn-off-menu-bar alert, one tile; %@ = the tile's name. \"Menu bar\" is Apple's macOS menu bar."
             ), name)
         }
         static func menuBarOffMessageMany(_ list: String) -> String {
             String(format: NSLocalizedString(
                 "alert.menuBarOff.messageMany",
-                value: "These tiles are only in the menu bar: %@. They stay in Dock Tile but won’t show anywhere until you turn this back on or add them to the Dock.",
+                value: "These tiles are only in the menu bar: %@. They stay in IntelliTile but won’t show anywhere until you turn this back on or add them to the Dock.",
                 comment: "Turn-off-menu-bar alert, several tiles; %@ = up to three tile names joined as a list, possibly ending with alert.menuBarOff.more (\"2 more\"). \"Menu bar\" is Apple's macOS menu bar."
             ), list)
         }
@@ -333,7 +332,7 @@ enum AppStrings {
         static let turnOff = NSLocalizedString(
             "button.turnOff",
             value: "Turn Off",
-            comment: "Confirm button of the alert that turns off Dock Tile's menu bar icon"
+            comment: "Confirm button of the alert that turns off IntelliTile's menu bar icon"
         )
 
         static let update = NSLocalizedString(
@@ -654,7 +653,7 @@ enum AppStrings {
         static let showInMenuBar = NSLocalizedString(
             "label.showInMenuBar",
             value: "Show in Menu Bar",
-            comment: "Tile Detail: toggle that lists this tile in Dock Tile's menu bar icon menu. \"Menu bar\" is Apple's macOS menu bar at the top of the screen — use Apple's own term."
+            comment: "Tile Detail: toggle that lists this tile in IntelliTile's menu bar icon menu. \"Menu bar\" is Apple's macOS menu bar at the top of the screen — use Apple's own term."
         )
 
         static let showInAppSwitcher = NSLocalizedString(
@@ -702,7 +701,7 @@ enum AppStrings {
         /// Format string; `%@` is the current app version. Mirrors Apple's update-pane phrasing.
         static let softwareUpdateDescriptionFormat = NSLocalizedString(
             "label.softwareUpdateDescription",
-            value: "You’re using version %@. Dock Tile checks for updates automatically.",
+            value: "You’re using version %@. IntelliTile checks for updates automatically.",
             comment: "Description under the software-update row; %@ is the current version"
         )
 
@@ -730,7 +729,7 @@ enum AppStrings {
 
         static let shareAnalyticsDescription = NSLocalizedString(
             "label.shareAnalyticsDescription",
-            value: "Help improve Dock Tile by sending anonymous usage and crash reports. No personal data is collected.",
+            value: "Help improve IntelliTile by sending anonymous usage and crash reports. No personal data is collected.",
             comment: "Explanation under the analytics toggle"
         )
     }
@@ -746,7 +745,7 @@ enum AppStrings {
 
         static let loginRequiresApproval = NSLocalizedString(
             "settings.login.requiresApproval",
-            value: "Approve Dock Tile in Login Items to finish enabling this.",
+            value: "Approve IntelliTile in Login Items to finish enabling this.",
             comment: "Shown when macOS is holding the login item for user approval"
         )
 
@@ -770,13 +769,13 @@ enum AppStrings {
 
         static let menuBarToggle = NSLocalizedString(
             "settings.menuBar.toggle",
-            value: "Show Dock Tile in the menu bar",
-            comment: "General: toggle that adds Dock Tile's icon to the menu bar, listing the tiles and their apps"
+            value: "Show IntelliTile in the menu bar",
+            comment: "General: toggle that adds IntelliTile's icon to the menu bar, listing the tiles and their apps"
         )
 
         static let menuBarToggleDescription = NSLocalizedString(
             "settings.menuBar.toggleDescription",
-            value: "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. Dock Tile keeps running in the background while this is on.",
+            value: "Lists the tiles you choose and their apps. Turn on Show in Menu Bar in a tile to add it. IntelliTile keeps running in the background while this is on.",
             comment: "General: caption under the menu bar icon toggle. \"Show in Menu Bar\" is the tile's toggle (label.showInMenuBar) — use the same words."
         )
 
@@ -891,13 +890,13 @@ enum AppStrings {
 
         static let dockLockPrimerBody = NSLocalizedString(
             "settings.dockLock.primer.body",
-            value: "Dock Lock keeps the Dock on the display you choose. To do that, Dock Tile needs Accessibility access so it can stop macOS from moving the Dock to your other screens.",
+            value: "Dock Lock keeps the Dock on the display you choose. To do that, IntelliTile needs Accessibility access so it can stop macOS from moving the Dock to your other screens.",
             comment: "Explanation in the permission primer"
         )
 
         static let dockLockPrimerReassurance = NSLocalizedString(
             "settings.dockLock.primer.reassurance",
-            value: "Next, macOS will ask you to turn on Dock Tile in System Settings. You can turn this off any time.",
+            value: "Next, macOS will ask you to turn on IntelliTile in System Settings. You can turn this off any time.",
             comment: "Reassurance line in the permission primer about what happens next"
         )
 
@@ -921,7 +920,7 @@ enum AppStrings {
 
         static let dockLockAccessibilityNeededDetail = NSLocalizedString(
             "settings.dockLock.accessibilityNeededDetail",
-            value: "Dock Tile needs Accessibility access to keep the Dock in place. Turn on Dock Tile in System Settings.",
+            value: "IntelliTile needs Accessibility access to keep the Dock in place. Turn on IntelliTile in System Settings.",
             comment: "Explanation of why Accessibility access is needed"
         )
 
@@ -1239,24 +1238,24 @@ enum AppStrings {
         static let configureTileItem = NSLocalizedString(
             "menu.configureTileItem",
             value: "Configure Tile…",
-            comment: "Tile submenu item in the menu bar and Dock menus: opens that tile in Dock Tile's window"
+            comment: "Tile submenu item in the menu bar and Dock menus: opens that tile in IntelliTile's window"
         )
 
         static let openDockTile = NSLocalizedString(
             "menu.openDockTile",
-            value: "Open Dock Tile…",
-            comment: "Menu bar and Dock menu item that opens Dock Tile's main window"
+            value: "Open IntelliTile…",
+            comment: "Menu bar and Dock menu item that opens IntelliTile's main window"
         )
 
         static let quitDockTile = NSLocalizedString(
             "menu.quitDockTile",
-            value: "Quit Dock Tile",
-            comment: "Menu bar icon's menu: quits Dock Tile (tiles already in the Dock keep working)"
+            value: "Quit IntelliTile",
+            comment: "Menu bar icon's menu: quits IntelliTile (tiles already in the Dock keep working)"
         )
 
         static let aboutDockTile = NSLocalizedString(
             "menu.aboutDockTile",
-            value: "About Dock Tile",
+            value: "About IntelliTile",
             comment: "App menu"
         )
     }
@@ -1287,7 +1286,7 @@ enum AppStrings {
     enum Sidebar {
         static let title = NSLocalizedString(
             "sidebar.title",
-            value: "Dock Tile",
+            value: "IntelliTile",
             comment: "Navigation title for sidebar"
         )
 
@@ -1305,7 +1304,7 @@ enum AppStrings {
 
         static let dockTileSection = NSLocalizedString(
             "sidebar.dockTileSection",
-            value: "Dock Tile",
+            value: "IntelliTile",
             comment: "Sidebar section holding About"
         )
     }
@@ -1358,7 +1357,7 @@ enum AppStrings {
 
         static let noSuggestions = NSLocalizedString(
             "smartAdd.noSuggestions",
-            value: "No suggestions yet — Dock Tile learns from the apps you open. You can turn this off in General.",
+            value: "No suggestions yet — IntelliTile learns from the apps you open. You can turn this off in General.",
             comment: "Add a Tile: empty suggestions note"
         )
 
@@ -1425,7 +1424,7 @@ enum AppStrings {
         )
         static let inviteTitle = NSLocalizedString(
             "translation.invite.title",
-            value: "Dock Tile now speaks your language",
+            value: "IntelliTile now speaks your language",
             comment: "One-time alert title on first launch in a machine-translated language"
         )
         static let inviteMessage = NSLocalizedString(
@@ -1629,7 +1628,7 @@ enum AppStrings {
 
         static let appTranslocated = NSLocalizedString(
             "error.appTranslocated",
-            value: "Dock Tile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again.",
+            value: "IntelliTile is running from a temporary, read-only location and can't create tiles. Move it to your Applications folder and try again.",
             comment: "Error when the app is translocated and cannot generate helper bundles"
         )
 
@@ -1642,7 +1641,7 @@ enum AppStrings {
         static let dockChangeNotKept = NSLocalizedString(
             "error.dockChangeNotKept",
             value: "The Dock didn't keep this change. Try again.",
-            comment: "Error when Dock Tile wrote a change to the Dock (add, update or hide a tile) but the Dock did not keep it, even after one retry"
+            comment: "Error when IntelliTile wrote a change to the Dock (add, update or hide a tile) but the Dock did not keep it, even after one retry"
         )
     }
 
@@ -1650,8 +1649,8 @@ enum AppStrings {
 
     /// Log messages (not localized - kept in English for developer logs)
     enum Log {
-        static let launching = "🚀 Dock Tile launching..."
-        static let ready = "✓ Dock Tile ready"
-        static let terminating = "👋 Dock Tile terminating..."
+        static let launching = "🚀 IntelliTile launching..."
+        static let ready = "✓ IntelliTile ready"
+        static let terminating = "👋 IntelliTile terminating..."
     }
 }

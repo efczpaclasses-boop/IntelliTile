@@ -391,7 +391,7 @@ final class HelperBundleManager {
             .components(separatedBy: allowed.inverted)
             .joined()
             .trimmingCharacters(in: .whitespaces)
-        return sanitized.isEmpty ? "Dock Tile \(shortId)" : sanitized
+        return sanitized.isEmpty ? "IntelliTile \(shortId)" : sanitized
     }
 
     /// Whether a support-folder entry can be a helper bundle: any `*.app`, plus the bare `.app` that a

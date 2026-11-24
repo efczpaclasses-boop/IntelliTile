@@ -1426,7 +1426,7 @@ enum IconGeneratorError: Error, LocalizedError, Equatable {
         case .symbolUnresolvable(let name):
             return "SF Symbol '\(name)' could not be found — used a placeholder star icon instead. Choose a different symbol in Customise Tile."
         case .brandGlyphMissing:
-            return "The DockTile brand glyph resource is missing from the app bundle — used a placeholder star icon instead. Reinstalling Dock Tile should restore it."
+            return "The IntelliTile brand glyph resource is missing from the app bundle — used a placeholder star icon instead. Reinstalling IntelliTile should restore it."
         }
     }
 }

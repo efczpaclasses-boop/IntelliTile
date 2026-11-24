@@ -7,10 +7,10 @@
 	<key>Label</key>
 	<string>com.docktile.app.tilelauncher</string>
 	<key>BundleProgram</key>
-	<string>Contents/MacOS/Dock Tile</string>
+	<string>Contents/MacOS/IntelliTile</string>
 	<key>ProgramArguments</key>
 	<array>
-		<string>Contents/MacOS/Dock Tile</string>
+		<string>Contents/MacOS/IntelliTile</string>
 		<string>--login-spawn-tiles</string>
 	</array>
 	<key>RunAtLoad</key>

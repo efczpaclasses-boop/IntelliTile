@@ -1,12 +1,12 @@
 // Dev.xcconfig
-// Development build configuration for "Dock Tile Dev"
+// Development build configuration for "IntelliTile Dev"
 // See RELEASE.md for documentation on Dev/Release workflow
 
 #include "Base.xcconfig"
 
 // App Identity
 PRODUCT_BUNDLE_IDENTIFIER = com.docktile.dev.app
-PRODUCT_NAME = Dock Tile Dev
+PRODUCT_NAME = IntelliTile Dev
 
 // Icon (requires AppIcon-Dev.icon in Resources)
 ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon-Dev

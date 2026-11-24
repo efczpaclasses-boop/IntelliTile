@@ -36,12 +36,9 @@ struct AppStringsTests {
         #expect(!AppStrings.About.feedbackTitle.isEmpty)
         #expect(!AppStrings.About.feedbackBody.isEmpty)
         #expect(!AppStrings.About.sendFeedback.isEmpty)
-        #expect(!AppStrings.About.alsoFrom.isEmpty)
-        #expect(!AppStrings.About.studioTitle.isEmpty)
-        #expect(!AppStrings.About.studioSubtitle.isEmpty)
-        #expect(!AppStrings.About.spadesTitle.isEmpty)
-        #expect(!AppStrings.About.spadesSubtitle.isEmpty)
-        #expect(!AppStrings.About.learnMore.isEmpty)
+        #expect(!AppStrings.About.creditsHeader.isEmpty)
+        #expect(!AppStrings.About.portTitle.isEmpty)
+        #expect(AppStrings.About.portCredit("x").contains("x"))
 
         // Alert messages
         #expect(!AppStrings.Alert.restartDockTitle.isEmpty)
@@ -187,7 +184,7 @@ struct AppStringsTests {
 
         // Sidebar
         #expect(!AppStrings.Sidebar.title.isEmpty)
-        #expect(AppStrings.Sidebar.dockTileSection == "Dock Tile")
+        #expect(AppStrings.Sidebar.dockTileSection == "IntelliTile")
 
         // Sections
         #expect(!AppStrings.Section.inThisTile.isEmpty)

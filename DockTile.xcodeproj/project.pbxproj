@@ -35,9 +35,6 @@
 		AAD57BC8 /* DockTileDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADDFDF7 /* DockTileDetailView.swift */; };
 		AADPW002 /* DockPlistWatcher.swift in Sources */ = {isa = PBXBuildFile; fileRef = AADPW001 /* DockPlistWatcher.swift */; };
 		AADTG01 /* DockTileGlyph.png in Resources */ = {isa = PBXBuildFile; fileRef = AADTG02 /* DockTileGlyph.png */; };
-		AAHML01 /* HappyMachinesLogo.svg in Resources */ = {isa = PBXBuildFile; fileRef = AAHML02 /* HappyMachinesLogo.svg */; };
-		AASPL01 /* SpadesIconLight.png in Resources */ = {isa = PBXBuildFile; fileRef = AASPL02 /* SpadesIconLight.png */; };
-		AASPD01 /* SpadesIconDark.png in Resources */ = {isa = PBXBuildFile; fileRef = AASPD02 /* SpadesIconDark.png */; };
 		AAENV002 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAENV001 /* Environment.swift */; };
 		AAEPGV02 /* EmojiPickerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEPGV01 /* EmojiPickerGrid.swift */; };
 		AAFB020 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB010 /* FirebaseAnalytics */; };
@@ -112,7 +109,7 @@
 		AA0002 /* DockTileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockTileApp.swift; sourceTree = "<group>"; };
 		AA0004 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AA0008 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		AA0009 /* Dock Tile Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Dock Tile Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA0009 /* IntelliTile Dev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IntelliTile Dev.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		AA0021 /* FloatingPanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloatingPanel.swift; sourceTree = "<group>"; };
 		AA0901 /* PopoverItemMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverItemMenu.swift; sourceTree = "<group>"; };
 		AA0911 /* TileRebuildBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TileRebuildBar.swift; sourceTree = "<group>"; };
@@ -145,9 +142,6 @@
 		AADDFDF7 /* DockTileDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockTileDetailView.swift; sourceTree = "<group>"; };
 		AADPW001 /* DockPlistWatcher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DockPlistWatcher.swift; sourceTree = "<group>"; };
 		AADTG02 /* DockTileGlyph.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DockTileGlyph.png; sourceTree = "<group>"; };
-		AAHML02 /* HappyMachinesLogo.svg */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = HappyMachinesLogo.svg; sourceTree = "<group>"; };
-		AASPL02 /* SpadesIconLight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpadesIconLight.png; sourceTree = "<group>"; };
-		AASPD02 /* SpadesIconDark.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SpadesIconDark.png; sourceTree = "<group>"; };
 		AAE6EC9F /* DiagnosticsLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiagnosticsLog.swift; sourceTree = "<group>"; };
 		AAREL00A /* AppRelocation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppRelocation.swift; sourceTree = "<group>"; };
 		AATRI00A /* TranslationInvite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationInvite.swift; sourceTree = "<group>"; };
@@ -291,9 +285,6 @@
 				AAGSI02 /* GoogleService-Info.plist */,
 				AALOC02 /* Localizable.xcstrings */,
 				AADTG02 /* DockTileGlyph.png */,
-				AAHML02 /* HappyMachinesLogo.svg */,
-				AASPL02 /* SpadesIconLight.png */,
-				AASPD02 /* SpadesIconDark.png */,
 				AALI000 /* LoginItems */,
 			);
 			path = Resources;
@@ -302,7 +293,7 @@
 		AA0010 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				AA0009 /* Dock Tile Dev.app */,
+				AA0009 /* IntelliTile Dev.app */,
 				25901D972F30773B001B32FE /* DockTileTests.xctest */,
 				25901DC12F30776B001B32FE /* DockTileUITests.xctest */,
 			);
@@ -504,7 +495,7 @@
 				AAFB011 /* FirebaseCrashlytics */,
 			);
 			productName = DockTile;
-			productReference = AA0009 /* Dock Tile Dev.app */;
+			productReference = AA0009 /* IntelliTile Dev.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -584,9 +575,6 @@
 				AAGSI01 /* GoogleService-Info.plist in Resources */,
 				AALOC01 /* Localizable.xcstrings in Resources */,
 				AADTG01 /* DockTileGlyph.png in Resources */,
-				AAHML01 /* HappyMachinesLogo.svg in Resources */,
-				AASPL01 /* SpadesIconLight.png in Resources */,
-				AASPD01 /* SpadesIconDark.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -724,7 +712,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/$(TEST_HOST_APP_NAME).app/Contents/MacOS/$(TEST_HOST_APP_NAME)";
-				TEST_HOST_APP_NAME = "Dock Tile Dev";
+				TEST_HOST_APP_NAME = "IntelliTile Dev";
 			};
 			name = Debug;
 		};
@@ -747,7 +735,7 @@
 				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
 				SWIFT_VERSION = 5.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/$(TEST_HOST_APP_NAME).app/Contents/MacOS/$(TEST_HOST_APP_NAME)";
-				TEST_HOST_APP_NAME = "Dock Tile";
+				TEST_HOST_APP_NAME = IntelliTile;
 			};
 			name = Release;
 		};

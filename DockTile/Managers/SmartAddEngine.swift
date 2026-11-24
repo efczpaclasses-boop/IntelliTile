@@ -611,7 +611,7 @@ final class SmartAddEngine: ObservableObject {
             guard let item = spotlightQuery.result(at: index) as? NSMetadataItem,
                   let path = item.value(forAttribute: NSMetadataItemPathKey) as? String,
                   // Skip our own bundles.
-                  !path.contains("Dock Tile"), !path.contains("DockTile") else { continue }
+                  !path.contains("IntelliTile"), !path.contains("DockTile") else { continue }
 
             // Spotlight attribute names as string literals (avoids importing the Metadata framework
             // just for the `kMDItem…` CFString constants).

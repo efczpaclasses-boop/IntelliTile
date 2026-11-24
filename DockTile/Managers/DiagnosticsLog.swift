@@ -318,7 +318,7 @@ final class DiagnosticsLog: @unchecked Sendable {
         let os = ProcessInfo.processInfo.operatingSystemVersion
         let events = recentLines()
         var out: [String] = [
-            "Dock Tile Diagnostics",
+            "IntelliTile Diagnostics",
             "Generated:  \(stamp.string(from: Date()))",
             "Version:    \(AppEnvironment.appVersion) (\(AppEnvironment.current))",
             "Role:       \(AppEnvironment.appRole)",

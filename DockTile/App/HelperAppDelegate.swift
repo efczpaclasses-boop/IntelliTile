@@ -435,8 +435,8 @@ final class HelperAppDelegate: NSObject, NSApplicationDelegate {
 
         // Standard install locations (PRODUCT_NAME has a space: "Dock Tile")
         let paths = [
-            "/Applications/Dock Tile.app",
-            "\(NSHomeDirectory())/Applications/Dock Tile.app"
+            "/Applications/IntelliTile.app",
+            "\(NSHomeDirectory())/Applications/IntelliTile.app"
         ]
         for path in paths {
             if FileManager.default.fileExists(atPath: path) {
@@ -462,7 +462,7 @@ final class HelperAppDelegate: NSObject, NSApplicationDelegate {
         ) else { return nil }
 
         // Dev build is "Dock Tile Dev.app", Release is "Dock Tile.app"
-        let appNames = ["Dock Tile Dev.app", "Dock Tile.app"]
+        let appNames = ["IntelliTile Dev.app", "IntelliTile.app"]
 
         // Multiple DockTile-* products can coexist (each git worktree gets its own DerivedData
         // hash). Enumeration order once handed the gear deep-link a WEEKS-OLD build, whose

@@ -121,7 +121,7 @@ struct DockTileApp: App {
             }
             CommandGroup(replacing: .appInfo) {
                 Button(AppStrings.Menu.aboutDockTile) {
-                    DiagnosticsLog.shared.ui("Menu → About Dock Tile")
+                    DiagnosticsLog.shared.ui("Menu → About IntelliTile")
                     openSettingsPane(.about)
                 }
                 Divider()

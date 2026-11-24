@@ -8,19 +8,19 @@
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dock Tile"
+            "value" : "IntelliTile"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dock Tile"
+            "value" : "IntelliTile"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dock Tile"
+            "value" : "IntelliTile"
           }
         }
       }
@@ -32,19 +32,19 @@
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dock Tile"
+            "value" : "IntelliTile"
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dock Tile"
+            "value" : "IntelliTile"
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Dock Tile"
+            "value" : "IntelliTile"
           }
         }
       }
@@ -56,19 +56,19 @@
         "en-AU" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copyright © 2026. All rights reserved."
+            "value" : "Copyright © 2026 k97 and contributors. MIT licence."
           }
         },
         "en-GB" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copyright © 2026. All rights reserved."
+            "value" : "Copyright © 2026 k97 and contributors. MIT licence."
           }
         },
         "en-US" : {
           "stringUnit" : {
             "state" : "translated",
-            "value" : "Copyright © 2026. All rights reserved."
+            "value" : "Copyright © 2026 k97 and contributors. MIT licence."
           }
         }
       }

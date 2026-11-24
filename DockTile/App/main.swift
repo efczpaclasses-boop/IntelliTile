@@ -67,13 +67,13 @@ if CommandLine.arguments.contains(LoginTileSpawner.flag) {
         case .runUnlocked:
             DiagnosticsLog.shared.log("lifecycle", "Could not make the main-app lock (errno \(lockErrno)) — running without it")
         case .exit:
-            DiagnosticsLog.shared.log("lifecycle", "Another Dock Tile is running — quiet launch exiting")
+            DiagnosticsLog.shared.log("lifecycle", "Another IntelliTile is running — quiet launch exiting")
             exit(0)
         case .handOff:
             // Ask the running copy to show its window (its Dock icon may be hidden behind the menu bar
             // icon), so a second launch never ends with nothing on screen. Not Launch Services: opening
             // the app from this process reopened this process itself (2026-11-07).
-            DiagnosticsLog.shared.log("lifecycle", "Another Dock Tile is running — asking it for its window and exiting")
+            DiagnosticsLog.shared.log("lifecycle", "Another IntelliTile is running — asking it for its window and exiting")
             DistributedNotificationCenter.default().postNotificationName(
                 AppDelegate.showWindowRequest, object: nil, userInfo: nil, deliverImmediately: true)
             exit(0)

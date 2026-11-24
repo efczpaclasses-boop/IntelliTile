@@ -130,7 +130,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
     }
 
     @objc private func openDockTile() {
-        DiagnosticsLog.shared.ui("Menu bar → Open Dock Tile…")
+        DiagnosticsLog.shared.ui("Menu bar → Open IntelliTile…")
         AppDelegate.instance?.showConfigurationWindow()
     }
 
@@ -145,7 +145,7 @@ final class MenuBarController: NSObject, NSMenuDelegate {
     }
 
     @objc private func quit() {
-        DiagnosticsLog.shared.ui("Menu bar → Quit Dock Tile")
+        DiagnosticsLog.shared.ui("Menu bar → Quit IntelliTile")
         NSApp.terminate(nil)
     }
 }
