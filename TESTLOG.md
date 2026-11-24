@@ -61,6 +61,7 @@ Why these are skipped:
 | #4 Start at Login opt-in, Dock-restart wording | f7f1b4f | 45353427108 | green: build, binary report, smoke, `** TEST SUCCEEDED **` (1080 passed, 0 failed, 12 skipped; LoginItemReconcileTests 12/12), launch running after 20 s |
 | #5 generic icon for Desktop/Documents/Downloads | bc4a2cb | 45355961621 | green: 1083 passed, 0 failed, 12 skipped (ProtectedFolderIconTests 3/3), launch running after 20 s |
 | #2 Check for Updates, intel.N aware | 45ac702 | 45357675658 | green: 1095 passed, 0 failed, 12 skipped (ForkReleaseCheckTests 11/11), launch running after 20 s |
+| #4 one-time Start at Login migration | dac50f7 | 45360572451 | green: 1099 passed, 0 failed, 12 skipped (LoginItemReconcileTests 17/17, 5 new migration cases), launch running after 20 s |
 - CI builds have no release stamp (`ITReleaseTag` empty), so they run as "built from source". The stamped path is covered by unit tests only until a release build exists (v2.8.1-intel.2 is not published).
 - The comparison logic was also compiled and run on the Linux box (Swift 6.4.3) with the same cases: all passed. That is not a macOS result.
 

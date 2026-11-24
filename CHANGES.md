@@ -205,6 +205,7 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
   - Files: `DockTile/Managers/LoginItemManager.swift` (`shouldAdoptExistingRegistration`, `migrateOptInOnce`, called first in `reconcileOnLaunch`), `DockTile/Constants/UserDefaultsKeys.swift` (`startAtLoginOptInMigrated`), `DockTileTests/Unit/Managers/LoginItemReconcileTests.swift` (3 new tests, 5 cases).
   - Why: builds before #4 (v2.8.1-intel.1) register the login item by themselves and store no opt-in. After updating, the stored choice said OFF while the item was registered: the switch opened OFF for a moment, and a later bundle replacement would not re-assert the agent.
   - What: on the first launch of a build with #4, if no choice is recorded and the agent is registered (enabled or awaiting approval), that is recorded as ON. Runs once per install; never registers or unregisters anything; never overrides an explicit opt-out. Turning it off stays one click in Settings.
+  - Commit dac50f7; CI green in run 45360572451. The real upgrade path (intel.1 → a #4 build) is only testable on the Mac (MAC_TEST_PLAN.after-intel2.md U5).
 - Why: a privileged Dock utility should not register a login helper until asked, and the consent text should match what happens (IDEAS.md #4; ANALYSIS.md §7). Effect: no feature lost; Start at Login (#25) is OFF until turned on.
 
 ## Idea #5 (approved 24 Nov 2026): generic folder icon for Desktop, Documents and Downloads
