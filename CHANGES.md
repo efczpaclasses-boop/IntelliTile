@@ -201,3 +201,14 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - Version: `MARKETING_VERSION` is already 2.8.1 (`DockTile/Config/Base.xcconfig`, from upstream v2.8.1), so it is unchanged. **Rule: tag fork releases `vX.Y.Z`.** A 4th component (`v2.8.1.1`) also compares correctly.
 - Why: inventory #29 (Software Update) was lost when Sparkle was unlinked (blocker B3).
 - Effect on speed: none; the network is used only when the user clicks.
+
+## Idea #4 (approved 24 Nov 2026): Start at Login is opt-in; honest Dock-restart wording
+- Start at Login:
+  - Files: `DockTile/Managers/LoginItemManager.swift`, `DockTile/Constants/UserDefaultsKeys.swift`, `DockTileTests/Unit/Managers/LoginItemReconcileTests.swift`, README.
+  - Change: a new `startAtLoginOptedIn` flag, set only by turning the Settings switch ON. `reconcileOnLaunch` and the switch's initial state now need that flag, so a new install registers no login item. The design is unchanged: one SMAppService launcher agent, and for a user who opted in, the agent is still re-asserted after a rebuild.
+  - Tests: one new parameterised test (not opted in → never registers); the existing tests now pass `userOptedIn: true`.
+- Dock-restart wording:
+  - Files: `alert.restartDock.message` in `AppStrings.swift` and `Localizable.xcstrings`. English is final; de/fr/ja/ru/zh-Hans are marked `needs_review`.
+  - New text says the Dock is force-quit and reopens straight away, existing items stay, and an icon dragged a moment ago may be lost.
+  - The force-quit itself (`killall -KILL Dock`) and the one-time consent are unchanged.
+- Why: a privileged Dock utility should not register a login helper until asked, and the consent text should match what happens (IDEAS.md #4; ANALYSIS.md §7). Effect: no feature lost; Start at Login (#25) is OFF until turned on.

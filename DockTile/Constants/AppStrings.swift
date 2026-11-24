@@ -94,8 +94,8 @@ enum AppStrings {
 
         static let restartDockMessage = NSLocalizedString(
             "alert.restartDock.message",
-            value: "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected.",
-            comment: "Alert message explaining Dock restart"
+            value: "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update or remove tiles. To make the change stick, the Dock is force-quit and reopens straight away. Your Dock items stay, but an icon you dragged into or around the Dock a moment ago may be lost.",
+            comment: "Alert message explaining Dock restart (IntelliTile idea #4: says the Dock is force-quit and a just-dragged icon can be lost)"
         )
 
         static let restartDockCheckbox = NSLocalizedString(
