@@ -1,0 +1,175 @@
+# IntelliTile (Intel Mac port of k97/dock-tile): build, test and inspect on GitHub's Intel runner.
+#
+# Runner: macos-15-intel (x64). Per actions/runner-images images/macos/macos-15-Readme.md
+# (checked 24 Nov 2026; README last updated 28 Aug 2026) it has Xcode 26.3 (17C529) and 26.2
+# (17C52) with the macOS 26.2 SDK on macOS 15.7, i.e. the same Xcode/OS family the target Mac
+# (Intel, Sequoia 15.8) will use. Xcode 26.3 is selected with DEVELOPER_DIR (no sudo).
+name: Intel macOS (x86_64)
+
+on:
+  push:
+    branches: [intel-x86_64]
+    paths-ignore:
+      - 'website/**'
+      - 'docs/**'
+      - 'vercel.json'
+      - '**/*.md'
+  pull_request:
+    branches: [intel-x86_64]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+  PROJECT: DockTile.xcodeproj
+  SCHEME: DockTile
+  APP_NAME: IntelliTile
+
+jobs:
+  intel-build:
+    name: Build, test and inspect (macos-15-intel, Xcode 26.3)
+    runs-on: macos-15-intel
+    timeout-minutes: 120
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Environment
+        run: |
+          set -euo pipefail
+          {
+            echo "## Environment"
+            echo '```'
+            echo "runner arch: $(uname -m)"
+            sw_vers
+            xcodebuild -version
+            echo "macOS SDK: $(xcrun --sdk macosx --show-sdk-version)"
+            sysctl -n machdep.cpu.brand_string
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+          test "$(uname -m)" = "x86_64"
+
+      - name: Cache Swift packages
+        uses: actions/cache@55cc8345863c7cc4c66a329aec7e433d2d1c52a9 # v6.1.0
+        with:
+          path: build/SourcePackages
+          key: spm-${{ runner.os }}-x64-${{ hashFiles('DockTile.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved') }}
+          restore-keys: spm-${{ runner.os }}-x64-
+
+      - name: Resolve Swift packages (retry on flaky downloads)
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4; do
+            if xcodebuild -project "$PROJECT" -scheme "$SCHEME" \
+                 -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+                 -resolvePackageDependencies; then
+              exit 0
+            fi
+            echo "Resolve failed (attempt $attempt); retrying in 20 s"
+            sleep 20
+          done
+          exit 1
+
+      - name: Build Release (x86_64, ad-hoc, no Rust)
+        run: |
+          set -euo pipefail
+          # Same flags as install.sh. No Rust toolchain on purpose: proves idea #1 (the icon
+          # compiler step warns and skips instead of failing).
+          xcodebuild \
+            -project "$PROJECT" -scheme "$SCHEME" -configuration Release \
+            -destination 'platform=macOS,arch=x86_64' \
+            -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+            ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            build 2>&1 | tee build-release.log
+          grep -E "warning: docktile-actool not built" build-release.log || echo "note: actool skip warning not found in log"
+          test -d "build/Build/Products/Release/$APP_NAME.app"
+
+      - name: Binary report (file, lipo, minimum macOS)
+        run: |
+          set -euo pipefail
+          Scripts/intel-port/ci-inspect.sh binaries "build/Build/Products/Release/$APP_NAME.app" binary-report.txt
+          { echo "## Binary report"; echo '```'; grep -E '^(##|lipo|minos|FAIL|RESULT)' binary-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Headless smoke test
+        run: |
+          set -euo pipefail
+          Scripts/intel-port/ci-inspect.sh smoke "build/Build/Products/Release/$APP_NAME.app" smoke-report.txt
+          { echo "## Smoke test"; echo '```'; cat smoke-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Unit tests (DockTileTests, x86_64)
+        timeout-minutes: 40
+        run: |
+          set -euo pipefail
+          xcodebuild test \
+            -project "$PROJECT" -scheme "$SCHEME" -configuration Debug \
+            -destination 'platform=macOS,arch=x86_64' \
+            -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+            -only-testing:DockTileTests \
+            -resultBundlePath TestResults.xcresult \
+            ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            2>&1 | tee test.log
+          { echo "## Unit tests"; echo '```'; grep -E "Executed|Test run with|tests? (passed|failed)|\*\* TEST" test.log | tail -n 10; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Launch smoke (non-blocking)
+        continue-on-error: true
+        run: |
+          set -euo pipefail
+          mkdir -p "$HOME/Applications"
+          ditto "build/Build/Products/Release/$APP_NAME.app" "$HOME/Applications/$APP_NAME.app"
+          open -n "$HOME/Applications/$APP_NAME.app"
+          sleep 20
+          if pgrep -x "$APP_NAME" >/dev/null; then
+            echo "launch: running after 20 s" | tee launch-report.txt
+          else
+            echo "launch: NOT running after 20 s" | tee launch-report.txt
+          fi
+          cp "$HOME/Library/Application Support/IntelliTile/diagnostics.log" launch-diagnostics.log 2>/dev/null || true
+          pkill -x "$APP_NAME" || true
+          { echo "## Launch smoke"; cat launch-report.txt; } >> "$GITHUB_STEP_SUMMARY"
+          grep -q "running after" launch-report.txt && ! grep -q "NOT running" launch-report.txt
+
+      - name: Zip app
+        if: always()
+        run: |
+          if [ -d "build/Build/Products/Release/$APP_NAME.app" ]; then
+            ditto -c -k --keepParent "build/Build/Products/Release/$APP_NAME.app" "$APP_NAME-x86_64-unsigned.zip"
+          fi
+          if [ -d TestResults.xcresult ]; then
+            ditto -c -k --keepParent TestResults.xcresult TestResults.xcresult.zip
+          fi
+
+      - name: Upload reports
+        if: always()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: intel-reports
+          path: |
+            binary-report.txt
+            smoke-report.txt
+            launch-report.txt
+            launch-diagnostics.log
+            build-release.log
+            test.log
+            TestResults.xcresult.zip
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Upload app (ad-hoc signed, for inspection)
+        if: success()
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: IntelliTile-x86_64-unsigned
+          path: IntelliTile-x86_64-unsigned.zip
+          retention-days: 14

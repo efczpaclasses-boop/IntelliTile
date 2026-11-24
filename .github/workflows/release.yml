@@ -2,10 +2,11 @@ name: Release
 
 # Triggered only by version tags (v*), not by branch pushes
 # Website changes (website/**, vercel.json) don't affect this workflow
+# IntelliTile (Intel Mac port): upstream's release job builds arm64 on macos-26, signs and
+# notarises with the original team's secrets and uploads Crashlytics dSYMs. It must not run on
+# this fork, so the tag trigger is disabled (manual run only, and it would fail without secrets).
 on:
-  push:
-    tags:
-      - 'v*'
+  workflow_dispatch:
 
 permissions:
   contents: write  # Required to create releases
