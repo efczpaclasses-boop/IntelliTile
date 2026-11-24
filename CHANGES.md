@@ -201,6 +201,10 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
   - Files: `alert.restartDock.message` in `AppStrings.swift` and `Localizable.xcstrings`. English is final; de/fr/ja/ru/zh-Hans are marked `needs_review`.
   - New text says the Dock is force-quit and reopens straight away, existing items stay, and an icon dragged a moment ago may be lost.
   - The force-quit itself (`killall -KILL Dock`) and the one-time consent are unchanged.
+- One-time migration (approved by Lead 24 Nov 2026 as part of idea #4):
+  - Files: `DockTile/Managers/LoginItemManager.swift` (`shouldAdoptExistingRegistration`, `migrateOptInOnce`, called first in `reconcileOnLaunch`), `DockTile/Constants/UserDefaultsKeys.swift` (`startAtLoginOptInMigrated`), `DockTileTests/Unit/Managers/LoginItemReconcileTests.swift` (3 new tests, 5 cases).
+  - Why: builds before #4 (v2.8.1-intel.1) register the login item by themselves and store no opt-in. After updating, the stored choice said OFF while the item was registered: the switch opened OFF for a moment, and a later bundle replacement would not re-assert the agent.
+  - What: on the first launch of a build with #4, if no choice is recorded and the agent is registered (enabled or awaiting approval), that is recorded as ON. Runs once per install; never registers or unregisters anything; never overrides an explicit opt-out. Turning it off stays one click in Settings.
 - Why: a privileged Dock utility should not register a login helper until asked, and the consent text should match what happens (IDEAS.md #4; ANALYSIS.md §7). Effect: no feature lost; Start at Login (#25) is OFF until turned on.
 
 ## Idea #5 (approved 24 Nov 2026): generic folder icon for Desktop, Documents and Downloads

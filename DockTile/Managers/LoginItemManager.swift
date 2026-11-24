@@ -129,6 +129,7 @@ final class LoginItemManager {
     /// enabled. If macOS insists on re-approval the status stays `.requiresApproval` and the
     /// Settings pane surfaces the approval prompt — we never silently fail or lie about the state.
     func reconcileOnLaunch() {
+        migrateOptInOnce()
         guard Self.shouldReregisterOnLaunch(userOptedIn: userOptedIn, userOptedOut: userOptedOut, status: service.status) else { return }
         do {
             try service.register()
@@ -140,6 +141,41 @@ final class LoginItemManager {
             print("⚠️ LoginItem: reconcile register failed: \(error.localizedDescription)")
             DiagnosticsLog.shared.log("login", "Reconcile register FAILED: \(error.localizedDescription)")
         }
+    }
+
+    // MARK: - One-time migration (IntelliTile idea #4)
+
+    /// Pure decision seam for `migrateOptInOnce`. Builds before idea #4 (e.g. v2.8.1-intel.1)
+    /// registered the launcher agent by themselves (upstream opt-out default) and never stored an
+    /// opt-in. On the first launch of a build with #4, if nothing was recorded either way and the
+    /// agent IS registered (enabled, or held for approval, which the switch also shows ON), record
+    /// that real state as the user's opt-in. Returns true only then; it never registers or
+    /// unregisters anything.
+    nonisolated static func shouldAdoptExistingRegistration(
+        alreadyMigrated: Bool,
+        userOptedIn: Bool,
+        userOptedOut: Bool,
+        status: SMAppService.Status
+    ) -> Bool {
+        guard !alreadyMigrated, !userOptedIn, !userOptedOut else { return false }
+        return status == .enabled || status == .requiresApproval
+    }
+
+    /// Runs once per install (flag `startAtLoginOptInMigrated`), before the launch reconcile, so
+    /// the stored choice matches the system: the switch then opens in the right position and a
+    /// later bundle replacement re-asserts the agent as for any user who turned it on.
+    func migrateOptInOnce() {
+        let defaults = UserDefaults.standard
+        guard !defaults.bool(forKey: UserDefaultsKeys.startAtLoginOptInMigrated) else { return }
+        let current = service.status
+        if Self.shouldAdoptExistingRegistration(alreadyMigrated: false, userOptedIn: userOptedIn,
+                                                userOptedOut: userOptedOut, status: current) {
+            userOptedIn = true
+            DiagnosticsLog.shared.log("login", "Start-at-login migration: agent already registered (\(statusDescription)) → recorded as ON")
+        } else {
+            DiagnosticsLog.shared.log("login", "Start-at-login migration: nothing to adopt (\(statusDescription))")
+        }
+        defaults.set(true, forKey: UserDefaultsKeys.startAtLoginOptInMigrated)
     }
 
     /// Open System Settings → Login Items so the user can approve a held item.

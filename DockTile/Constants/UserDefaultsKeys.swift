@@ -54,6 +54,9 @@ enum UserDefaultsKeys {
     /// IntelliTile idea #4: start-at-login is OPT-IN. True only after the user turned it ON in
     /// Settings; absent/false = off, and nothing is registered at launch.
     static let startAtLoginOptedIn = "startAtLoginOptedIn"
+    /// IntelliTile idea #4: set once the one-time opt-in migration has run (see
+    /// LoginItemManager.migrateOptInOnce), so it never runs again.
+    static let startAtLoginOptInMigrated = "startAtLoginOptInMigrated"
 
     // Dock Lock: keep the Dock pinned to one display
     static let dockLockEnabled = "dockLockEnabled"

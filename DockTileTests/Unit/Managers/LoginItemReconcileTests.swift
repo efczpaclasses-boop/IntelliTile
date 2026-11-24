@@ -53,4 +53,37 @@ struct LoginItemReconcileTests {
     func demotedStatusReregisters(_ status: SMAppService.Status) {
         #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedIn: true, userOptedOut: false, status: status) == true)
     }
+
+    // MARK: - IntelliTile idea #4: one-time migration of a pre-#4 registration
+
+    /// An agent registered by a pre-#4 build (enabled, or held for approval) is adopted as ON.
+    @Test("Migration: existing registration with no recorded choice → adopt as ON", arguments: [
+        SMAppService.Status.enabled,
+        .requiresApproval
+    ])
+    func migrationAdoptsRegistered(_ status: SMAppService.Status) {
+        #expect(LoginItemManager.shouldAdoptExistingRegistration(
+            alreadyMigrated: false, userOptedIn: false, userOptedOut: false, status: status) == true)
+    }
+
+    /// Nothing registered → nothing adopted (a new install stays OFF).
+    @Test("Migration: not registered → stays OFF", arguments: [
+        SMAppService.Status.notRegistered,
+        .notFound
+    ])
+    func migrationIgnoresUnregistered(_ status: SMAppService.Status) {
+        #expect(LoginItemManager.shouldAdoptExistingRegistration(
+            alreadyMigrated: false, userOptedIn: false, userOptedOut: false, status: status) == false)
+    }
+
+    /// Runs once only, and never overrides a recorded choice (in particular an explicit opt-out).
+    @Test("Migration: already run, or a choice is recorded → no change")
+    func migrationRespectsRecordedChoiceAndRunsOnce() {
+        #expect(LoginItemManager.shouldAdoptExistingRegistration(
+            alreadyMigrated: true, userOptedIn: false, userOptedOut: false, status: .enabled) == false)
+        #expect(LoginItemManager.shouldAdoptExistingRegistration(
+            alreadyMigrated: false, userOptedIn: false, userOptedOut: true, status: .enabled) == false)
+        #expect(LoginItemManager.shouldAdoptExistingRegistration(
+            alreadyMigrated: false, userOptedIn: true, userOptedOut: false, status: .enabled) == false)
+    }
 }
