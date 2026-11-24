@@ -84,6 +84,7 @@ jobs:
             ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES \
             CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= \
             COMPILER_INDEX_STORE_ENABLE=NO \
+            INTELLITILE_RELEASE_TAG="$TAG" \
             build > build-release.log 2>&1 || { tail -n 80 build-release.log; exit 1; }
           test -d "build/Build/Products/Release/$APP_NAME.app"
 
@@ -109,7 +110,14 @@ jobs:
           codesign -dv "verify/$APP_NAME.app" 2>&1 | grep -E "Identifier=|Signature="
           lipo -archs "verify/$APP_NAME.app/Contents/MacOS/$APP_NAME" | tee verify-arch.txt
           grep -qx "x86_64" verify-arch.txt
-          defaults read "$PWD/verify/$APP_NAME.app/Contents/Info.plist" CFBundleShortVersionString
+          plist="$PWD/verify/$APP_NAME.app/Contents/Info.plist"
+          marketing=$(defaults read "$plist" CFBundleShortVersionString)
+          stamp=$(defaults read "$plist" ITReleaseTag)
+          echo "version $marketing, stamped release tag $stamp"
+          # The app's Check for Updates trusts this stamp (idea #2): it must be this tag, for this X.Y.Z.
+          test "$stamp" = "$TAG"
+          core="${TAG#v}"; core="${core%%-*}"
+          test "$core" = "$marketing" || { echo "Tag $TAG does not match MARKETING_VERSION $marketing"; exit 1; }
           {
             echo "## Package"
             echo '```'

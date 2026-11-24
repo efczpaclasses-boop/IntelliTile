@@ -24,6 +24,10 @@ What is different from the original:
   so it cannot collide with the official app.
 - The official Sparkle auto-updater is removed; update with `./update.sh` (downloads the newest
   fork release and checks its SHA-256).
+  **Check for Updates** only asks this fork's GitHub Releases whether a newer build exists and offers to
+  open its release page; nothing is downloaded or installed. Fork releases are tagged `vX.Y.Z` or
+  `vX.Y.Z-intel.N` (N = Intel build of that version); the release workflow stamps the tag into the app,
+  so 2.8.1-intel.1 < 2.8.1-intel.2 < 2.8.2. A build from source has no stamp and is only offered a newer X.Y.Z.
 - Firebase analytics and crash reporting are switched off by default and no Firebase project is
   bundled, so nothing is sent.
 - The Rust icon compiler is optional on Sequoia (it is only used on macOS 26).

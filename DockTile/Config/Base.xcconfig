@@ -6,6 +6,10 @@
 MARKETING_VERSION = 2.8.1
 CURRENT_PROJECT_VERSION = 50
 
+// IntelliTile: fork release tag stamped into Info.plist (ITReleaseTag). Empty here; the release
+// workflow passes INTELLITILE_RELEASE_TAG=vX.Y.Z-intel.N on the xcodebuild command line.
+INTELLITILE_RELEASE_TAG =
+
 // Deployment
 MACOSX_DEPLOYMENT_TARGET = 15.0
 

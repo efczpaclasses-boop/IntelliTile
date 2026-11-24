@@ -90,6 +90,13 @@ enum AppEnvironment {
         Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String ?? "unknown"
     }()
 
+    /// IntelliTile: the fork release tag the release workflow stamped into Info.plist
+    /// (ITReleaseTag, e.g. "v2.8.1-intel.1"). Nil in builds from source, where it is empty.
+    static let releaseTag: String? = {
+        guard let tag = Bundle.main.infoDictionary?["ITReleaseTag"] as? String, !tag.isEmpty else { return nil }
+        return tag
+    }()
+
     // MARK: - File Paths
 
     /// Preferences JSON filename (e.g., "com.docktile.configs.json")

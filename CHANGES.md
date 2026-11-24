@@ -208,3 +208,21 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - What: if a tile item is exactly `~/Desktop`, `~/Documents` or `~/Downloads`, the popover, the tile face and the cache draw `NSWorkspace.icon(for: .folder)` instead of reading that folder's real icon. Every other folder keeps its real icon; subfolders such as `~/Downloads/Work` are not covered, as IDEAS.md describes.
 - Why: reading the real icon is what triggers the macOS folder-access prompt (k97/dock-tile#36, option 1). Opening the folder still works as before (#20).
 - Effect: those three folders show a plain folder picture. That is not tested on Sequoia yet; the Mac test plan covers it.
+
+## Idea #2 (approved 24 Nov 2026): Check for Updates against the fork's GitHub Releases
+- Re-applied from 2b0131d (`idea2-4-parked`, green in run 45345167714) and changed for the release route (Lead, 24 Nov 2026): Intel build numbers.
+- Files:
+  - `DockTile/App/UpdateController.swift`: `ForkReleaseCheck` (versions, comparison, response handling) plus the alert.
+  - `DockTile/Resources/Info.plist` (new `ITReleaseTag` = `$(INTELLITILE_RELEASE_TAG)`), `DockTile/Config/Base.xcconfig` (`INTELLITILE_RELEASE_TAG =`, empty), `DockTile/App/Environment.swift` (`AppEnvironment.releaseTag`), `DockTile/Managers/DiagnosticsLog.swift` (a `Release:` line in Copy Diagnostics).
+  - `.github/workflows/intel-release.yml`: passes `INTELLITILE_RELEASE_TAG="$TAG"` to xcodebuild, and checks the packaged app's `ITReleaseTag` equals the tag and the tag's X.Y.Z equals `CFBundleShortVersionString`.
+  - `DockTile/Constants/AppStrings.swift` and `Localizable.xcstrings`: 9 `update.*` strings. English is final; de/fr/ja/ru/zh-Hans are marked `needs_review`.
+  - Comments in `DockTileApp.swift` and `AboutView.swift`; README.
+  - `DockTileTests/Unit/App/ForkReleaseCheckTests.swift`: the earlier tests plus Intel-build parsing, 2.8.1-intel.1 < 2.8.1-intel.2 < 2.8.2, an unstamped dev build, and a malformed or mismatched stamp.
+- What it does:
+  - **Check for Updates** shows again, in the app menu and the About pane. Manual only; no background check.
+  - One unauthenticated HTTPS GET to `api.github.com/repos/efczpaclasses-boop/IntelliTile/releases/latest` (ephemeral session, 15 s timeout).
+  - Installed version = `CFBundleShortVersionString` plus the stamped tag's Intel build. A newer X.Y.Z always wins; with the same X.Y.Z a stamped build compares `-intel.N` (a plain `vX.Y.Z` counts as 0). An unstamped build (from source, or a stamp that does not parse or names another X.Y.Z) is offered only a newer X.Y.Z.
+  - If newer, an alert offers that release's page; only `https://github.com/efczpaclasses-boop/IntelliTile/releases/…` is opened, otherwise the Releases page. Other alerts: up to date, no releases yet, couldn't check.
+  - **No download and no install.**
+- Why: inventory #29 (Software Update) was lost when Sparkle was unlinked (blocker B3).
+- Effect: v2.8.1-intel.1 (built before this) has no stamp and no Check for Updates; the first release with it is v2.8.1-intel.2.

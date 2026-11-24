@@ -321,6 +321,7 @@ final class DiagnosticsLog: @unchecked Sendable {
             "IntelliTile Diagnostics",
             "Generated:  \(stamp.string(from: Date()))",
             "Version:    \(AppEnvironment.appVersion) (\(AppEnvironment.current))",
+            "Release:    \(AppEnvironment.releaseTag ?? "none (built from source)")",
             "Role:       \(AppEnvironment.appRole)",
             "Bundle:     \(Bundle.main.bundleIdentifier ?? "unknown")",
             "macOS:      \(os.majorVersion).\(os.minorVersion).\(os.patchVersion)",

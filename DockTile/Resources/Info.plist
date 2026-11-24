@@ -41,6 +41,10 @@
 	<string>$(DOCKTILE_PREFS_FILENAME)</string>
 	<key>DTSupportFolder</key>
 	<string>$(DOCKTILE_SUPPORT_FOLDER)</string>
+	<!-- IntelliTile: fork release tag (vX.Y.Z-intel.N), set by .github/workflows/intel-release.yml;
+	     empty in builds from source. Used by Check for Updates. -->
+	<key>ITReleaseTag</key>
+	<string>$(INTELLITILE_RELEASE_TAG)</string>
 	<key>LSMinimumSystemVersion</key>
 	<string>15.0</string>
 	<key>LSUIElement</key>
