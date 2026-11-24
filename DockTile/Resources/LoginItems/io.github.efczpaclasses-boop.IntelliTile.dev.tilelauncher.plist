@@ -4,7 +4,7 @@
 <dict>
 	<!-- Dev launcher agent. Same as release but targets the "IntelliTile Dev" executable. -->
 	<key>Label</key>
-	<string>com.docktile.dev.app.tilelauncher</string>
+	<string>io.github.efczpaclasses-boop.IntelliTile.dev.tilelauncher</string>
 	<key>BundleProgram</key>
 	<string>Contents/MacOS/IntelliTile Dev</string>
 	<key>ProgramArguments</key>

@@ -28,15 +28,23 @@ enum AppEnvironment {
 
     // MARK: - Bundle Identifiers
 
+    /// IntelliTile (Intel Mac port): own identifiers, so nothing collides with the official app.
+    /// Release main app `io.github.efczpaclasses-boop.IntelliTile`, Dev `io.github.efczpaclasses-boop.IntelliTile.dev`; helpers are `<main id>.tile.<UUID>` (xcconfig
+    /// `DOCKTILE_HELPER_PREFIX`); the deep-link scheme is `intellitile://`.
+    static let bundleIdBase = "io.github.efczpaclasses-boop.IntelliTile"
+    static let releaseMainBundleId = "io.github.efczpaclasses-boop.IntelliTile"
+    static let devMainBundleId = "io.github.efczpaclasses-boop.IntelliTile.dev"
+    static let urlScheme = "intellitile"
+
     /// THIS process's bundle identifier: the main app's ("com.docktile.app" / "com.docktile.dev.app")
     /// in the main app, but a helper's own per-tile id inside a helper.
     static let mainAppBundleId: String = {
-        Bundle.main.bundleIdentifier ?? "com.docktile.app"
+        Bundle.main.bundleIdentifier ?? releaseMainBundleId
     }()
 
     /// Prefix for helper bundle identifiers (e.g., "com.docktile" or "com.docktile.dev")
     static let helperBundlePrefix: String = {
-        Bundle.main.infoDictionary?["DTHelperPrefix"] as? String ?? "com.docktile"
+        Bundle.main.infoDictionary?["DTHelperPrefix"] as? String ?? "\(releaseMainBundleId).tile"
     }()
 
     /// Whether this process is a helper bundle (a copy of the main app with a per-tile
@@ -46,9 +54,9 @@ enum AppEnvironment {
 
     /// The rule behind `isHelper`, on a plain value (`HelperDetectionTests`).
     static func isHelper(bundleId: String) -> Bool {
-        let mainAppBundleIds: Set<String> = ["com.docktile.app", "com.docktile.dev.app", "com.docktile"]
+        let mainAppBundleIds: Set<String> = [releaseMainBundleId, devMainBundleId, bundleIdBase]
         if mainAppBundleIds.contains(bundleId) { return false }
-        return bundleId.hasPrefix("com.docktile.")
+        return bundleId.hasPrefix(bundleIdBase + ".")
     }
 
     /// Analytics/Crashlytics role label for the current process.
@@ -86,12 +94,12 @@ enum AppEnvironment {
 
     /// Preferences JSON filename (e.g., "com.docktile.configs.json")
     static let preferencesFilename: String = {
-        Bundle.main.infoDictionary?["DTPrefsFilename"] as? String ?? "com.docktile.configs.json"
+        Bundle.main.infoDictionary?["DTPrefsFilename"] as? String ?? "\(releaseMainBundleId).configs.json"
     }()
 
     /// Application Support subfolder name (e.g., "DockTile" or "DockTile-Dev")
     static let supportFolderName: String = {
-        Bundle.main.infoDictionary?["DTSupportFolder"] as? String ?? "DockTile"
+        Bundle.main.infoDictionary?["DTSupportFolder"] as? String ?? "IntelliTile"
     }()
 
     // MARK: - Computed Paths

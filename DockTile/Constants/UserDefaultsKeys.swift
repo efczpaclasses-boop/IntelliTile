@@ -95,5 +95,5 @@ enum UserDefaultsKeys {
 
     /// Shared UserDefaults suite readable by the main app and every helper bundle.
     /// Used for cross-process settings like analytics consent and popover appearance.
-    static let sharedSuiteName = "com.docktile.shared"
+    static let sharedSuiteName = "io.github.efczpaclasses-boop.IntelliTile.shared"
 }

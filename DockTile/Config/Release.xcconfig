@@ -5,7 +5,7 @@
 #include "Base.xcconfig"
 
 // App Identity
-PRODUCT_BUNDLE_IDENTIFIER = com.docktile.app
+PRODUCT_BUNDLE_IDENTIFIER = io.github.efczpaclasses-boop.IntelliTile
 PRODUCT_NAME = IntelliTile
 
 // Icon
@@ -13,10 +13,10 @@ ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon
 
 // Environment-specific values (read at runtime via Info.plist)
 DOCKTILE_ENVIRONMENT = RELEASE
-DOCKTILE_HELPER_PREFIX = com.docktile
-DOCKTILE_PREFS_FILENAME = com.docktile.configs.json
-DOCKTILE_SUPPORT_FOLDER = DockTile
+DOCKTILE_HELPER_PREFIX = io.github.efczpaclasses-boop.IntelliTile.tile
+DOCKTILE_PREFS_FILENAME = io.github.efczpaclasses-boop.IntelliTile.configs.json
+DOCKTILE_SUPPORT_FOLDER = IntelliTile
 
 // Ship only this build's start-at-login launcher plist (the Copy Files phase lists both).
 // Guarded by LoginLauncherBundleTests (configExcludesOtherPlist reads this line).
-EXCLUDED_SOURCE_FILE_NAMES = com.docktile.dev.app.tilelauncher.plist
+EXCLUDED_SOURCE_FILE_NAMES = io.github.efczpaclasses-boop.IntelliTile.dev.tilelauncher.plist

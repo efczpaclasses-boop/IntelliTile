@@ -32,8 +32,8 @@ struct LoginLauncherBundleTests {
     }
 
     @Test("Each configuration excludes the OTHER build's launcher plist", arguments: [
-        ("Dev.xcconfig", "com.docktile.app.tilelauncher.plist"),
-        ("Release.xcconfig", "com.docktile.dev.app.tilelauncher.plist"),
+        ("Dev.xcconfig", "io.github.efczpaclasses-boop.IntelliTile.tilelauncher.plist"),
+        ("Release.xcconfig", "io.github.efczpaclasses-boop.IntelliTile.dev.tilelauncher.plist"),
     ])
     func configExcludesOtherPlist(file: String, excluded: String) throws {
         let url = Self.root.appendingPathComponent("DockTile/Config/\(file)")

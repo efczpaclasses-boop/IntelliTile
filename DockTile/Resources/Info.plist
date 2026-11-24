@@ -27,7 +27,7 @@
 			<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>docktile</string>
+				<string>intellitile</string>
 			</array>
 		</dict>
 	</array>

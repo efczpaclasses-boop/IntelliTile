@@ -173,8 +173,8 @@ final class SmartAddEngine: ObservableObject {
     /// via the environment-specific name), mirroring `ConfigurationManager` storage.
     private static var logURL: URL {
         let dir = AppEnvironment.preferencesURL.deletingLastPathComponent()
-        let name = AppEnvironment.isDev ? "com.docktile.dev.smartadd.json"
-                                        : "com.docktile.smartadd.json"
+        let name = AppEnvironment.isDev ? "\(AppEnvironment.devMainBundleId).smartadd.json"
+                                        : "\(AppEnvironment.releaseMainBundleId).smartadd.json"
         return dir.appendingPathComponent(name)
     }
 
@@ -237,7 +237,7 @@ final class SmartAddEngine: ObservableObject {
         guard let app = note.userInfo?[NSWorkspace.applicationUserInfoKey] as? NSRunningApplication,
               let bundleId = app.bundleIdentifier,
               // Ignore our own main app + helper bundles so tiles don't suggest Dock Tile itself.
-              !bundleId.hasPrefix("com.docktile") else { return }
+              !bundleId.hasPrefix(AppEnvironment.bundleIdBase) else { return }
 
         launchLog.append(LaunchEvent(bundleId: bundleId, date: Date()))
         pruneLog()
@@ -619,7 +619,7 @@ final class SmartAddEngine: ObservableObject {
             let lastUsed = item.value(forAttribute: "kMDItemLastUsedDate") as? Date
 
             guard let (bundleId, name, category) = bundleInfo(atPath: path),
-                  !bundleId.hasPrefix("com.docktile") else { continue }
+                  !bundleId.hasPrefix(AppEnvironment.bundleIdBase) else { continue }
 
             records.append(AppUsageRecord(
                 bundleId: bundleId,

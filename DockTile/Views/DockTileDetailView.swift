@@ -807,7 +807,7 @@ struct DockTileDetailView: View {
                     AnalyticsService.shared.log(wasInDock ? .tileUpdated : .tileAddedToDock,
                                                 Self.dockActionParameters(for: configToSave))
                     print("✅ Helper installed: \(configToSave.name)")
-                    print("   User can open it from: ~/Library/Application Support/DockTile/")
+                    print("   User can open it from: ~/Library/Application Support/\(AppEnvironment.supportFolderName)/")
                     DiagnosticsLog.shared.log("dock", "\(wasInDock ? "Updated" : "Added") tile \(configToSave.diagnosticName) in Dock")
 
                 case .remove:

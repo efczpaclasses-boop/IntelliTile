@@ -330,7 +330,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
         print("🔗 Handling deep link: \(url)")
         DiagnosticsLog.shared.log("deeplink", "Received \(url.absoluteString)")
 
-        guard url.scheme == "docktile" else {
+        guard url.scheme == AppEnvironment.urlScheme else {
             print("   ⚠️ Unknown URL scheme: \(url.scheme ?? "nil")")
             return
         }
@@ -437,7 +437,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSWindowDelegate {
     /// "Configure Tile…" in the Dock and menu bar menus: the same path as a tile's gear link
     /// (select, show, reveal with Customise).
     func revealTile(id: UUID) {
-        guard let url = URL(string: "docktile://configure?id=\(id.uuidString)") else { return }
+        guard let url = URL(string: "\(AppEnvironment.urlScheme)://configure?id=\(id.uuidString)") else { return }
         handleDeepLink(url)
     }
 }

@@ -74,7 +74,7 @@ final class HelperAppDelegate: NSObject, NSApplicationDelegate {
 
     /// Current bundle ID
     private var currentBundleId: String {
-        Bundle.main.bundleIdentifier ?? "com.docktile.app"
+        Bundle.main.bundleIdentifier ?? AppEnvironment.releaseMainBundleId
     }
 
     /// Current bundle path
@@ -393,7 +393,7 @@ final class HelperAppDelegate: NSObject, NSApplicationDelegate {
     private func launchMainAppWithDeepLink() {
         // Build deep link URL safely
         var components = URLComponents()
-        components.scheme = "docktile"
+        components.scheme = AppEnvironment.urlScheme
         components.host = "configure"
         components.queryItems = [URLQueryItem(name: "bundleId", value: currentBundleId)]
         guard let deepLinkURL = components.url else {

@@ -9,17 +9,16 @@ import Testing
 struct HelperDetectionTests {
 
     @Test("The main app is never a helper", arguments: [
-        "com.docktile.app",      // release
-        "com.docktile.dev.app",  // dev
-        "com.docktile",          // legacy / fallback
+        "io.github.efczpaclasses-boop.IntelliTile",      // release
+        "io.github.efczpaclasses-boop.IntelliTile.dev",  // dev
     ])
     func mainAppIsNotAHelper(_ bundleId: String) {
         #expect(AppEnvironment.isHelper(bundleId: bundleId) == false)
     }
 
     @Test("A per-tile bundle is a helper", arguments: [
-        "com.docktile.6F9619FF-8B86-D011-B42D-00C04FC964FF",      // release
-        "com.docktile.dev.6F9619FF-8B86-D011-B42D-00C04FC964FF",  // dev
+        "io.github.efczpaclasses-boop.IntelliTile.tile.6F9619FF-8B86-D011-B42D-00C04FC964FF",      // release
+        "io.github.efczpaclasses-boop.IntelliTile.dev.tile.6F9619FF-8B86-D011-B42D-00C04FC964FF",  // dev
     ])
     func tileBundleIsAHelper(_ bundleId: String) {
         #expect(AppEnvironment.isHelper(bundleId: bundleId) == true)
@@ -28,5 +27,8 @@ struct HelperDetectionTests {
     @Test("Another app's bundle is not a helper")
     func unrelatedBundleIsNotAHelper() {
         #expect(AppEnvironment.isHelper(bundleId: "com.example.app") == false)
+        // The official app and its helpers are not ours (IntelliTile port).
+        #expect(AppEnvironment.isHelper(bundleId: "com.docktile.app") == false)
+        #expect(AppEnvironment.isHelper(bundleId: "com.docktile.6F9619FF-8B86-D011-B42D-00C04FC964FF") == false)
     }
 }
