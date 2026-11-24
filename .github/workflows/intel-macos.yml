@@ -167,6 +167,47 @@ jobs:
           { echo "## Launch smoke"; cat launch-report.txt; } >> "$GITHUB_STEP_SUMMARY"
           grep -q "running after" launch-report.txt && ! grep -q "NOT running" launch-report.txt
 
+      - name: update.sh and uninstall end-to-end (published release; /Applications and ~/Applications)
+        run: |
+          set -euo pipefail
+          pkill -x "$APP_NAME" || true
+          sys="/Applications/$APP_NAME.app"; usr="$HOME/Applications/$APP_NAME.app"
+          rm -rf "$usr" "$sys" "$HOME/IntelPorts/dock-tile"
+          log() { echo "$*" | tee -a update-e2e.txt; }
+          expect_fail() { if "$@" > out.txt 2>&1; then cat out.txt; log "FAIL: expected a stop: $*"; exit 1; fi; cat out.txt; }
+          # 1) fresh install goes to ~/Applications; 2) a second run does nothing
+          ./update.sh | tee out.txt; grep -q "installing to $usr" out.txt; test -d "$usr"; test ! -e "$sys"
+          log "1 fresh install -> $usr: OK"
+          ./update.sh | tee out.txt; grep -q "Already installed" out.txt
+          log "2 second run: no-op OK"
+          # 3) app moved to /Applications (as the app's own Move does): replaced in place, no duplicate
+          ls -ld /Applications | tee -a update-e2e.txt
+          mv "$usr" "$sys"
+          ./update.sh --force | tee out.txt; grep -q "Installed copy to update: $sys" out.txt
+          test -d "$sys"; test ! -e "$usr"; test ! -e "/Applications/.$APP_NAME.app.old"; test ! -e "/Applications/.$APP_NAME.app.new"
+          codesign --verify --deep --strict "$sys"
+          log "3 copy in /Applications replaced in place, no copy in ~/Applications: OK"
+          # 4) two copies: stop, change nothing
+          ditto "$sys" "$usr"
+          expect_fail ./update.sh --force; grep -q "Two copies of IntelliTile are installed" out.txt; test -d "$sys"; test -d "$usr"
+          log "4 two copies: stopped, both untouched: OK"
+          rm -rf "$sys"
+          # 5) folder not writable (stand-in for /Applications on a standard account): stop, change nothing
+          chmod a-w "$HOME/Applications"
+          expect_fail ./update.sh --force; grep -q "can't replace it without an administrator password" out.txt; test -d "$usr"
+          chmod u+w "$HOME/Applications"
+          log "5 unwritable folder: stopped with the no-sudo message, app untouched: OK"
+          # 6) install.sh refuses to add a second copy next to /Applications
+          mv "$usr" "$sys"
+          if ./install.sh > out.txt 2>&1; then cat out.txt; log "FAIL: install.sh did not stop"; exit 1; fi
+          grep -q "already installed at $sys" out.txt; test ! -e "$usr"
+          log "6 install.sh with a copy in /Applications: stopped before building, no second copy: OK"
+          # 7) uninstall removes the /Applications copy and the port folder, nothing else
+          ./install.sh --uninstall --yes | tee out.txt
+          test ! -e "$sys"; test ! -e "$usr"; test ! -e "$HOME/IntelPorts/dock-tile"
+          log "7 uninstall removed $sys and ~/IntelPorts/dock-tile: OK"
+          { echo "## update.sh / uninstall end-to-end"; echo '```'; cat update-e2e.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+
       - name: Zip app
         if: always()
         run: |

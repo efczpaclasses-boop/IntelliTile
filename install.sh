@@ -22,6 +22,7 @@ LOG_DIR="${PORT_ROOT}/logs"
 APPS_DIR="${HOME}/Applications"
 APP_DEST="${APPS_DIR}/${APP_NAME}.app"
 SUPPORT_DIR="${HOME}/Library/Application Support/IntelliTile"
+SYSTEM_APP="/Applications/${APP_NAME}.app"
 MIN_MACOS="15.6"          # Xcode 26.0-26.3 need macOS 15.6 or later
 MIN_FREE_GIB=8            # DerivedData + Swift packages (Firebase) + the app
 JOBS="${INTELLITILE_JOBS:-2}"
@@ -185,11 +186,19 @@ verify_app() {
     fi
 }
 
+# install.sh installs to ~/Applications only; never add a second copy next to /Applications.
+refuse_second_copy() {
+    if [ -e "$SYSTEM_APP" ] || [ -L "$SYSTEM_APP" ]; then
+        die "IntelliTile is already installed at $SYSTEM_APP. install.sh installs to $APP_DEST and will not create a second copy. Either update that copy with ./update.sh (release route), or drag $SYSTEM_APP to the Bin in Finder and run ./install.sh again. Nothing changed." 6
+    fi
+}
+
 install_app() {
     say "Installing to $APP_DEST"
     if pgrep -x "$APP_NAME" >/dev/null 2>&1; then
         die "$APP_NAME is running. Quit it (menu bar icon > Quit $APP_NAME, or Cmd+Q in its window), then re-run ./install.sh. Your tiles keep working." 5
     fi
+    refuse_second_copy
     mkdir -p "$APPS_DIR"
     local staging="$APPS_DIR/.${APP_NAME}.app.installing"
     rm -rf "$staging"
@@ -216,11 +225,31 @@ print_data_locations() {
 EOF
 }
 
+# removable PATH -> true when this account can delete PATH without sudo (its folder is writable and
+# everything inside belongs to this user with writable folders).
+removable() {
+    local p="$1" me
+    me="$(id -un)"
+    [ -w "$(dirname "$p")" ] || return 1
+    [ -L "$p" ] && return 0
+    [ -z "$(find "$p" ! -user "$me" -print 2>/dev/null | head -n 1)" ] || return 1
+    [ -z "$(find "$p" -type d ! -perm -u+w -print 2>/dev/null | head -n 1)" ] || return 1
+}
+
 uninstall() {
     say "Uninstalling $APP_NAME (only its own files)"
+    local targets=() p
+    for p in "$SYSTEM_APP" "$APP_DEST" "$PORT_ROOT"; do
+        if [ -e "$p" ] || [ -L "$p" ]; then targets+=("$p"); fi
+    done
+    if [ "${#targets[@]}" -eq 0 ]; then
+        info "Nothing to remove: no $SYSTEM_APP, $APP_DEST or $PORT_ROOT."
+        say "Left in place on purpose:"
+        print_data_locations
+        return 0
+    fi
     info "This removes exactly:"
-    info "  $PORT_ROOT   (source, build files, logs)"
-    info "  $APP_DEST"
+    for p in "${targets[@]}"; do info "  $p"; done
     printf '\n    IMPORTANT: delete your tiles in %s first (select each tile > Delete), so their\n' "$APP_NAME"
     printf '    Dock icons and helper apps are removed properly. The app cannot do that once it is gone.\n'
     local n=0
@@ -229,7 +258,7 @@ uninstall() {
     fi
     if [ "$n" -gt 0 ]; then warn "$n tile helper app(s) still exist in $SUPPORT_DIR"; fi
     if [ "${ASSUME_YES:-0}" != "1" ]; then
-        printf '\n    Type yes to remove the two items above: '
+        printf '\n    Type yes to remove the item(s) above: '
         local answer=""
         read -r answer || true
         [ "$answer" = "yes" ] || die "Nothing was removed."
@@ -238,15 +267,25 @@ uninstall() {
         die "$APP_NAME is running. Quit it first, then re-run ./install.sh --uninstall." 5
     fi
     if [ -z "$HOME" ] || [ "$HOME" = "/" ]; then die "HOME is not set safely; nothing removed."; fi
-    local p
-    for p in "$APP_DEST" "$PORT_ROOT"; do
+    local left=()
+    for p in "${targets[@]}"; do
+        if ! removable "$p"; then
+            left+=("$p")
+            warn "Can't remove $p without an administrator password (this script never uses sudo). Remove it yourself: in Finder, drag it to the Bin."
+            continue
+        fi
         if [ -L "$p" ]; then rm -f "$p"; info "Removed link $p"
-        elif [ -e "$p" ]; then rm -rf "$p"; info "Removed $p"
-        else info "Not present: $p"; fi
+        elif rm -rf "$p"; then info "Removed $p"
+        else left+=("$p"); warn "Could not fully remove $p; drag what is left to the Bin in Finder."
+        fi
     done
     say "Done. Left in place on purpose:"
     print_data_locations
     info "Delete those yourself only if you no longer want your tiles or settings."
+    if [ "${#left[@]}" -gt 0 ]; then
+        warn "Still present (see above): ${left[*]}"
+        exit 7
+    fi
 }
 
 main() {
@@ -260,6 +299,7 @@ main() {
     esac
     say "$APP_NAME installer (unofficial Intel Mac port of k97/dock-tile)"
     info "Source: $SRC_DIR"
+    refuse_second_copy
     [ -f "$SRC_DIR/DockTile.xcodeproj/project.pbxproj" ] || die "Run this from the IntelliTile source folder (DockTile.xcodeproj not found next to install.sh)."
     check_mac
     find_xcode
