@@ -62,6 +62,8 @@ Why these are skipped:
 | #5 generic icon for Desktop/Documents/Downloads | bc4a2cb | 45355961621 | green: 1083 passed, 0 failed, 12 skipped (ProtectedFolderIconTests 3/3), launch running after 20 s |
 | #2 Check for Updates, intel.N aware | 45ac702 | 45357675658 | green: 1095 passed, 0 failed, 12 skipped (ForkReleaseCheckTests 11/11), launch running after 20 s |
 | #4 one-time Start at Login migration | dac50f7 | 45360572451 | green: 1099 passed, 0 failed, 12 skipped (LoginItemReconcileTests 17/17, 5 new migration cases), launch running after 20 s |
+| Fix: translocated app already in an Applications folder | 1fc6baa | 45363455629 | green: 1108 passed, 0 failed, 12 skipped (new AppRelocationTranslocatedInstalledTests 9/9), launch running after 20 s |
+| update.sh / uninstall handle /Applications or ~/Applications | 798d2f3 | 45366051587 | green: 1109 passed, 0 failed, 12 skipped; new end-to-end step against the published v2.8.1-intel.1 passed all 7 scenarios (fresh install to ~/Applications; no-op; copy in /Applications replaced in place with no ~/Applications copy; two copies refused; unwritable folder refused with the no-sudo message; install.sh refused a second copy before building; uninstall removed the /Applications copy and ~/IntelPorts/dock-tile). Runner: `/Applications` is `drwxrwxr-x root admin`, runner user is an admin |
 - CI builds have no release stamp (`ITReleaseTag` empty), so they run as "built from source". The stamped path is covered by unit tests only until a release build exists (v2.8.1-intel.2 is not published).
 - The comparison logic was also compiled and run on the Linux box (Swift 6.4.3) with the same cases: all passed. That is not a macOS result.
 
@@ -75,4 +77,12 @@ Why these are skipped:
 
 ## Faraz's Mac (MacBookPro15,2, macOS 15.8.4)
 
-Not run yet. Nothing in this branch is claimed to work on his Mac until he confirms.
+Results relayed by Port Lead. Only these items are confirmed on his Mac.
+
+### v2.8.1-intel.1, MAC_TEST_PLAN steps 1–15 (24 Nov 2026, ~13:10 GST)
+- Download with Chrome; the app carried Chrome's `com.apple.quarantine` mark; `spctl -a` said rejected.
+- **Step 10: no Gatekeeper dialog.** The app launched without "Not Opened" and without Open Anyway (steps 11–12 not needed). Why Gatekeeper did not ask is not known (unverified).
+- **Step 13: BUG.** "Move IntelliTile to Applications?" appeared although the app was in `~/Applications`. His Copy Diagnostics (pid 71561, 09:09Z = 13:09 GST): `[relocation] App running from translocated – nudging to relocate`, then `Attempting move to /Applications`. Cause: App Translocation. The quarantined app had been put in `~/Applications` with Terminal `mv` (plan step 7), which does not lift translocation, so macOS ran a randomised read-only copy; upstream treats every translocated app as "move it". Faraz clicked Move: the app is now `/Applications/IntelliTile.app`, no quarantine mark, `~/Applications` copy gone, relaunched fine. Fixed for later builds in 1fc6baa (explanation instead of the move prompt); intel.1 keeps the bug.
+- Installing with update.sh (curl, no quarantine mark) avoids translocation altogether (Intel runner: no mark, launched normally; run 45351636763).
+- `[login] Reconciled on launch → enabled`: intel.1 registered the login item by itself (upstream default), as expected; this is the case the idea #4 migration (dac50f7) adopts as ON.
+- **Step 15: PASS.**
