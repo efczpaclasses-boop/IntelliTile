@@ -55,7 +55,16 @@ Why these are skipped:
 - `IntelliTile-2.8.1-intel.1-x86_64.zip` (5,308,284 bytes), SHA-256 `4ea553d1340fb2c590c310be4f20587d66ae731660bc195e8ec4abfa83b84564`. Re-downloaded from the Linux box with unauthenticated curl: `sha256sum -c` OK.
 - update.sh on the Intel runner (macOS 15.7, not Faraz's Mac): first run installed v2.8.1-intel.1 (SHA OK), second run "Already installed"; the curl-installed app had **no** `com.apple.quarantine` attribute; `spctl --assess` said `rejected` (not notarized), yet `open` launched it (running after 20 s).
 
-### Ideas #2 and #4 (paused)
+### Ideas after the release route (24 Nov 2026; Intel runner, macos-15-intel, Xcode 26.3; same three suites skipped)
+| Idea | Commit | Run | Result |
+|---|---|---|---|
+| #4 Start at Login opt-in, Dock-restart wording | f7f1b4f | 45353427108 | green: build, binary report, smoke, `** TEST SUCCEEDED **` (1080 passed, 0 failed, 12 skipped; LoginItemReconcileTests 12/12), launch running after 20 s |
+| #5 generic icon for Desktop/Documents/Downloads | bc4a2cb | 45355961621 | green: 1083 passed, 0 failed, 12 skipped (ProtectedFolderIconTests 3/3), launch running after 20 s |
+| #2 Check for Updates, intel.N aware | 45ac702 | 45357675658 | green: 1095 passed, 0 failed, 12 skipped (ForkReleaseCheckTests 11/11), launch running after 20 s |
+- CI builds have no release stamp (`ITReleaseTag` empty), so they run as "built from source". The stamped path is covered by unit tests only until a release build exists (v2.8.1-intel.2 is not published).
+- The comparison logic was also compiled and run on the Linux box (Swift 6.4.3) with the same cases: all passed. That is not a macOS result.
+
+### Ideas #2 and #4 (paused, then re-applied above)
 - 2b0131d Idea #2, run 45345167714: green. ba78d9b Idea #4, run 45346937881: green.
 - Both reverted on the branch when the plan changed to CI-built releases; kept on branch `idea2-4-parked`.
 

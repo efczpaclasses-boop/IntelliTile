@@ -192,7 +192,7 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - README: install section rewritten for the release route; `install.sh` is the optional build-from-source route.
 
 ## Idea #4 (approved 24 Nov 2026): Start at Login is opt-in; honest Dock-restart wording
-- Re-applied after the release route (Lead, 24 Nov 2026) from ba78d9b on `idea2-4-parked`; first green in run 45346937881.
+- Re-applied after the release route (Lead, 24 Nov 2026) from ba78d9b on `idea2-4-parked` as f7f1b4f; green in runs 45346937881 (original) and 45353427108.
 - Start at Login:
   - Files: `DockTile/Managers/LoginItemManager.swift`, `DockTile/Constants/UserDefaultsKeys.swift`, `DockTileTests/Unit/Managers/LoginItemReconcileTests.swift`, README.
   - Change: a new `startAtLoginOptedIn` flag, set only by turning the Settings switch ON. `reconcileOnLaunch` and the switch's initial state now need that flag, so a new install registers no login item. The design is unchanged: one SMAppService launcher agent, and for a user who opted in, the agent is still re-asserted after a rebuild.
@@ -208,6 +208,7 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - What: if a tile item is exactly `~/Desktop`, `~/Documents` or `~/Downloads`, the popover, the tile face and the cache draw `NSWorkspace.icon(for: .folder)` instead of reading that folder's real icon. Every other folder keeps its real icon; subfolders such as `~/Downloads/Work` are not covered, as IDEAS.md describes.
 - Why: reading the real icon is what triggers the macOS folder-access prompt (k97/dock-tile#36, option 1). Opening the folder still works as before (#20).
 - Effect: those three folders show a plain folder picture. That is not tested on Sequoia yet; the Mac test plan covers it.
+- Commit bc4a2cb; CI green in run 45355961621.
 
 ## Idea #2 (approved 24 Nov 2026): Check for Updates against the fork's GitHub Releases
 - Re-applied from 2b0131d (`idea2-4-parked`, green in run 45345167714) and changed for the release route (Lead, 24 Nov 2026): Intel build numbers.
@@ -225,4 +226,5 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
   - If newer, an alert offers that release's page; only `https://github.com/efczpaclasses-boop/IntelliTile/releases/…` is opened, otherwise the Releases page. Other alerts: up to date, no releases yet, couldn't check.
   - **No download and no install.**
 - Why: inventory #29 (Software Update) was lost when Sparkle was unlinked (blocker B3).
+- Commit 45ac702; CI green in run 45357675658.
 - Effect: v2.8.1-intel.1 (built before this) has no stamp and no Check for Updates; the first release with it is v2.8.1-intel.2.
