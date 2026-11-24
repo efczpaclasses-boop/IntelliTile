@@ -1,0 +1,176 @@
+# IntelliTile — changes from k97/dock-tile (Intel Mac port)
+
+Branch `intel-x86_64`, based on upstream `main` at `1b6d2e6` (v2.8.1). `main` stays identical to
+upstream. Each entry: change → files → why (Intel blocker / licence) → effect on features and speed.
+Analysis references (B1–B5, inventory #n) are to the port's feasibility report.
+
+## Phase A — Intel port core
+
+### 1. Rename to IntelliTile (TRADEMARKS.md)
+- **Files:** `DockTile/Config/{Base,Dev,Release}.xcconfig` (PRODUCT_NAME IntelliTile / IntelliTile Dev),
+  `DockTile.xcodeproj/project.pbxproj` (product reference, TEST_HOST_APP_NAME), both schemes,
+  `DockTile/Resources/Localizable.xcstrings` (all 8 languages), `InfoPlist.xcstrings`, `Info.plist`,
+  login-item launcher plists (executable path), Swift string literals in 12 files,
+  `DockTile/Views/AboutView.swift`, `DockTile/Constants/AppStrings.swift`, `README.md`, tests
+  (`AboutLinksTests`, `AppStringsTests`). Removed `HappyMachinesLogo.svg`, `SpadesIcon{Light,Dark}.png`.
+- **Why:** MIT covers the code, not the Dock Tile name/logo/icon or the Happy Machines / Spades marks;
+  "forks must ship under a different name and icon". The fork is public.
+- **What changed for the user:** every visible "Dock Tile" is "IntelliTile" (menus, alerts, settings,
+  About, diagnostics header, default helper name). About pane: Website row → the fork on GitHub; the
+  "Also from Happy Machines" section (studio + Spades rows) is replaced by a **Credits** row ("Unofficial
+  Intel Mac port … based on the open-source project github.com/k97/dock-tile by k97, under the MIT
+  licence…", plain text, new strings translated for de/fr/ja/ru/zh-Hans and marked needs_review);
+  Send Feedback opens the fork's GitHub Issues (the original developer's e-mail `DTFeedbackEmail` was
+  removed); translation "Help improve" opens the fork's `docs/l10n` page. Copyright line:
+  "Copyright © 2026 k97 and contributors. MIT licence."
+- **Kept:** internal Swift type, file, target, scheme and module names (`DockTile*`, `Dock_Tile`),
+  LICENSE, TRADEMARKS.md, the vendored actool licence notice, all credits.
+- **website/ and docs/ (decision):** left unchanged. They are the original project's own marketing and
+  documentation, describe the original app, are not built into IntelliTile and are not deployed by
+  this fork; the README says so. That is the minimum TRADEMARKS.md needs (the marks are not used to
+  identify *our* software). Upstream release tooling (`Scripts/build-release.sh`, `create-dmg.sh`,
+  `notarize.sh`, `generate-appcast-entry.sh`, `Scripts/l10n/*`), `CLAUDE.md` and `.claude/` also
+  still say "Dock Tile"; they are not used by this port.
+- **Speed:** none.
+
+### 2. New bundle IDs, ad-hoc signing
+- **Files:** `Release.xcconfig`, `Dev.xcconfig`, `project.pbxproj`, `Info.plist`, launcher plists
+  (renamed), `App/Environment.swift`, `App/AppDelegate.swift`, `App/HelperAppDelegate.swift`,
+  `Constants/UserDefaultsKeys.swift`, `Managers/SmartAddEngine.swift`, `Views/DockTileDetailView.swift`,
+  tests (`HelperDetectionTests`, `LoginLauncherBundleTests`).
+- **IDs:**
+
+  | Item | Release | Dev |
+  |---|---|---|
+  | Main app | `io.github.efczpaclasses-boop.IntelliTile` | `io.github.efczpaclasses-boop.IntelliTile.dev` |
+  | Tile helpers | `…IntelliTile.tile.<UUID>` | `…IntelliTile.dev.tile.<UUID>` |
+  | Login item (SMAppService agent) | `…IntelliTile.tilelauncher` | `…IntelliTile.dev.tilelauncher` |
+  | URL scheme | `intellitile://` | same |
+  | Shared defaults suite | `…IntelliTile.shared` | same |
+  | Tile list JSON | `~/Library/Preferences/…IntelliTile.configs.json` | `…IntelliTile.dev.configs.json` |
+  | Smart Add log | `~/Library/Preferences/…IntelliTile.smartadd.json` | `…dev.smartadd.json` |
+  | Helpers + diagnostics.log | `~/Library/Application Support/IntelliTile/` | `…/IntelliTile-Dev/` |
+  | Tests | `…IntelliTileTests`, `…IntelliTileUITests` | |
+
+  No App Group or keychain identifiers exist in the entitlements or source.
+- **Signing:** upstream `DEVELOPMENT_TEAM` (R68RHN3HF5) cleared on every target; `CODE_SIGN_STYLE =
+  Manual`, `CODE_SIGN_IDENTITY = "-"` (ad-hoc), so it builds with no Apple team. Idea #3 (Phase B)
+  adds the optional personal-team signing.
+- **Why:** must not collide with the official app's IDs, data files or deep links; no paid Developer ID.
+- **Not renamed (internal, merge-friendly):** in-process/distributed notification names
+  `com.docktile.tileRebuild`, `com.docktile.analyticsConsentChanged`, `com.docktile.dockDidRestart`,
+  window IDs `com.docktile.configuration/about`, log subsystem `com.docktile.diagnostics`, pasteboard
+  `com.docktile.getinfo`, symbol key `docktile.logo`, resource names `DockTileGlyph`, `docktile-actool`.
+  These could only cross-talk with the official app running on the same Mac, which cannot happen on
+  Intel.
+- **Effect:** none on features; deep links use `intellitile://configure?…`. Speed: none.
+
+### 3. New original app icon
+- **Files:** `Scripts/intel-port/make_icon.py` (generator), `DockTile/Resources/AppIcon.icon/`,
+  `AppIcon-Dev.icon/` (art replaced, same icon.json shape), `DockTile/Resources/DockTileGlyph.png`,
+  `appicon/intellitile/` (1024 master + full `AppIcon.iconset` 16–1024). Removed `appicon/1.0.0`, `1.0.1`.
+- **Design:** 2×2 rounded tiles (teal / indigo / sky) with an outlined "chip" tile; Dev icon in slate /
+  amber. Nothing like the original orange ring with half-sun and horizon lines.
+- **Why:** TRADEMARKS.md (new icon required). The project has no `.appiconset`; Xcode 26 compiles the
+  `.icon` bundle and also renders the flattened icon used on Sequoia from it, so replacing the art
+  inside the `.icon` replaces the Sequoia icon at every size without touching the build.
+- **Effect:** new look only. The symbol picker's brand glyph is now the IntelliTile mark.
+
+### 4. Sparkle unlinked
+- **Files:** `project.pbxproj` (package reference, product dependency, Frameworks build file),
+  `Package.resolved` (sparkle pin), `Info.plist` (SUFeedURL, SUPublicEDKey, SUEnableAutomaticChecks,
+  SUScheduledCheckInterval, SUAutomaticallyUpdate), `App/UpdateController.swift` (stub),
+  `App/DockTileApp.swift`, `Views/AboutView.swift`; deleted `DockTileTests/Unit/App/UpdateAnalyticsTests.swift`.
+- **Why (B3):** the official appcast offers the arm64-only build; auto-install would break the app on
+  Intel. Lead approved full unlinking.
+- **Effect:** inventory #29 Software Update is **gone for now**: Check for Updates is hidden in the app
+  menu and About pane (`UpdateController.isAvailable == false`). Update with `./update.sh`. Idea #2
+  (Phase B) adds a fork-Releases check. No Sparkle framework or XPC services in the app or in any tile
+  helper (each helper is a copy of the app), so the app and every helper are smaller. Speed: slightly
+  faster launch (no updater start-up), less disk per tile.
+- **Note:** `Package.resolved`'s `originHash` is now stale; Xcode rewrites it on the first resolve
+  (harmless; `update.sh` resets that one file if it is the only change).
+
+### 5. Firebase off (still linked)
+- **Files:** `Info.plist` (`FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED = true`,
+  `FirebaseCrashlyticsCollectionEnabled = false`), removed `DockTile/Resources/GoogleService-Info.plist`
+  (repo + Resources phase; also git-ignored), `Managers/AnalyticsService.swift`
+  (`resolveConsent(nil) == false`), `Views/GeneralSettingsView.swift` (toggle default off),
+  `AnalyticsServiceTests`.
+- **Why:** plan (analytics off); upstream's Firebase project must not receive data from this fork.
+- **Effect:** inventory #27 Share Analytics shows **off** by default; with no project config,
+  `FirebaseApp.configure()` is never called (the existing guard logs and returns, no crash), so nothing
+  is sent even if switched on. No Crashlytics upload-symbols run script exists in the project; the
+  upstream release workflow's dSYM upload is disabled (see 8). If the Firebase x86_64 slices fail to
+  link on the Mac, the fallback is to remove the two Firebase products (not done; not needed so far).
+- **Speed:** none measurable.
+
+### 6. Idea #1 (approved 24 Nov 2026) — build without the Rust icon compiler
+- **Files:** `project.pbxproj` ("Bundle Icon Compiler" run script; DockTile target
+  `ENABLE_USER_SCRIPT_SANDBOXING = NO`).
+- **What:** if `Vendor/actool/target/release/docktile-actool` is missing, the script prints a warning
+  and exits 0 instead of failing. The binary was removed from the phase's `inputPaths` (a missing
+  declared input is itself a build error) and the phase is `alwaysOutOfDate`; user-script sandboxing is
+  off for the app target only so the script may still read the optional binary when it exists.
+- **Why (B5):** no rustup needed on an 8 GB Intel Mac. The compiler is only used on macOS 26+
+  (`IconPipeline.isDeclarative`); Sequoia tiles use the legacy `.icns` path.
+- **Effect:** no feature lost on Sequoia; macOS 26 declarative tile icons are unavailable in a build
+  without the compiler (irrelevant: the Mac's ceiling is Sequoia). Vendored source and MIT notice kept.
+  Speed: faster first setup (no Rust install or cargo build).
+
+### 7. install.sh / update.sh
+- **Files:** `install.sh`, `update.sh` (repo root).
+- **install.sh:** no sudo; checks Intel x86_64 (refuses Rosetta), macOS ≥ 15.6 (Xcode 26 floor),
+  ≥ 8 GiB free; finds a **Universal** Xcode 26.2/26.3 in `/Applications` or `~/Applications`
+  (or `INTELLITILE_XCODE`) and uses it via `DEVELOPER_DIR`; stops with a clear message if the Xcode
+  licence or first-launch setup is pending (approval steps); builds Release x86_64 ad-hoc with
+  `-derivedDataPath ~/IntelPorts/dock-tile/DerivedData`, `-clonedSourcePackagesDirPath
+  ~/IntelPorts/dock-tile/SourcePackages`, `-jobs 2` (8 GB RAM; `INTELLITILE_JOBS` to change), index
+  store off; logs to `~/IntelPorts/dock-tile/logs/`; checks arch, bundle ID, no Sparkle, codesign;
+  installs `~/Applications/IntelliTile.app` via a staged copy; refuses while the app is running.
+  `--uninstall` (typed `yes` confirmation, or `--uninstall --yes`) removes only
+  `~/IntelPorts/dock-tile` and `~/Applications/IntelliTile.app`, tells the user to delete tiles in the
+  app first, and lists where tiles and settings remain.
+- **update.sh:** checks origin is the fork, branch is `intel-x86_64`, no local edits (resets an
+  Xcode-rewritten `Package.resolved`); `git fetch` + `git merge --ff-only origin/intel-x86_64`; then
+  runs `install.sh`.
+- **Effect:** one-command install/update. Build time on the i5/8 GB is unmeasured (first build also
+  downloads the Firebase Swift packages).
+
+### 8. CI on GitHub's Intel runner
+- **Files:** `.github/workflows/intel-macos.yml`, `Scripts/intel-port/ci-inspect.sh`,
+  `.github/workflows/ci.yml` and `release.yml` (triggers only).
+- **Runner choice:** `macos-15-intel`. actions/runner-images `images/macos/macos-15-Readme.md`
+  (checked 24 Nov 2026; file last updated 28 Aug 2026) lists Xcode **26.3 (17C529)** and **26.2
+  (17C52)** with the **macOS 26.2 SDK** on macOS 15.7.9 x64, which is what the project needs and is the
+  closest match to the target Mac (Sequoia 15.8.4, Xcode 26.3). `macos-26-intel` is not needed.
+  Xcode 26.3 is selected with `DEVELOPER_DIR`.
+- **Job:** resolve packages (retries, cache) → Release x86_64 build, ad-hoc, **no Rust** (exercises
+  idea #1) → binary report (`file`, `lipo -info`, minos via `vtool`/`otool` for every Mach-O; fails on
+  a missing x86_64 slice or minos > 15.8) → headless smoke test (IDs, URL scheme, helper prefix, data
+  names, launcher plist/label/executable, Firebase kill switches, no SU* keys, no Sparkle files or
+  linkage, no GoogleService-Info.plist, Assets.car present, no original-brand strings in raw bytes or
+  decoded .strings/.plist, codesign verify) → `DockTileTests` on x86_64 → non-blocking launch check
+  (app stays running 20 s; diagnostics log saved). Artifacts: reports, logs, xcresult, ad-hoc app zip.
+  Actions pinned by commit SHA: checkout v7.0.1, cache v6.1.0, upload-artifact v7.0.2.
+- **Upstream workflows:** `ci.yml` runs on Apple-silicon `macos-26` and `release.yml` needs the original
+  team's signing/notarisation secrets and uploads Crashlytics dSYMs; on this branch both are
+  `workflow_dispatch` only (job bodies unchanged, because `MacOSFloorGuardTests` reads `ci.yml`).
+- **Note:** the workflow has **not run yet**: no write path to the fork has been approved.
+
+### 9. Docs
+- `CHANGES.md` (this file), `TESTLOG.md` (results and where they came from), README "Intel Mac port
+  (unofficial)" section.
+
+## Feature inventory status (Phase A, expected; not yet verified on an Intel Mac)
+- Kept: #1–#26, #28 (links changed), #30–#32. #1/#2: installs to `~/Applications`, which the app
+  already treats as installed (no relocation prompt).
+- Degraded: #27 Share Analytics (default off, never sends: no Firebase project); #28 About
+  (fork links, credits instead of studio/Spades rows); #31 URL scheme is `intellitile://`.
+- Lost for now: #29 Software Update (Phase B idea #2 replaces it).
+- Not available on this Mac: #33 macOS 26 icon styles / Liquid Glass (Tahoe only).
+
+## Not addressed in Phase A
+- Security AMBER items (disable-library-validation, unsigned-executable-memory, ad-hoc helpers):
+  unchanged; idea #3 (Phase B) works on these.
+- Picked ideas #2, #3, #4, #5 and R5: Phase B.
