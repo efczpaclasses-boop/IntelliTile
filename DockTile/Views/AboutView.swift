@@ -54,11 +54,14 @@ struct AboutPaneView: View {
                     }
                     Section {
                         LabeledContent {
-                            Button(AppStrings.Button.checkForUpdates) {
-                                DiagnosticsLog.shared.ui("About → Check for Updates")
-                                updateController.checkForUpdates()
+                            // IntelliTile: hidden until an update channel exists (idea #2, Phase B).
+                            if updateController.isAvailable {
+                                Button(AppStrings.Button.checkForUpdates) {
+                                    DiagnosticsLog.shared.ui("About → Check for Updates")
+                                    updateController.checkForUpdates()
+                                }
+                                .disabled(!updateController.canCheckForUpdates)
                             }
-                            .disabled(!updateController.canCheckForUpdates)
                         } label: {
                             Text(AppStrings.appName)
                             Text(AppStrings.About.version(AppEnvironment.appVersion))

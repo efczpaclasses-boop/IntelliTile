@@ -61,7 +61,6 @@
 		AANBV01 /* NativeBackgroundViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AANBV02 /* NativeBackgroundViews.swift */; };
 		AANPV01 /* NativePopoverViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = AANPV02 /* NativePopoverViews.swift */; };
 		AASPGV02 /* SymbolPickerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AASPGV01 /* SymbolPickerGrid.swift */; };
-		AASPK001 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = AASPK002 /* Sparkle */; };
 		AASTR001 /* AppStrings.swift in Sources */ = {isa = PBXBuildFile; fileRef = AASTR002 /* AppStrings.swift */; };
 		AAU00001 /* IconGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAU00002 /* IconGenerator.swift */; };
 		AAIDM001 /* IconDepthMetrics.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAIDM002 /* IconDepthMetrics.swift */; };
@@ -213,7 +212,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AASPK001 /* Sparkle in Frameworks */,
 				AAFB020 /* FirebaseAnalytics in Frameworks */,
 				AAFB021 /* FirebaseCrashlytics in Frameworks */,
 			);
@@ -490,7 +488,6 @@
 			);
 			name = DockTile;
 			packageProductDependencies = (
-				AASPK002 /* Sparkle */,
 				AAFB010 /* FirebaseAnalytics */,
 				AAFB011 /* FirebaseCrashlytics */,
 			);
@@ -536,7 +533,6 @@
 			mainGroup = AA0011;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				AASPK003 /* XCRemoteSwiftPackageReference "Sparkle" */,
 				AAFB003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -1017,14 +1013,6 @@
 				minimumVersion = 11.0.0;
 			};
 		};
-		AASPK003 /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1037,11 +1025,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = AAFB003 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
 			productName = FirebaseCrashlytics;
-		};
-		AASPK002 /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = AASPK003 /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

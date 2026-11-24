@@ -10,7 +10,6 @@
 //
 
 import SwiftUI
-import Sparkle
 
 /// Main SwiftUI App - only used by main Dock Tile app, not helpers
 /// Called from main.swift when running as main app
@@ -124,10 +123,13 @@ struct DockTileApp: App {
                     DiagnosticsLog.shared.ui("Menu → About IntelliTile")
                     openSettingsPane(.about)
                 }
-                Divider()
-                Button(AppStrings.Button.checkForUpdates) {
-                    DiagnosticsLog.shared.ui("Menu → Check for Updates")
-                    updateController.checkForUpdates()
+                // IntelliTile: hidden until an update channel exists (idea #2, Phase B).
+                if updateController.isAvailable {
+                    Divider()
+                    Button(AppStrings.Button.checkForUpdates) {
+                        DiagnosticsLog.shared.ui("Menu → Check for Updates")
+                        updateController.checkForUpdates()
+                    }
                 }
             }
             CommandGroup(replacing: .newItem) {
