@@ -174,3 +174,9 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - Security AMBER items (disable-library-validation, unsigned-executable-memory, ad-hoc helpers):
   unchanged; idea #3 (Phase B) works on these.
 - Picked ideas #2, #3, #4, #5 and R5: Phase B.
+
+## CI fix loop (24 Nov 2026, Intel runner)
+- **bc08927, 1a60eca: CI diagnostics.** Files: `.github/workflows/intel-macos.yml`, `Scripts/intel-port/crash-summary.py`. Why: the xcodebuild log does not say why a Swift Testing case failed, and crash reasons were missing. When the tests fail, CI now prints the failures from `TestResults.xcresult` and the crashed thread of recent `.ips` crash reports. Effect: CI only; the app is unchanged.
+- **bf3c1ca: tests expect the IntelliTile names.** Files: 4 test files. Why: five assertions still expected `com.docktile.*`, "Dock Tile" and "DockTile". Effect: none on the app.
+- **4e2fbca: full-bleed brand glyph.** Files: `DockTile/Resources/DockTileGlyph.png`, `Scripts/intel-port/make_icon.py`. Why: the app sizes the brand glyph as a full-bleed image, as the original one is. The new glyph had padding and an empty middle row, so it drew too small (the test measured -0.999 against an expected ~0.55). Effect: the brand symbol in the symbol picker is the right size, and it now has a bar through its middle gap.
+- **Open:** the unit tests crash in Apple's SwiftUI/Metal renderer on the virtual GPU of the Intel runner (see TESTLOG.md). Not fixed yet; the options have gone to the Lead.
