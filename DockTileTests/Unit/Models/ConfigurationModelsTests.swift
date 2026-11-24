@@ -37,7 +37,7 @@ struct DockTileConfigurationTests {
     func bundleIdentifierGeneration() {
         let config = DockTileConfiguration()
 
-        #expect(config.bundleIdentifier.hasPrefix("com.docktile."))
+        #expect(config.bundleIdentifier.hasPrefix(AppEnvironment.helperBundlePrefix + "."))
         #expect(config.bundleIdentifier.contains(config.id.uuidString))
     }
 

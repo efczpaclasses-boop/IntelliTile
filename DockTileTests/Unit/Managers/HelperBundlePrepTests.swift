@@ -218,13 +218,13 @@ struct HelperFolderNameTests {
     /// A name of only emoji or punctuation sanitized to "" and gave `<support>/.app`, a hidden folder
     /// that `findExistingHelper` never found (Update, Delete and self-heal all missed the bundle).
     /// Failing value: without the fallback the base is "" and the folder ".app".
-    @Test("A name with nothing to keep falls back to Dock Tile + the short id")
+    @Test("A name with nothing to keep falls back to IntelliTile + the short id")
     func emptyBaseFallsBackToShortId() {
-        #expect(HelperBundleManager.helperBaseName(name: "🚀", shortId: "B4EF96A2") == "Dock Tile B4EF96A2")
-        #expect(HelperBundleManager.helperBaseName(name: " !!! ", shortId: "B4EF96A2") == "Dock Tile B4EF96A2")
+        #expect(HelperBundleManager.helperBaseName(name: "🚀", shortId: "B4EF96A2") == "IntelliTile B4EF96A2")
+        #expect(HelperBundleManager.helperBaseName(name: " !!! ", shortId: "B4EF96A2") == "IntelliTile B4EF96A2")
         #expect(HelperBundleManager.helperFolderName(
             baseName: HelperBundleManager.helperBaseName(name: "🚀", shortId: "B4EF96A2"),
-            cleanNameTakenByOther: false, shortId: "B4EF96A2") == "Dock Tile B4EF96A2.app")
+            cleanNameTakenByOther: false, shortId: "B4EF96A2") == "IntelliTile B4EF96A2.app")
     }
 
     @Test("A name with something to keep is sanitized as before")

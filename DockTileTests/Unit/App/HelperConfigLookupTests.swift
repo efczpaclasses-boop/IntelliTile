@@ -46,7 +46,9 @@ struct HelperConfigLookupTests {
     @Test("The config path comes from the environment, so a dev build never reads the release file")
     func preferencesURLCarriesTheEnvironmentFilename() {
         let url = AppEnvironment.preferencesURL
-        let expected = AppEnvironment.isRelease ? "com.docktile.configs.json" : "com.docktile.dev.configs.json"
+        let expected = AppEnvironment.isRelease
+            ? "io.github.efczpaclasses-boop.IntelliTile.configs.json"
+            : "io.github.efczpaclasses-boop.IntelliTile.dev.configs.json"
         #expect(url.lastPathComponent == expected)
         #expect(url.path.hasSuffix("Library/Preferences/\(expected)"))
         // Tests run under the dev app, so the dev/release split must be live here, not theoretical.

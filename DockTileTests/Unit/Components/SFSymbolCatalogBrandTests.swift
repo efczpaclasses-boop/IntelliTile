@@ -15,7 +15,7 @@ struct SFSymbolCatalogBrandTests {
     func brandIsFirstCategory() throws {
         let first = try #require(SFSymbolCatalog.shared.displayCategories.first)
         #expect(first.key == SFSymbolCatalog.brandCategoryKey)
-        #expect(first.displayName == "DockTile")
+        #expect(first.displayName == "IntelliTile")
     }
 
     @Test("Brand category resolves to exactly the brand symbol")
@@ -34,7 +34,7 @@ struct SFSymbolCatalogBrandTests {
     @Test("Brand search keywords match the picker filter")
     func brandSearchKeywords() {
         let keywords = SFSymbolCatalog.shared.searchKeywords(for: SFSymbolCatalog.brandSymbolName)
-        #expect(keywords.contains("docktile"))
+        #expect(keywords.contains("intellitile"))
         #expect(keywords.contains("sun"))
         #expect(keywords.contains("logo"))
     }
