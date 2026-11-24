@@ -1,9 +1,12 @@
 # IntelliTile (unofficial Intel Mac port of k97/dock-tile): build a named commit on GitHub's Intel
 # runner and publish the ad-hoc signed x86_64 app as a GitHub Release on THIS fork only.
-# Manual trigger only. The build job can read; only the publish job can write (contents: write).
+# Triggers: pushing a tag vX.Y.Z / vX.Y.Z-intel.N, or a manual run (workflow_dispatch only works
+# once this file is on the default branch, which this port does not push to). The build job can read; only the publish job can write (contents: write).
 name: Intel release (x86_64 app)
 
 on:
+  push:
+    tags: ['v*.*.*']
   workflow_dispatch:
     inputs:
       ref:
@@ -25,8 +28,8 @@ env:
   PROJECT: DockTile.xcodeproj
   SCHEME: DockTile
   APP_NAME: IntelliTile
-  REF: ${{ inputs.ref }}
-  TAG: ${{ inputs.tag }}
+  REF: ${{ github.event_name == 'push' && github.sha || inputs.ref }}
+  TAG: ${{ github.event_name == 'push' && github.ref_name || inputs.tag }}
 
 jobs:
   build:
@@ -45,7 +48,7 @@ jobs:
       - name: Check out the named commit
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
-          ref: ${{ inputs.ref }}
+          ref: ${{ env.REF }}
           fetch-depth: 0
           persist-credentials: false
 
