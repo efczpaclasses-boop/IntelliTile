@@ -125,8 +125,11 @@ jobs:
       - name: Test failure details (from the result bundle)
         if: failure()
         run: |
-          [ -d TestResults.xcresult ] || exit 0
-          xcrun xcresulttool get test-results summary --path TestResults.xcresult --compact > test-summary.json || exit 0
+          if [ -d TestResults.xcresult ]; then
+            xcrun xcresulttool get test-results summary --path TestResults.xcresult --compact > test-summary.json || echo '{}' > test-summary.json
+          else
+            echo '{}' > test-summary.json
+          fi
           python3 - <<'PY' | tee test-failures.txt
           import json
           s = json.load(open("test-summary.json"))
@@ -135,6 +138,8 @@ jobs:
               print("FAIL", f.get("testIdentifierString") or f.get("testName"), "::", (f.get("failureText") or "").replace("\n", " | ")[:600])
           PY
           { echo "## Test failures"; echo '```'; head -n 120 test-failures.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
+          python3 Scripts/intel-port/crash-summary.py 90 | tee crash-summary.txt
+          { echo "## Crash reports"; echo '```'; head -n 150 crash-summary.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
       - name: Launch smoke (non-blocking)
         continue-on-error: true
@@ -177,6 +182,7 @@ jobs:
             build-release.log
             test.log
             test-failures.txt
+            crash-summary.txt
             TestResults.xcresult.zip
           if-no-files-found: warn
           retention-days: 30
