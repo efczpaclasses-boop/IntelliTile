@@ -190,3 +190,15 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - **CI release workflow.** File: `.github/workflows/intel-release.yml` (manual `workflow_dispatch`: a full commit SHA on `intel-x86_64` and a tag). Builds the x86_64 Release app on `macos-15-intel`, ad-hoc signed; zips it with `ditto -c -k --keepParent`, writes a SHA-256 file, unpacks the zip and re-checks `codesign --verify --deep --strict` and the architecture. A separate job with `contents: write` (only there) publishes a GitHub Release on this fork with the `gh` CLI and `GITHUB_TOKEN`, then downloads the assets back and checks the SHA. A last job runs `update.sh` on an Intel runner twice (install, then no-op) and launches the app. Effect: Faraz installs a CI-built app without Xcode.
 - **update.sh: release route.** Default: read the newest fork release (`releases/latest`, curl, no auth), download the zip and checksum from this fork only, check SHA-256, signature, x86_64 and bundle ID, then replace only `~/Applications/IntelliTile.app` (staged swap; refuses while the app runs; no sudo; no-op if that release is installed). `--from-source` keeps the old pull-and-build route (needs Xcode).
 - README: install section rewritten for the release route; `install.sh` is the optional build-from-source route.
+
+## Idea #4 (approved 24 Nov 2026): Start at Login is opt-in; honest Dock-restart wording
+- Re-applied after the release route (Lead, 24 Nov 2026) from ba78d9b on `idea2-4-parked`; first green in run 45346937881.
+- Start at Login:
+  - Files: `DockTile/Managers/LoginItemManager.swift`, `DockTile/Constants/UserDefaultsKeys.swift`, `DockTileTests/Unit/Managers/LoginItemReconcileTests.swift`, README.
+  - Change: a new `startAtLoginOptedIn` flag, set only by turning the Settings switch ON. `reconcileOnLaunch` and the switch's initial state now need that flag, so a new install registers no login item. The design is unchanged: one SMAppService launcher agent, and for a user who opted in, the agent is still re-asserted after a rebuild.
+  - Tests: one new parameterised test (not opted in → never registers); the existing tests now pass `userOptedIn: true`.
+- Dock-restart wording:
+  - Files: `alert.restartDock.message` in `AppStrings.swift` and `Localizable.xcstrings`. English is final; de/fr/ja/ru/zh-Hans are marked `needs_review`.
+  - New text says the Dock is force-quit and reopens straight away, existing items stay, and an icon dragged a moment ago may be lost.
+  - The force-quit itself (`killall -KILL Dock`) and the one-time consent are unchanged.
+- Why: a privileged Dock utility should not register a login helper until asked, and the consent text should match what happens (IDEAS.md #4; ANALYSIS.md §7). Effect: no feature lost; Start at Login (#25) is OFF until turned on.

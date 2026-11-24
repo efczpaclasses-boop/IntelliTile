@@ -23,12 +23,24 @@ struct LoginItemReconcileTests {
         .notFound
     ])
     func optedOutNeverReregisters(_ status: SMAppService.Status) {
-        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedOut: true, status: status) == false)
+        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedIn: true, userOptedOut: true, status: status) == false)
+    }
+
+    /// IntelliTile idea #4: start-at-login is opt-in. Without an explicit opt-in nothing is ever
+    /// registered at launch, whatever the system status.
+    @Test("Not opted in → never register at launch", arguments: [
+        SMAppService.Status.enabled,
+        .requiresApproval,
+        .notRegistered,
+        .notFound
+    ])
+    func notOptedInNeverRegisters(_ status: SMAppService.Status) {
+        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedIn: false, userOptedOut: false, status: status) == false)
     }
 
     @Test("Not opted out + already enabled → no-op (don't re-register)")
     func enabledIsNoop() {
-        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedOut: false, status: .enabled) == false)
+        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedIn: true, userOptedOut: false, status: .enabled) == false)
     }
 
     /// The core Sparkle fix: a demoted agent (requiresApproval / notRegistered / notFound) plus
@@ -39,6 +51,6 @@ struct LoginItemReconcileTests {
         .notFound
     ])
     func demotedStatusReregisters(_ status: SMAppService.Status) {
-        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedOut: false, status: status) == true)
+        #expect(LoginItemManager.shouldReregisterOnLaunch(userOptedIn: true, userOptedOut: false, status: status) == true)
     }
 }

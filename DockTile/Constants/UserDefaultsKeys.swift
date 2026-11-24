@@ -51,6 +51,9 @@ enum UserDefaultsKeys {
     /// True only when the user has explicitly turned start-at-login OFF. Absent/false = ON by
     /// default. Main-app domain only (dev and release have separate bundle IDs / agents).
     static let startAtLoginOptedOut = "startAtLoginOptedOut"
+    /// IntelliTile idea #4: start-at-login is OPT-IN. True only after the user turned it ON in
+    /// Settings; absent/false = off, and nothing is registered at launch.
+    static let startAtLoginOptedIn = "startAtLoginOptedIn"
 
     // Dock Lock: keep the Dock pinned to one display
     static let dockLockEnabled = "dockLockEnabled"

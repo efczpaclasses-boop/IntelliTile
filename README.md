@@ -51,7 +51,7 @@ Think of it as customisable Dock folders - with native vibrancy effects, SF Symb
 - **Dock Integration** - Tiles appear in the Dock just like regular apps
 - **App Switcher Support** - Optionally show tiles in Cmd+Tab
 - **Dock Lock** - Keep the Dock on one display on multi-monitor setups
-- **Start at Login** - Tiles are ready the moment you log in
+- **Start at Login** - Tiles are ready the moment you log in (IntelliTile: off until you turn it on in Settings)
 
 ## Requirements
 

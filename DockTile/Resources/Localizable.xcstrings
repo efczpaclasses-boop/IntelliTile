@@ -1088,49 +1088,49 @@
         "de": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "IntelliTile startet das Dock neu, um Änderungen anzuwenden. Das passiert jedes Mal, wenn du Kacheln hinzufügst, aktualisierst oder entfernst. Deine aktuellen Objekte im Dock bleiben unverändert."
+            "value": "IntelliTile startet das Dock neu, um Änderungen anzuwenden. Das passiert jedes Mal, wenn du Kacheln hinzufügst, aktualisierst oder entfernst. Damit die Änderung erhalten bleibt, wird das Dock sofort beendet und gleich wieder geöffnet. Deine Objekte im Dock bleiben erhalten, aber ein Symbol, das du gerade eben ins Dock oder darin bewegt hast, kann verloren gehen."
           }
         },
         "en-AU": {
           "stringUnit": {
             "state": "translated",
-            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
+            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update or remove tiles. To make the change stick, the Dock is force-quit and reopens straight away. Your Dock items stay, but an icon you dragged into or around the Dock a moment ago may be lost."
           }
         },
         "en-GB": {
           "stringUnit": {
             "state": "translated",
-            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
+            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update or remove tiles. To make the change stick, the Dock is force-quit and reopens straight away. Your Dock items stay, but an icon you dragged into or around the Dock a moment ago may be lost."
           }
         },
         "en-US": {
           "stringUnit": {
             "state": "translated",
-            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update, or remove tiles. Your current Dock items won't be affected."
+            "value": "IntelliTile restarts the Dock to apply changes. This happens whenever you add, update or remove tiles. To make the change stick, the Dock is force-quit and reopens straight away. Your Dock items stay, but an icon you dragged into or around the Dock a moment ago may be lost."
           }
         },
         "fr": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "IntelliTile redémarre le Dock pour appliquer les modifications. Cela se produit chaque fois que vous ajoutez, mettez à jour ou supprimez des tuiles. Vos éléments du Dock actuels ne seront pas modifiés."
+            "value": "IntelliTile redémarre le Dock pour appliquer les modifications. Cela se produit chaque fois que vous ajoutez, mettez à jour ou supprimez des tuiles. Pour que la modification soit conservée, le Dock est quitté de force puis rouvert aussitôt. Vos éléments du Dock sont conservés, mais une icône que vous venez de faire glisser dans le Dock ou d’y déplacer peut être perdue."
           }
         },
         "ja": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "IntelliTileは変更を適用するためにDockを再起動します。これはタイルを追加、更新、または削除するたびに行われます。現在のDockの項目には影響しません。"
+            "value": "IntelliTileは変更を適用するためにDockを再起動します。これはタイルを追加、更新、または削除するたびに行われます。変更を確実に反映させるため、Dockを強制終了してすぐに再度開きます。Dockの項目はそのまま残りますが、直前にDockへドラッグしたりDock内で移動したりしたアイコンは失われることがあります。"
           }
         },
         "ru": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "Чтобы применить изменения, IntelliTile перезапускает Dock. Это происходит каждый раз, когда вы добавляете, обновляете или удаляете плитки. Текущие объекты в Dock не изменятся."
+            "value": "Чтобы применить изменения, IntelliTile перезапускает Dock. Это происходит каждый раз, когда вы добавляете, обновляете или удаляете плитки. Чтобы изменение сохранилось, Dock принудительно закрывается и сразу открывается снова. Объекты в Dock сохранятся, но значок, который вы только что перетащили в Dock или переместили в нём, может пропасть."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "needs_review",
-            "value": "IntelliTile会重新启动程序坞以应用更改。每次添加、更新或移除磁贴时都会如此。程序坞中现有的项目不受影响。"
+            "value": "IntelliTile 会重新启动程序坞以应用更改。每次添加、更新或移除磁贴时都会如此。为了让更改生效，程序坞会被强制退出并立即重新打开。程序坞中的项目会保留，但你刚刚拖入程序坞或在其中移动的图标可能会丢失。"
           }
         }
       }
