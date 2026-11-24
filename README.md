@@ -17,10 +17,13 @@ ships under its own name, icon and bundle identifiers as the original's
 
 What is different from the original:
 
-- Built from source for x86_64 on your own Mac (`./install.sh`); no official DMG is used.
+- An x86_64 build made by this fork's CI (GitHub Intel runner), ad-hoc signed and not notarized, is
+  published on this fork's [Releases](https://github.com/efczpaclasses-boop/IntelliTile/releases);
+  no official DMG is used. Building from source with Xcode (`./install.sh`) stays optional.
 - New name (IntelliTile), new icon and new bundle IDs (`io.github.efczpaclasses-boop.IntelliTile`),
   so it cannot collide with the official app.
-- The official Sparkle auto-updater is removed; update with `./update.sh`.
+- The official Sparkle auto-updater is removed; update with `./update.sh` (downloads the newest
+  fork release and checks its SHA-256).
 - Firebase analytics and crash reporting are switched off by default and no Firebase project is
   bundled, so nothing is sent.
 - The Rust icon compiler is optional on Sequoia (it is only used on macOS 26).
@@ -58,14 +61,27 @@ Think of it as customisable Dock folders - with native vibrancy effects, SF Symb
 
 ## Installation
 
-### From Source (Intel Mac)
+### Intel Mac: CI-built release (no Xcode needed)
+
+1. Download `IntelliTile-<version>-x86_64.zip` and its `.zip.sha256` from this fork's
+   [Releases](https://github.com/efczpaclasses-boop/IntelliTile/releases) page.
+2. Check it: `cd ~/Downloads && shasum -a 256 -c IntelliTile-<version>-x86_64.zip.sha256`
+3. Unzip it and move `IntelliTile.app` to `~/Applications` (no admin rights needed).
+4. The app is ad-hoc signed, not notarized, so macOS blocks the first open. Open it once, then use
+   System Settings > Privacy & Security > Open Anyway.
+
+Later updates (no Xcode, no admin rights): from a clone of this branch, run `./update.sh`. It downloads
+the newest release, checks the SHA-256, signature and architecture, and replaces only
+`~/Applications/IntelliTile.app`. Quit IntelliTile first.
+
+### From Source (optional, needs Xcode)
 
 ```bash
 mkdir -p ~/IntelPorts/dock-tile
 git clone --branch intel-x86_64 https://github.com/efczpaclasses-boop/IntelliTile.git ~/IntelPorts/dock-tile/src
 cd ~/IntelPorts/dock-tile/src
-./install.sh            # builds x86_64 Release and installs ~/Applications/IntelliTile.app
-./update.sh             # later: fast-forward pull of intel-x86_64, then rebuild
+./install.sh                 # builds x86_64 Release and installs ~/Applications/IntelliTile.app
+./update.sh --from-source    # later: fast-forward pull of intel-x86_64, then rebuild
 ./install.sh --uninstall
 ```
 

@@ -47,7 +47,11 @@ https://github.com/efczpaclasses-boop/IntelliTile/actions/runs/45342814528 (sour
 Why these are skipped:
 - **Evidence:** the crash report from run 45340729892 (same crash in runs 45334786071 and 45338378534) shows SIGABRT on `com.apple.RenderBox.Encoder`. The stack goes `RB::ImageProvider::render_device` → `RB::load_library_archive` → `-[_MTLBinaryArchive loadFromURL:error:]` → `+[MTLLoader sliceIDForDevice:…]` → `MTLReportFailure` → `abort`. It is a Metal shader-archive assertion inside Apple's SwiftUI renderer, on the runner's virtual GPU.
 - **Why these three:** they are the only test suites that render SwiftUI views (`ImageRenderer` / `NSHostingView.cacheDisplay`). That crash report did not name the test in flight, so the list was chosen from the code. Run 45342814528 confirms it: with only these three skipped, there was no crash and every other test passed.
-- **Still to do:** they have not run on a real Intel GPU. Optional step 16b in MAC_TEST_PLAN.md runs them on Faraz's Mac.
+- **Unverified on real hardware:** these three suites have not run on a real Intel GPU, and they will not: Faraz's Mac has no Xcode, so the optional real-GPU test step was dropped (Lead, 24 Nov 2026). What they cover (icon preview geometry, Apps face preview, Apps background rendering) is only checked by eye in MAC_TEST_PLAN.md's feature steps.
+
+### Ideas #2 and #4 (paused)
+- 2b0131d Idea #2, run 45345167714: green. ba78d9b Idea #4, run 45346937881: green.
+- Both reverted on the branch when the plan changed to CI-built releases; kept on branch `idea2-4-parked`.
 
 ### Earlier runs (not green)
 - 45334786071 (398f95c), 45338378534 (bf3c1ca): build, binary report and smoke passed. Unit tests: 5 stale-name assertions (fixed in bf3c1ca), the brand-glyph size test (fixed in 4e2fbca) and the renderer crash above.

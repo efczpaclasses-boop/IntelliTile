@@ -1,0 +1,226 @@
+# IntelliTile (unofficial Intel Mac port of k97/dock-tile): build a named commit on GitHub's Intel
+# runner and publish the ad-hoc signed x86_64 app as a GitHub Release on THIS fork only.
+# Manual trigger only. The build job can read; only the publish job can write (contents: write).
+name: Intel release (x86_64 app)
+
+on:
+  workflow_dispatch:
+    inputs:
+      ref:
+        description: "Full 40-character commit SHA on intel-x86_64 to build"
+        required: true
+      tag:
+        description: "Release tag, vX.Y.Z or vX.Y.Z-intel.N (must not exist yet)"
+        required: true
+        default: "v2.8.1-intel.1"
+
+permissions: {}
+
+concurrency:
+  group: intel-release
+  cancel-in-progress: false
+
+env:
+  DEVELOPER_DIR: /Applications/Xcode_26.3.app/Contents/Developer
+  PROJECT: DockTile.xcodeproj
+  SCHEME: DockTile
+  APP_NAME: IntelliTile
+  REF: ${{ inputs.ref }}
+  TAG: ${{ inputs.tag }}
+
+jobs:
+  build:
+    name: Build and package (macos-15-intel, Xcode 26.3)
+    runs-on: macos-15-intel
+    timeout-minutes: 90
+    permissions:
+      contents: read
+    steps:
+      - name: Validate inputs
+        run: |
+          set -euo pipefail
+          [[ "$REF" =~ ^[0-9a-f]{40}$ ]] || { echo "ref must be a full 40-character SHA"; exit 1; }
+          [[ "$TAG" =~ ^v[0-9]+\.[0-9]+\.[0-9]+(-intel\.[0-9]+)?$ ]] || { echo "tag must be vX.Y.Z or vX.Y.Z-intel.N"; exit 1; }
+
+      - name: Check out the named commit
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          ref: ${{ inputs.ref }}
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Commit must be on intel-x86_64
+        run: |
+          set -euo pipefail
+          test "$(git rev-parse HEAD)" = "$REF"
+          git merge-base --is-ancestor "$REF" origin/intel-x86_64
+          test "$(uname -m)" = "x86_64"
+          xcodebuild -version
+
+      - name: Resolve Swift packages (retry on flaky downloads)
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3 4; do
+            if xcodebuild -project "$PROJECT" -scheme "$SCHEME" \
+                 -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+                 -resolvePackageDependencies; then
+              exit 0
+            fi
+            echo "Resolve failed (attempt $attempt); retrying in 20 s"
+            sleep 20
+          done
+          exit 1
+
+      - name: Build Release (x86_64, ad-hoc)
+        run: |
+          set -euo pipefail
+          xcodebuild \
+            -project "$PROJECT" -scheme "$SCHEME" -configuration Release \
+            -destination 'platform=macOS,arch=x86_64' \
+            -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
+            ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES \
+            CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= \
+            COMPILER_INDEX_STORE_ENABLE=NO \
+            build > build-release.log 2>&1 || { tail -n 80 build-release.log; exit 1; }
+          test -d "build/Build/Products/Release/$APP_NAME.app"
+
+      - name: Inspect (arch, minimum macOS, IDs, no Sparkle, signature)
+        run: |
+          set -euo pipefail
+          app="build/Build/Products/Release/$APP_NAME.app"
+          Scripts/intel-port/ci-inspect.sh binaries "$app" binary-report.txt
+          Scripts/intel-port/ci-inspect.sh smoke "$app" smoke-report.txt
+          cat binary-report.txt smoke-report.txt
+
+      - name: Package with ditto, then re-verify the unpacked copy
+        run: |
+          set -euo pipefail
+          ver="${TAG#v}"
+          zip="$APP_NAME-$ver-x86_64.zip"
+          mkdir -p dist
+          ditto -c -k --keepParent "build/Build/Products/Release/$APP_NAME.app" "dist/$zip"
+          (cd dist && shasum -a 256 "$zip" > "$zip.sha256" && shasum -a 256 -c "$zip.sha256")
+          rm -rf verify && mkdir verify
+          ditto -x -k "dist/$zip" verify
+          codesign --verify --deep --strict --verbose=2 "verify/$APP_NAME.app"
+          codesign -dv "verify/$APP_NAME.app" 2>&1 | grep -E "Identifier=|Signature="
+          lipo -archs "verify/$APP_NAME.app/Contents/MacOS/$APP_NAME" | tee verify-arch.txt
+          grep -qx "x86_64" verify-arch.txt
+          defaults read "$PWD/verify/$APP_NAME.app/Contents/Info.plist" CFBundleShortVersionString
+          {
+            echo "## Package"
+            echo '```'
+            cat "dist/$zip.sha256"
+            ls -l dist
+            echo '```'
+          } >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload package for the publish job
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: release-package
+          path: |
+            dist/
+            binary-report.txt
+            smoke-report.txt
+          if-no-files-found: error
+          retention-days: 7
+
+  publish:
+    name: Publish GitHub Release on this fork
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - name: Download package
+        uses: actions/download-artifact@9000827ccba6bdab643e8b6fd33ac0654aef8333 # v8.0.2
+        with:
+          name: release-package
+          path: pkg
+
+      - name: Create release (refuses an existing tag)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ver="${TAG#v}"
+          zip="$APP_NAME-$ver-x86_64.zip"
+          (cd pkg/dist && sha256sum -c "$zip.sha256")
+          if gh release view "$TAG" --repo "$GITHUB_REPOSITORY" >/dev/null 2>&1; then
+            echo "Release $TAG already exists; not overwriting"; exit 1
+          fi
+          sha=$(cut -d' ' -f1 "pkg/dist/$zip.sha256")
+          minos=$(grep -m1 '^minos' pkg/binary-report.txt || true)
+          {
+            echo "Unofficial Intel (x86_64) Mac build of IntelliTile, a renamed port of [k97/dock-tile](https://github.com/k97/dock-tile) (MIT licence). Not affiliated with or endorsed by its authors."
+            echo
+            echo "- Built from commit \`$REF\` on GitHub's \`macos-15-intel\` runner with Xcode 26.3."
+            echo "- x86_64 only; ${minos:-minimum macOS 15.0}. Ad-hoc signed (not notarized), so macOS asks you to allow it once (System Settings > Privacy & Security > Open Anyway)."
+            echo "- Build run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+            echo
+            echo "SHA-256 of \`$zip\`:"
+            echo
+            echo "    $sha"
+          } > notes.md
+          gh release create "$TAG" "pkg/dist/$zip" "pkg/dist/$zip.sha256" \
+            --repo "$GITHUB_REPOSITORY" --target "$REF" \
+            --title "IntelliTile $ver (Intel x86_64, unofficial)" --notes-file notes.md
+
+      - name: Verify the published assets
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          ver="${TAG#v}"
+          zip="$APP_NAME-$ver-x86_64.zip"
+          mkdir check && cd check
+          gh release download "$TAG" --repo "$GITHUB_REPOSITORY" --pattern "$zip" --pattern "$zip.sha256"
+          sha256sum -c "$zip.sha256"
+          cmp "$zip" "../pkg/dist/$zip"
+          echo "Published and verified: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/releases/tag/$TAG" | tee -a "$GITHUB_STEP_SUMMARY"
+
+  verify-update-sh:
+    name: End-to-end check of update.sh against the published release (macos-15-intel)
+    needs: publish
+    runs-on: macos-15-intel
+    timeout-minutes: 20
+    permissions:
+      contents: read
+    steps:
+      - name: Check out (for update.sh)
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: update.sh installs the newest release, then is a no-op
+        run: |
+          set -euo pipefail
+          ./update.sh | tee update-1.txt
+          grep -q "Installed IntelliTile" update-1.txt
+          ./update.sh | tee update-2.txt
+          grep -q "Already installed" update-2.txt
+          app="$HOME/Applications/$APP_NAME.app"
+          echo "## update.sh on the Intel runner" >> "$GITHUB_STEP_SUMMARY"
+          {
+            echo '```'
+            echo "installed release: $(cat "$HOME/IntelPorts/dock-tile/installed-release.txt")"
+            echo "lipo: $(lipo -archs "$app/Contents/MacOS/$APP_NAME")"
+            echo "quarantine xattr on the curl-installed app: $(xattr -p com.apple.quarantine "$app" 2>/dev/null || echo none)"
+            echo "spctl (informational; ad-hoc apps are not notarized): $(spctl --assess --type execute "$app" 2>&1 || true)"
+            echo '```'
+          } | tee -a "$GITHUB_STEP_SUMMARY"
+
+      - name: The installed app launches
+        run: |
+          set -euo pipefail
+          open "$HOME/Applications/$APP_NAME.app"
+          sleep 20
+          if pgrep -x "$APP_NAME" >/dev/null; then
+            echo "launch: running after 20 s" | tee -a "$GITHUB_STEP_SUMMARY"
+          else
+            echo "launch: NOT running after 20 s" | tee -a "$GITHUB_STEP_SUMMARY"
+            exit 1
+          fi
+          pkill -x "$APP_NAME" || true

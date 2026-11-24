@@ -182,5 +182,11 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
 - **f34e32d: CI-only skip of three SwiftUI-rendering suites** (Lead decision, option A). Files: `.github/workflows/intel-macos.yml`, `Scripts/intel-port/crash-summary.py`.
   - Skipped: `IconPreviewGeometryTests`, `AppsFacePreviewTests`, `AppsBackgroundTests`.
   - Why: on the runner's virtual GPU, Apple's SwiftUI renderer aborts in Metal (RenderBox.Encoder → MTLBinaryArchive → MTLReportFailure). The crash report is from run 45340729892; the same crash happened in runs 45334786071 and 45338378534. The crash killed the test host and failed 177 cases.
-  - Effect: the app is unchanged, and every other test gates CI. The three suites are an optional step on Faraz's Mac (MAC_TEST_PLAN.md step 16b).
+  - Effect: the app is unchanged, and every other test gates CI. They stay unverified on real hardware (no Xcode on Faraz's Mac; the optional real-GPU step was dropped).
   - Port-only build green: f34e32d, run 45342814528.
+
+## Release route (24 Nov 2026; plan change: no Xcode on Faraz's Mac)
+- **Ideas #2 and #4 paused.** Both were green (runs 45345167714, 45346937881) and are reverted here so the release is port-only; the code is kept on branch `idea2-4-parked` for re-scoping.
+- **CI release workflow.** File: `.github/workflows/intel-release.yml` (manual `workflow_dispatch`: a full commit SHA on `intel-x86_64` and a tag). Builds the x86_64 Release app on `macos-15-intel`, ad-hoc signed; zips it with `ditto -c -k --keepParent`, writes a SHA-256 file, unpacks the zip and re-checks `codesign --verify --deep --strict` and the architecture. A separate job with `contents: write` (only there) publishes a GitHub Release on this fork with the `gh` CLI and `GITHUB_TOKEN`, then downloads the assets back and checks the SHA. A last job runs `update.sh` on an Intel runner twice (install, then no-op) and launches the app. Effect: Faraz installs a CI-built app without Xcode.
+- **update.sh: release route.** Default: read the newest fork release (`releases/latest`, curl, no auth), download the zip and checksum from this fork only, check SHA-256, signature, x86_64 and bundle ID, then replace only `~/Applications/IntelliTile.app` (staged swap; refuses while the app runs; no sudo; no-op if that release is installed). `--from-source` keeps the old pull-and-build route (needs Xcode).
+- README: install section rewritten for the release route; `install.sh` is the optional build-from-source route.
