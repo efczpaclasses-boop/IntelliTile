@@ -54,7 +54,7 @@ struct AboutPaneView: View {
                     }
                     Section {
                         LabeledContent {
-                            // IntelliTile idea #2: checks the fork's GitHub Releases (no auto-install).
+                            // IntelliTile: hidden until an update channel exists (idea #2, Phase B).
                             if updateController.isAvailable {
                                 Button(AppStrings.Button.checkForUpdates) {
                                     DiagnosticsLog.shared.ui("About → Check for Updates")

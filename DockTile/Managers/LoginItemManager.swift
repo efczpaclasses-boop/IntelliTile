@@ -61,7 +61,7 @@ final class LoginItemManager {
     /// True when macOS is holding the item for user approval in System Settings.
     var requiresApproval: Bool { service.status == .requiresApproval }
 
-    // MARK: - Persisted choice (IntelliTile idea #4: opt-in, OFF by default)
+    // MARK: - Persisted choice (opt-out, ON by default)
 
     /// Whether the user has explicitly turned start-at-login OFF. Persisted locally so it survives
     /// bundle replacement — a Sparkle update can demote the SMAppService agent, and SMAppService's
@@ -72,28 +72,19 @@ final class LoginItemManager {
         set { UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.startAtLoginOptedOut) }
     }
 
-    /// IntelliTile idea #4: whether the user has explicitly turned start-at-login ON. Default false,
-    /// so a new install registers nothing until the user asks (upstream was ON by default).
-    var userOptedIn: Bool {
-        get { UserDefaults.standard.bool(forKey: UserDefaultsKeys.startAtLoginOptedIn) }
-        set { UserDefaults.standard.set(newValue, forKey: UserDefaultsKeys.startAtLoginOptedIn) }
-    }
-
-    /// Whether start-at-login should be active given the user's choice (only after opting in).
-    var shouldBeEnabled: Bool { userOptedIn && !userOptedOut }
+    /// Whether start-at-login should be active given the user's choice (ON unless opted out).
+    var shouldBeEnabled: Bool { !userOptedOut }
 
     /// Pure decision seam for `reconcileOnLaunch`: re-register the agent only when the user has
     /// NOT opted out AND the system isn't already `.enabled`. This is what re-asserts the agent
     /// after a Sparkle update demotes it to `.requiresApproval`/`.notRegistered`, while honouring
     /// a genuine opt-out. Extracted so the Sparkle-update scenario is unit-testable without
     /// SMAppService. See rules/login-items.md "Reconcile on launch (Sparkle fix)".
-    /// IntelliTile idea #4: also requires an explicit opt-in, so a fresh install never registers.
     nonisolated static func shouldReregisterOnLaunch(
-        userOptedIn: Bool,
         userOptedOut: Bool,
         status: SMAppService.Status
     ) -> Bool {
-        userOptedIn && !userOptedOut && status != .enabled
+        !userOptedOut && status != .enabled
     }
 
     // MARK: - Toggle
@@ -108,7 +99,6 @@ final class LoginItemManager {
         }
         lastRegistrationError = nil
         userOptedOut = false
-        userOptedIn = true
         print("✅ LoginItem: launcher agent registered (status: \(statusDescription))")
         DiagnosticsLog.shared.log("login", "Start-at-login enabled — registered (status: \(statusDescription))")
     }
@@ -118,18 +108,17 @@ final class LoginItemManager {
         try service.unregister()
         lastRegistrationError = nil
         userOptedOut = true
-        userOptedIn = false
         print("✅ LoginItem: launcher agent unregistered (status: \(statusDescription))")
         DiagnosticsLog.shared.log("login", "Start-at-login disabled — unregistered (status: \(statusDescription))")
     }
 
-    /// Bring the registration in line with the user's choice on app launch. IntelliTile idea #4:
-    /// start-at-login is opt-in, so this only re-asserts the agent for a user who turned it ON
-    /// (e.g. after a rebuild demotes it); a new install registers nothing. No-op when already
+    /// Bring the registration in line with the user's choice on app launch. Because start-at-login
+    /// is ON by default (opt-out), this enables it for new users AND re-asserts it after a Sparkle
+    /// update demotes the agent — unless the user explicitly turned it off. No-op when already
     /// enabled. If macOS insists on re-approval the status stays `.requiresApproval` and the
     /// Settings pane surfaces the approval prompt — we never silently fail or lie about the state.
     func reconcileOnLaunch() {
-        guard Self.shouldReregisterOnLaunch(userOptedIn: userOptedIn, userOptedOut: userOptedOut, status: service.status) else { return }
+        guard Self.shouldReregisterOnLaunch(userOptedOut: userOptedOut, status: service.status) else { return }
         do {
             try service.register()
             lastRegistrationError = nil
