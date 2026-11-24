@@ -17064,6 +17064,492 @@
           }
         }
       }
+    },
+    "update.available.title": {
+      "comment": "Update check: title when a newer IntelliTile release exists (fork GitHub Releases)",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Eine neue Version von IntelliTile ist verfügbar"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A new version of IntelliTile is available"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A new version of IntelliTile is available"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "A new version of IntelliTile is available"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Une nouvelle version d’IntelliTile est disponible"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTileの新しいバージョンがあります"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Доступна новая версия IntelliTile"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile 有新版本可用"
+          }
+        }
+      }
+    },
+    "update.available.message": {
+      "comment": "Update check: %1$@ is the newest release version, %2$@ the installed version",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile %1$@ ist auf der Releases-Seite des Projekts. Du hast %2$@. Öffne zum Aktualisieren die Releases-Seite oder führe update.sh im Terminal aus."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile %1$@ is on the project’s Releases page. You have %2$@. To update, open the Releases page, or run update.sh in Terminal."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile %1$@ is on the project’s Releases page. You have %2$@. To update, open the Releases page, or run update.sh in Terminal."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile %1$@ is on the project’s Releases page. You have %2$@. To update, open the Releases page, or run update.sh in Terminal."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile %1$@ est disponible sur la page Releases du projet. Vous avez la version %2$@. Pour mettre à jour, ouvrez la page Releases ou lancez update.sh dans le Terminal."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile %1$@ がプロジェクトのReleasesページにあります。現在のバージョンは %2$@ です。アップデートするには、Releasesページを開くか、ターミナルで update.sh を実行してください。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile %1$@ доступна на странице Releases проекта. У вас версия %2$@. Чтобы обновиться, откройте страницу Releases или запустите update.sh в Терминале."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "项目的 Releases 页面上有 IntelliTile %1$@。你当前的版本是 %2$@。如需更新，请打开 Releases 页面，或在“终端”中运行 update.sh。"
+          }
+        }
+      }
+    },
+    "update.upToDate.title": {
+      "comment": "Update check: title when no newer release exists",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile ist auf dem neuesten Stand"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is up to date"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is up to date"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "IntelliTile is up to date"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile est à jour"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTileは最新です"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "У вас последняя версия IntelliTile"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile 已是最新版本"
+          }
+        }
+      }
+    },
+    "update.upToDate.message": {
+      "comment": "Update check: %@ is the installed version",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Du hast Version %@, die neueste Version."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have version %@, the newest release."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have version %@, the newest release."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "You have version %@, the newest release."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Vous avez la version %@, la plus récente."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "バージョン %@ は最新のリリースです。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "У вас версия %@ — самая новая."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "你使用的是最新版本 %@。"
+          }
+        }
+      }
+    },
+    "update.noReleases.message": {
+      "comment": "Update check: the fork has not published any release yet",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Es wurden noch keine IntelliTile-Versionen veröffentlicht. Updates kommen vorerst über update.sh."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No IntelliTile releases have been published yet. Updates come from update.sh for now."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No IntelliTile releases have been published yet. Updates come from update.sh for now."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "No IntelliTile releases have been published yet. Updates come from update.sh for now."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Aucune version d’IntelliTile n’a encore été publiée. Pour l’instant, les mises à jour passent par update.sh."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTileのリリースはまだ公開されていません。当面は update.sh でアップデートしてください。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Выпуски IntelliTile ещё не опубликованы. Пока обновления устанавливаются через update.sh."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "IntelliTile 尚未发布任何版本。目前请通过 update.sh 更新。"
+          }
+        }
+      }
+    },
+    "update.failed.title": {
+      "comment": "Update check: title when GitHub could not be reached",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Suche nach Updates nicht möglich"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t check for updates"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t check for updates"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Couldn’t check for updates"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Impossible de rechercher les mises à jour"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "アップデートを確認できませんでした"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Не удалось проверить обновления"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法检查更新"
+          }
+        }
+      }
+    },
+    "update.failed.message": {
+      "comment": "Update check: body when GitHub could not be reached",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GitHub ist nicht erreichbar. Prüfe deine Internetverbindung oder sieh selbst auf der Releases-Seite nach."
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub could not be reached. Check your internet connection, or look at the Releases page yourself."
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub could not be reached. Check your internet connection, or look at the Releases page yourself."
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "GitHub could not be reached. Check your internet connection, or look at the Releases page yourself."
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Impossible de joindre GitHub. Vérifiez votre connexion Internet ou consultez vous-même la page Releases."
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "GitHubに接続できませんでした。インターネット接続を確認するか、Releasesページを直接確認してください。"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Не удалось подключиться к GitHub. Проверьте подключение к интернету или откройте страницу Releases вручную."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "无法连接 GitHub。请检查网络连接，或自行查看 Releases 页面。"
+          }
+        }
+      }
+    },
+    "update.openReleases": {
+      "comment": "Update check: button that opens the fork's GitHub Releases page in the browser",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Releases-Seite öffnen"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Releases Page"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Releases Page"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Open Releases Page"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Ouvrir la page Releases"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Releasesページを開く"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Открыть страницу Releases"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "打开 Releases 页面"
+          }
+        }
+      }
+    },
+    "update.later": {
+      "comment": "Update check: dismiss button",
+      "extractionState": "manual",
+      "localizations": {
+        "de": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Später"
+          }
+        },
+        "en-AU": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
+          }
+        },
+        "en-GB": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
+          }
+        },
+        "en-US": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Later"
+          }
+        },
+        "fr": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Plus tard"
+          }
+        },
+        "ja": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "後で"
+          }
+        },
+        "ru": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "Позже"
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "needs_review",
+            "value": "以后"
+          }
+        }
+      }
     }
   },
   "version": "1.0"

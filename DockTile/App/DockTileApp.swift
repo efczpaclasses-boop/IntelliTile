@@ -123,7 +123,7 @@ struct DockTileApp: App {
                     DiagnosticsLog.shared.ui("Menu → About IntelliTile")
                     openSettingsPane(.about)
                 }
-                // IntelliTile: hidden until an update channel exists (idea #2, Phase B).
+                // IntelliTile idea #2: checks the fork's GitHub Releases (no auto-install).
                 if updateController.isAvailable {
                     Divider()
                     Button(AppStrings.Button.checkForUpdates) {

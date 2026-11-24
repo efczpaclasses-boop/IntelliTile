@@ -20,7 +20,9 @@ What is different from the original:
 - Built from source for x86_64 on your own Mac (`./install.sh`); no official DMG is used.
 - New name (IntelliTile), new icon and new bundle IDs (`io.github.efczpaclasses-boop.IntelliTile`),
   so it cannot collide with the official app.
-- The official Sparkle auto-updater is removed; update with `./update.sh`.
+- The official Sparkle auto-updater is removed; update with `./update.sh`. **Check for Updates** only asks this fork's
+  GitHub Releases whether a newer version exists and offers to open the Releases page (nothing is downloaded or
+  installed). Fork releases must be tagged `vX.Y.Z` (for example `v2.8.2`) so they compare with the app version.
 - Firebase analytics and crash reporting are switched off by default and no Firebase project is
   bundled, so nothing is sent.
 - The Rust icon compiler is optional on Sequoia (it is only used on macOS 26).

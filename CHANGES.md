@@ -184,3 +184,20 @@ Analysis references (B1–B5, inventory #n) are to the port's feasibility report
   - Why: on the runner's virtual GPU, Apple's SwiftUI renderer aborts in Metal (RenderBox.Encoder → MTLBinaryArchive → MTLReportFailure). The crash report is from run 45340729892; the same crash happened in runs 45334786071 and 45338378534. The crash killed the test host and failed 177 cases.
   - Effect: the app is unchanged, and every other test gates CI. The three suites are an optional step on Faraz's Mac (MAC_TEST_PLAN.md step 16b).
   - Port-only build green: f34e32d, run 45342814528.
+
+## Idea #2 (approved 24 Nov 2026): Check for Updates against the fork's GitHub Releases
+- Files:
+  - `DockTile/App/UpdateController.swift`: `ForkReleaseCheck` plus the alert.
+  - `DockTile/Constants/AppStrings.swift` and `Localizable.xcstrings`: 9 `update.*` strings. English is final; de/fr/ja/ru/zh-Hans are marked `needs_review`.
+  - Comments in `DockTileApp.swift` and `AboutView.swift`.
+  - New `DockTileTests/Unit/App/ForkReleaseCheckTests.swift`.
+  - README.
+- What it does:
+  - **Check for Updates** shows again, in the app menu and the About pane.
+  - It makes one unauthenticated HTTPS GET to `api.github.com/repos/efczpaclasses-boop/IntelliTile/releases/latest` (ephemeral session, 15 s timeout), then compares `tag_name` with `CFBundleShortVersionString`.
+  - If a newer release exists, an alert offers to open that release's page. Only a `https://github.com/efczpaclasses-boop/IntelliTile/releases/…` address is accepted; anything else falls back to the Releases page.
+  - Other alerts: "up to date", "no releases yet", and "couldn't check" (which also offers the Releases page).
+  - **No download and no install.** There is no automatic or background check.
+- Version: `MARKETING_VERSION` is already 2.8.1 (`DockTile/Config/Base.xcconfig`, from upstream v2.8.1), so it is unchanged. **Rule: tag fork releases `vX.Y.Z`.** A 4th component (`v2.8.1.1`) also compares correctly.
+- Why: inventory #29 (Software Update) was lost when Sparkle was unlinked (blocker B3).
+- Effect on speed: none; the network is used only when the user clicks.

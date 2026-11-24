@@ -42,6 +42,20 @@ enum AppStrings {
         static func portCredit(_ original: String) -> String { String(format: NSLocalizedString("about.port.credit", value: "Based on the open-source project %@ by k97, under the MIT licence. Not affiliated with or endorsed by its authors.", comment: "About: credits row body; %@ is the original project's GitHub address, shown as plain text"), original) }
     }
 
+    // MARK: - Update check (IntelliTile idea #2: fork GitHub Releases, no auto-install)
+
+    enum Update {
+        static let availableTitle = NSLocalizedString("update.available.title", value: "A new version of IntelliTile is available", comment: "Update check: title when a newer IntelliTile release exists (fork GitHub Releases)")
+        static func availableMessage(_ newest: String, _ installed: String) -> String { String(format: NSLocalizedString("update.available.message", value: "IntelliTile %1$@ is on the project’s Releases page. You have %2$@. To update, open the Releases page, or run update.sh in Terminal.", comment: "Update check: %1$@ is the newest release version, %2$@ the installed version"), newest, installed) }
+        static let upToDateTitle = NSLocalizedString("update.upToDate.title", value: "IntelliTile is up to date", comment: "Update check: title when no newer release exists")
+        static func upToDateMessage(_ installed: String) -> String { String(format: NSLocalizedString("update.upToDate.message", value: "You have version %@, the newest release.", comment: "Update check: %@ is the installed version"), installed) }
+        static let noReleasesMessage = NSLocalizedString("update.noReleases.message", value: "No IntelliTile releases have been published yet. Updates come from update.sh for now.", comment: "Update check: the fork has not published any release yet")
+        static let failedTitle = NSLocalizedString("update.failed.title", value: "Couldn’t check for updates", comment: "Update check: title when GitHub could not be reached")
+        static let failedMessage = NSLocalizedString("update.failed.message", value: "GitHub could not be reached. Check your internet connection, or look at the Releases page yourself.", comment: "Update check: body when GitHub could not be reached")
+        static let openReleases = NSLocalizedString("update.openReleases", value: "Open Releases Page", comment: "Update check: button that opens the fork's GitHub Releases page in the browser")
+        static let later = NSLocalizedString("update.later", value: "Later", comment: "Update check: dismiss button")
+    }
+
     // MARK: - Alert Messages
 
     enum Alert {
