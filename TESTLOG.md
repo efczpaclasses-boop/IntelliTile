@@ -26,9 +26,22 @@ verified against swift.org's release keys).
 Not possible on Linux (needs macOS): type-checking against the macOS SDK, the Xcode build, Firebase
 x86_64 linking, the `.icon` compile, unit tests, and any runtime behaviour.
 
-## GitHub Intel runner (macos-15-intel, Xcode 26.3)
+## GitHub Intel runner (macos-15-intel, Xcode 26.3) — 24 Nov 2026, NOT green yet
 
-Not run yet: no write path to the fork has been approved, so the workflow has not been pushed.
+Workflow `.github/workflows/intel-macos.yml`. Runs: 45334786071 (398f95c), 45338378534 (bf3c1ca),
+45340729892 (1a60eca), https://github.com/efczpaclasses-boop/IntelliTile/actions
+
+| Step | Result (source: Intel runner) |
+|---|---|
+| Release build, x86_64, ad-hoc, no Rust | pass (all 3 runs) |
+| Binary report | `Mach-O 64-bit executable x86_64`; `lipo`: non-fat x86_64; main executable minos 15.0; bundled Firebase frameworks x86_64, minos 10.15; RESULT PASS |
+| Headless smoke test | PASS: IDs, URL scheme `intellitile`, LSMinimumSystemVersion 15.0, Firebase/Crashlytics off, no SU* keys or Sparkle, no GoogleService-Info.plist, Assets.car present, no original-brand strings, `codesign --verify --deep --strict` OK, Signature=adhoc |
+| Unit tests (DockTileTests, Debug, x86_64) | FAIL: 760 passed, 177 failed, 13 skipped (same in all 3 runs) |
+
+Unit-test failures:
+- Run 1: 5 stale-name assertions (fixed in bf3c1ca) and the brand-glyph size test (fixed in 4e2fbca; not yet confirmed, because that test was among the crashed ones in run 3).
+- 177 cases end as "crashed with signal abrt". One crash of the test host (`IntelliTile Dev`) stops every test still running. Crash report (run 3): EXC_CRASH SIGABRT on thread `com.apple.RenderBox.Encoder`. The stack runs `MTLReportFailure` < `+[MTLLoader sliceIDForDevice:…]` < `-[_MTLBinaryArchive loadFromURL:error:]` < `RB::load_library_archive` < `RB::RenderFrame::encode` < `RB::ImageProvider::render_device`. That is a Metal assertion inside Apple's SwiftUI renderer while it draws for a test. It happens on the runner's virtual GPU and not in IntelliTile code. Not tested on a real Intel GPU yet.
+- Launch smoke: skipped (it runs after the tests).
 
 ## Faraz's Mac (MacBookPro15,2, macOS 15.8.4)
 
