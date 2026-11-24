@@ -101,6 +101,14 @@ def white_glyph():
         d.rounded_rectangle((x, y, x + tile, y + tile), r, fill=(255, 255, 255, 255))
     x, y = pos['br']
     draw_chip(img, x, y, tile, r, (255, 255, 255), n)
+    # Full-bleed like the original brand glyph: the app sizes the whole image by the logo's own
+    # ratio curve (GlyphLayerRenderTests measures the ink across the middle row), so crop to the
+    # ink and run a "shelf" bar through the gap so the middle row spans the full width.
+    img = img.crop(img.getbbox())
+    w, h = img.size
+    bar = int(h * 0.05)
+    ImageDraw.Draw(img).rounded_rectangle((0, h // 2 - bar // 2, w - 1, h // 2 + bar // 2), bar // 2,
+                                          fill=(255, 255, 255, 255))
     return img.resize((N, N), Image.LANCZOS)
 
 
