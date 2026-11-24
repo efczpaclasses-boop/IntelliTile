@@ -24,6 +24,15 @@ for p in sorted(recent, key=os.path.getmtime):
         if key in body:
             print(f"  {key}: {json.dumps(body[key])[:1500]}")
     images = body.get('usedImages', [])
+    # Which test code was on any thread at the time (attributes a crash on a renderer thread).
+    in_flight = set()
+    for t in body.get('threads', []):
+        for fr in t.get('frames', []):
+            i = fr.get('imageIndex', -1)
+            if 0 <= i < len(images) and 'DockTileTests' in images[i].get('name', '') and fr.get('symbol'):
+                in_flight.add(fr['symbol'])
+    for sym in sorted(in_flight):
+        print(f"  test frame on some thread: {sym[:200]}")
     for t in body.get('threads', []):
         if not t.get('triggered'):
             continue

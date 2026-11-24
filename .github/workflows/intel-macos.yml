@@ -106,6 +106,11 @@ jobs:
           Scripts/intel-port/ci-inspect.sh smoke "build/Build/Products/Release/$APP_NAME.app" smoke-report.txt
           { echo "## Smoke test"; echo '```'; cat smoke-report.txt; echo '```'; } >> "$GITHUB_STEP_SUMMARY"
 
+      # CI-only skips (the app is unchanged): these suites render SwiftUI views (ImageRenderer /
+      # NSHostingView.cacheDisplay). On the runner's virtual GPU, Apple's SwiftUI renderer aborts in
+      # Metal while loading its shader archive (RenderBox.Encoder > MTLBinaryArchive >
+      # MTLReportFailure; crash report from run 45340729892), which kills the test host and every
+      # test still running. They run on a real Intel GPU in MAC_TEST_PLAN.md instead. See TESTLOG.md.
       - name: Unit tests (DockTileTests, x86_64)
         timeout-minutes: 40
         run: |
@@ -115,6 +120,9 @@ jobs:
             -destination 'platform=macOS,arch=x86_64' \
             -derivedDataPath build -clonedSourcePackagesDirPath build/SourcePackages \
             -only-testing:DockTileTests \
+            -skip-testing:DockTileTests/IconPreviewGeometryTests \
+            -skip-testing:DockTileTests/AppsFacePreviewTests \
+            -skip-testing:DockTileTests/AppsBackgroundTests \
             -resultBundlePath TestResults.xcresult \
             ARCHS=x86_64 ONLY_ACTIVE_ARCH=YES \
             CODE_SIGN_STYLE=Manual CODE_SIGN_IDENTITY=- DEVELOPMENT_TEAM= \
