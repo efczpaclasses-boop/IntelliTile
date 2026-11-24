@@ -112,3 +112,6 @@ docs/feedback/
 
 # graphify knowledge-graph output (local analysis, regenerated on demand)
 graphify-out/
+
+# IntelliTile (Intel Mac port): never ship a Firebase project config
+DockTile/Resources/GoogleService-Info.plist

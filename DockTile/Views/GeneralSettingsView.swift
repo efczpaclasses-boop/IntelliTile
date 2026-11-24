@@ -32,10 +32,10 @@ struct GeneralSettingsView: View {
     @State private var showScanResult = false
     @State private var scanFoundMissing = false
 
-    /// Analytics consent (opt-out, default ON). Backed by the SHARED suite so helper bundles
+    /// Analytics consent (IntelliTile: default OFF). Backed by the SHARED suite so helper bundles
     /// honour the same value — see AnalyticsService.
     @AppStorage(UserDefaultsKeys.analyticsEnabled, store: UserDefaults(suiteName: UserDefaultsKeys.sharedSuiteName))
-    private var analyticsEnabled = true
+    private var analyticsEnabled = false
 
     /// Smart Add on/off (opt-out, default ON). Main-app domain — the suggestion flow is main-app
     /// only, so this is not stored in the shared suite.

@@ -54,9 +54,9 @@ struct AnalyticsEventNamingTests {
 @Suite("Analytics collection gating")
 struct AnalyticsGatingTests {
 
-    @Test("Consent is opt-out: absent resolves to granted")
-    func consentDefaultsOn() {
-        #expect(AnalyticsService.resolveConsent(storedValue: nil) == true)
+    @Test("IntelliTile: consent is opt-in: absent resolves to NOT granted")
+    func consentDefaultsOff() {
+        #expect(AnalyticsService.resolveConsent(storedValue: nil) == false)
     }
 
     @Test("Stored consent is honoured exactly")
@@ -75,11 +75,11 @@ struct AnalyticsGatingTests {
         #expect(AnalyticsService.shouldCollect(isRelease: false, consentGranted: false) == false)
     }
 
-    @Test("Opting out after default-on flips collection off in a Release build")
+    @Test("IntelliTile: a fresh Release install does not collect; opting out stays off")
     func optOutFlipsCollection() {
         // Compose the two seams the way applyCollectionState() does.
         let defaultConsent = AnalyticsService.resolveConsent(storedValue: nil)
-        #expect(AnalyticsService.shouldCollect(isRelease: true, consentGranted: defaultConsent) == true)
+        #expect(AnalyticsService.shouldCollect(isRelease: true, consentGranted: defaultConsent) == false)
 
         let optedOut = AnalyticsService.resolveConsent(storedValue: false)
         #expect(AnalyticsService.shouldCollect(isRelease: true, consentGranted: optedOut) == false)

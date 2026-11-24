@@ -39,7 +39,6 @@
 		AAEPGV02 /* EmojiPickerGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAEPGV01 /* EmojiPickerGrid.swift */; };
 		AAFB020 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB010 /* FirebaseAnalytics */; };
 		AAFB021 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = AAFB011 /* FirebaseCrashlytics */; };
-		AAGSI01 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AAGSI02 /* GoogleService-Info.plist */; };
 		AALOC01 /* Localizable.xcstrings in Resources */ = {isa = PBXBuildFile; fileRef = AALOC02 /* Localizable.xcstrings */; };
 		AAGSV01 /* GeneralSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAGSV02 /* GeneralSettingsView.swift */; };
 		AAPAM01 /* PopoverAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAPAM02 /* PopoverAppearance.swift */; };
@@ -146,7 +145,6 @@
 		AATRI00A /* TranslationInvite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranslationInvite.swift; sourceTree = "<group>"; };
 		AAENV001 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		AAEPGV01 /* EmojiPickerGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmojiPickerGrid.swift; sourceTree = "<group>"; };
-		AAGSI02 /* GoogleService-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		AALOC02 /* Localizable.xcstrings */ = {isa = PBXFileReference; lastKnownFileType = text.json.xcstrings; path = Localizable.xcstrings; sourceTree = "<group>"; };
 		AAGSV02 /* GeneralSettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralSettingsView.swift; sourceTree = "<group>"; };
 		AAPAM02 /* PopoverAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopoverAppearance.swift; sourceTree = "<group>"; };
@@ -280,7 +278,6 @@
 				AAICON02 /* AppIcon.icon */,
 				AAICND02 /* AppIcon-Dev.icon */,
 				AA0008 /* Info.plist */,
-				AAGSI02 /* GoogleService-Info.plist */,
 				AALOC02 /* Localizable.xcstrings */,
 				AADTG02 /* DockTileGlyph.png */,
 				AALI000 /* LoginItems */,
@@ -568,7 +565,6 @@
 			files = (
 				AAICON01 /* AppIcon.icon in Resources */,
 				AAICND01 /* AppIcon-Dev.icon in Resources */,
-				AAGSI01 /* GoogleService-Info.plist in Resources */,
 				AALOC01 /* Localizable.xcstrings in Resources */,
 				AADTG01 /* DockTileGlyph.png in Resources */,
 			);

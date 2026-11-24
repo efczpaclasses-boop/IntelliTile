@@ -75,7 +75,7 @@ final class AnalyticsService {
 
     // MARK: - Consent
 
-    /// Opt-out: defaults to ON when the key has never been set. Synchronize-first: another process
+    /// IntelliTile: defaults to OFF when the key has never been set. Synchronize-first: another process
     /// (the main app) writes this key, and a cfprefsd cache split once made a cross-process read stale.
     var consentGranted: Bool {
         CFPreferencesAppSynchronize(UserDefaultsKeys.sharedSuiteName as CFString)
@@ -95,9 +95,10 @@ final class AnalyticsService {
     // consent gate — are pure `nonisolated static` functions so they are unit-testable without
     // Firebase, UserDefaults, or the build environment (mirrors `resolveDockVisibility`).
 
-    /// Resolve opt-out consent from the stored value. Absent (never set) → granted (ON by default).
+    /// Resolve consent from the stored value. IntelliTile (Intel Mac port): absent (never set) →
+    /// NOT granted (OFF by default; upstream defaulted ON). No Firebase project ships either.
     nonisolated static func resolveConsent(storedValue: Bool?) -> Bool {
-        storedValue ?? true
+        storedValue ?? false
     }
 
     /// Collection is allowed ONLY in a Release build AND with consent granted. Debug/Dev never send.

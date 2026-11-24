@@ -53,5 +53,12 @@
 	     Disable delegate swizzling to avoid surprises. -->
 	<key>FirebaseAppDelegateProxyEnabled</key>
 	<false/>
+	<!-- IntelliTile (Intel Mac port): Firebase stays linked but is switched off. No
+	     GoogleService-Info.plist ships, so FirebaseApp.configure() is never called; these
+	     kill switches keep collection off even if one is added later. -->
+	<key>FIREBASE_ANALYTICS_COLLECTION_DEACTIVATED</key>
+	<true/>
+	<key>FirebaseCrashlyticsCollectionEnabled</key>
+	<false/>
 </dict>
 </plist>
